@@ -91,7 +91,10 @@ $ yarn start
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/tmchuynh" target="_blank">Tina Huynh</a>
+Made with :heart: by <a href="https://github.com/tmchuynh" target="_blank">Tina Huynh</a> and <a href="https://github.com/MGBoulware88" target="_blank">
+Gray Boulware</a>
+
+
 
 &#xa0;
 
