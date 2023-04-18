@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const RegistrationForm = () => {
   return (
     <Form>
-      Register Your Account
+      <h1>Register Your Account</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />

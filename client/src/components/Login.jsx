@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const LoginForm = () => {
   return (
     <Form>
-      Login
+      <h1>Login</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
@@ -18,6 +18,8 @@ const LoginForm = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
+
+      <Link to={'/password'}>Forgot Password?</Link>
 
       <Button variant="primary" type="submit">
         Login
