@@ -1,13 +1,11 @@
-import './App.css';
-
-import LoginForm from './components/LoginReg';
-
+import React from 'react';
+import Main from './views/Main';
+//everything we want to render will be imported to our Main.js view
 function App() {
   return (
     <div className="App">
-      <LoginForm></LoginForm>
+      <Main />
     </div>
   );
 }
-
 export default App;

@@ -1,9 +1,12 @@
 import React from "react";
 import {Form, Button} from "react-bootstrap";
+import { Link } from 'react-router-dom'
 
-const LoginForm = () => {
+
+const RegistrationForm = () => {
   return (
     <Form>
+      <h1>Register Your Account</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
@@ -17,11 +20,19 @@ const LoginForm = () => {
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
 
+      <Form.Group controlId="formBasicConfirmPassword">
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control type="password" placeholder="Confirm Password" />
+      </Form.Group>
+
       <Button variant="primary" type="submit">
-        Login
+        Register
       </Button>
+
+      Already have an account? <Link to={'/signin'}>Sign In</Link>
+
     </Form>
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;
