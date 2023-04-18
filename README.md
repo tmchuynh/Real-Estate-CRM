@@ -44,31 +44,36 @@
 
 <br>
 
-## :dart: About ##
+## :fire: About ##
 
 Describe your project
 
-## :sparkles: Features ##
+## :boom: Features ##
 
 :heavy_check_mark: Feature 1;\
 :heavy_check_mark: Feature 2;\
 :heavy_check_mark: Feature 3;
 
-## :rocket: Technologies ##
+## :rocket: Backend Technologies ##
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
+- [MongoDB](https://www.mongodb.com/blog/post/big-reasons-upgrade-mongodb-6-0)
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+
+## :star2: Frontend ##
+
+The following were implemented in this project:
+
+- [React Bootstrap](https://react-bootstrap.github.io/getting-started/introduction/)
+- [Bootswatch](https://bootswatch.com/)
 
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
-## :checkered_flag: Starting ##
+## :dart: Starting ##
 
 ```bash
 # Clone this project
@@ -86,16 +91,11 @@ $ yarn start
 # The server will initialize in the <http://localhost:3000>
 ```
 
-## :memo: License ##
-
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
-
+## :computer: License ##
 
 Made with :heart: by <a href="https://github.com/tmchuynh" target="_blank">Tina Huynh</a> and <a href="https://github.com/MGBoulware88" target="_blank">
 Gray Boulware</a>
 
-
-
 &#xa0;
 
-<a href="#top">Back to top</a>
+<button href="#top">Back to top</button>
