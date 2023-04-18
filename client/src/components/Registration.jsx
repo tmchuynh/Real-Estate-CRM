@@ -1,10 +1,12 @@
 import React from "react";
 import {Form, Button} from "react-bootstrap";
+import { Link } from 'react-router-dom'
 
 
 const RegistrationForm = () => {
   return (
     <Form>
+      <h1>Register Your Account</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
@@ -26,6 +28,9 @@ const RegistrationForm = () => {
       <Button variant="primary" type="submit">
         Register
       </Button>
+
+      Already have an account? <Link to={'/signin'}>Sign In</Link>
+
     </Form>
   );
 };
