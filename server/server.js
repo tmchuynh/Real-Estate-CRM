@@ -1,25 +1,13 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import dbConnect from './config/mongoose.config.js';
-import cors from 'cors';
-
+const express = require('express');
+const cors = require('cors');
 const app = express();
-dotenv.config();
-
-app.use(express.json(), cors());
-
-app.get('/api/message', (req, res) => {
-  res.status(200).json({ message: 'Hello World!' });
-});
-
-async function serverStart() {
-  try {
-    dbConnect();
-    const PORT = process.env.PORT;
-    app.listen(PORT, () => console.log(`Listening on port: PORT`));
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-serverStart();
+require('dotenv').config();
+const port = process.env.PORT;
+require('./config/mongoose.config');
+//REQUIRED FOR CRUD
+app.use(express.json(), cors(), express.urlencoded({ extended: true }));
+//ADD ALL MODEL ROUTES HERE
+require('./routes/user.routes')(app);
+require('./routes/lead.routes')(app);
+//THIS SHOULD BE LAST
+app.listen(port, () => console.log(`Listening on port: ${port}`) );
