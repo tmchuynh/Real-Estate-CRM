@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 const LoginForm = () => {
   return (
     <Form>
+      Login
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
@@ -22,7 +23,7 @@ const LoginForm = () => {
         Login
       </Button>
 
-      <Link to={'/register'}>Register</Link>
+      Don't have an account? <Link to={'/register'}>Register</Link>
     </Form>
   );
 };
