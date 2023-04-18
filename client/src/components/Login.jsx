@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Button} from "react-bootstrap";
+import { Form, Button, Stack } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 
 const LoginForm = () => {
@@ -9,23 +9,25 @@ const LoginForm = () => {
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else. Promise.
-        </Form.Text>
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
+      <Stack gap={3} className="p-2">
+        <Link to={'/password'}>Forgot Password?</Link>
 
-      <Link to={'/password'}>Forgot Password?</Link>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
 
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
+        <div>
+          Don't have an account? <Link to={'/register'}>Register</Link>
+        </div>
 
-      Don't have an account? <Link to={'/register'}>Register</Link>
+      </Stack>
+
     </Form>
   );
 };
