@@ -2,15 +2,13 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
-
-import axios from 'axios';
 import RegistrationForm from '../components/Registration';
 import LoginForm from '../components/Login';
 import PasswordReset from '../components/Password';
 
 export default () => {
     return (
-        <div>
+        <div className='p-5'>
             <Routes>
                 <Route path="/signin" element={<LoginForm />} />
                 <Route path="/register" element={<RegistrationForm />} />
@@ -24,8 +22,6 @@ export default () => {
 
                     </div>
                 } />
-
-
                 <Route path="*" element={<LoginForm />} />
             </Routes>
         </div>
