@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { Container, Form, Button, Alert } from 'react-bootstrap';
-import axios from 'axios';
 
 const PasswordReset = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +25,7 @@ const PasswordReset = () => {
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleEmailChange} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className='m-2'>
           Reset Password
         </Button>
       </Form>
