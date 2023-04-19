@@ -8,10 +8,10 @@ const SidebarNav = () => {
         <Nav.Link href="/">Home</Nav.Link>
       </Button>
       <Button type="button" class="btn btn-primary">
-        <Nav.Link href="#">About</Nav.Link>
+        <Nav.Link href="/lead_profile">Lead</Nav.Link>
       </Button>
       <Button type="button" class="btn btn-primary">
-        <Nav.Link href="#">Services</Nav.Link>
+        <Nav.Link href="/user_profile">User</Nav.Link>
       </Button>
       <Button type="button" class="btn btn-primary">
         <Nav.Link href="#">Documents</Nav.Link>
