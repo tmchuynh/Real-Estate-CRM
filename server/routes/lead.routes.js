@@ -1,8 +1,8 @@
-const LeadController = require('../controllers/lead.controller');
-module.exports = function(app) {
-    app.get('/api/leads', LeadController.getAllLeads)
-    app.post('/api/leads', LeadController.createOneLead)
-    app.get('/api/leads/:id', LeadController.getOneLeadById)
-    app.put('/api/leads/:id', LeadController.updateOneLeadById)
-    app.delete('/api/leads/:id', LeadController.deleteOneLeadById)
+import { getAllLeads, createOneLead, getOneLeadById, updateOneLeadById, deleteOneLeadById } from '../controllers/lead.controller';
+export default function(app) {
+    app.get('/api/leads', getAllLeads)
+    app.post('/api/leads', createOneLead)
+    app.get('/api/leads/:id', getOneLeadById)
+    app.put('/api/leads/:id', updateOneLeadById)
+    app.delete('/api/leads/:id', deleteOneLeadById)
 }

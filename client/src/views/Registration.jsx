@@ -1,18 +1,20 @@
 import React from "react";
-import {Form, Button} from "react-bootstrap";
-import { Link } from 'react-router-dom'
+import { Form, Button, Stack } from "react-bootstrap";
+import { Link, useNavigate} from 'react-router-dom'
 
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/user_profile");
+  }
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h1>Register Your Account</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
@@ -25,11 +27,17 @@ const RegistrationForm = () => {
         <Form.Control type="password" placeholder="Confirm Password" />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Register
-      </Button>
+      <Stack gap={3} className="p-3">
+        <Button variant="primary" type="submit">
+          Register
+        </Button>
 
-      Already have an account? <Link to={'/signin'}>Sign In</Link>
+        <div>
+          Already have an account? <Link to={'/signin'}>Sign In</Link>
+        </div>
+
+      </Stack>
+
 
     </Form>
   );
