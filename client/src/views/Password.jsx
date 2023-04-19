@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { Container, Form, Button, Alert } from 'react-bootstrap';
-import axios from 'axios';
 
 const PasswordReset = () => {
   const [email, setEmail] = useState('');

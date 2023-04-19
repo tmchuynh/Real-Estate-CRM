@@ -2,14 +2,15 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
-import RegistrationForm from '../components/Registration';
-import LoginForm from '../components/Login';
-import PasswordReset from '../components/Password';
+import RegistrationForm from './Registration';
+import LoginForm from './Login';
+import PasswordReset from './Password';
 
 export default () => {
     return (
         <div className='p-5'>
             <Routes>
+                <Route path="/signin" element={<LoginForm />} />
                 <Route path="/signin" element={<LoginForm />} />
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
