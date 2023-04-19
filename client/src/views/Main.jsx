@@ -10,7 +10,7 @@ import EditLeadProfile from './EditLeadProfile';
 import UserProfile from './UserProfile';
 import EditUserProfile from './EditUserProfile';
 
-export default () => {
+export default function Main () {
     const lead = {
         id: 1,
         firstName: "John",
@@ -44,7 +44,7 @@ export default () => {
                 <Route path="/password" element={<PasswordReset />} />
                 <Route path="/reset" element={
                     <div>
-                        <h3>We sent you en email which contains a link to reset your password
+                        <h3>We sent you an email which contains a link to reset your password
                         </h3>
                         <br /> <br /> <br />
                         <Link to={'/signin'}>Go Back</Link>
