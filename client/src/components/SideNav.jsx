@@ -5,7 +5,6 @@ import Nav from "react-bootstrap/Nav";
 const SidebarNav = () => {
   return (
     <Navbar bg="light" expand="lg" fixed="left">
-      <Navbar.Brand href="#">My Website</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="flex-column">

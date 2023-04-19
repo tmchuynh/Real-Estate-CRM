@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom'
 import RegistrationForm from './Registration';
 import LoginForm from './Login';
 import PasswordReset from './Password';
+import UserProfile from './UserProfile';
 
 export default () => {
     return (
         <div className='p-5'>
             <Routes>
                 <Route path="/signin" element={<LoginForm />} />
-                <Route path="/signin" element={<LoginForm />} />
+                <Route path="/user_profile" element={<UserProfile />} />
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
                 <Route path="/reset" element={
