@@ -1,20 +1,28 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import { Nav, Button } from "react-bootstrap";
 
 const SidebarNav = () => {
   return (
-    <Navbar bg="light" expand="lg" fixed="left">
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="flex-column">
-          <Nav.Link href="#">Home</Nav.Link>
-          <Nav.Link href="#">About</Nav.Link>
-          <Nav.Link href="#">Services</Nav.Link>
-          <Nav.Link href="#">Contact</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <div class="btn-group-vertical">
+      <Button type="button" class="btn btn-primary">
+        <Nav.Link href="#">Home</Nav.Link>
+      </Button>
+      <Button type="button" class="btn btn-primary">
+        <Nav.Link href="#">About</Nav.Link>
+      </Button>
+      <Button type="button" class="btn btn-primary">
+        <Nav.Link href="#">Services</Nav.Link>
+      </Button>
+      <Button type="button" class="btn btn-primary">
+        <Nav.Link href="#">Documents</Nav.Link>
+      </Button>
+      <Button type="button" class="btn btn-primary">
+        <Nav.Link href="#">Leads</Nav.Link>
+      </Button>
+      <Button type="button" class="btn btn-primary">
+        <Nav.Link href="#">Contact</Nav.Link>
+      </Button>
+    </div>
   );
 };
 
