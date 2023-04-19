@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-require('mongoose-type-email');
+import { Schema, SchemaTypes, model } from 'mongoose';
+import 'mongoose-type-email';
 //create the Lead schema with validations
-const LeadSchema = new mongoose.Schema({
+const LeadSchema = new Schema({
     //mongoose added Email datatype that auto validates using an email regex
     email: {
-        type: mongoose.SchemaTypes.Email,
+        type: SchemaTypes.Email,
         correctTld: true, //correctTld is stronger email validation
         index: true,
         required: [true, 'Email is required!'],
@@ -46,5 +46,5 @@ const LeadSchema = new mongoose.Schema({
     }
 });
 
-const Lead = mongoose.model('Lead', LeadSchema);
-module.exports = Lead;
+const Lead = model('Lead', LeadSchema);
+export default Lead;

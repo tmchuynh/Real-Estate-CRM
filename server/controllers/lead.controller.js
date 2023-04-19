@@ -1,4 +1,4 @@
-const Lead = require('../models/lead.model');
+const Lead = require('../models/lead.model').default;
 
 /* Mongoose methods to interact with our MongoDB*/
 
