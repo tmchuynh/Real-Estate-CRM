@@ -5,7 +5,7 @@ const SidebarNav = () => {
   return (
     <div class="btn-group-vertical">
       <Button type="button" class="btn btn-primary">
-        <Nav.Link href="#">Home</Nav.Link>
+        <Nav.Link href="/">Home</Nav.Link>
       </Button>
       <Button type="button" class="btn btn-primary">
         <Nav.Link href="#">About</Nav.Link>

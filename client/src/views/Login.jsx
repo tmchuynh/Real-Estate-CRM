@@ -7,9 +7,9 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/user_profile");
+    navigate("/lead_profile");
   }
-  
+
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Login</h1>

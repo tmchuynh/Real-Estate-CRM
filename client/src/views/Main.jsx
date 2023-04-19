@@ -5,14 +5,28 @@ import { Link } from 'react-router-dom'
 import RegistrationForm from './Registration';
 import LoginForm from './Login';
 import PasswordReset from './Password';
-import UserProfile from './UserProfile';
+import LeadProfile from './LeadProfile';
+import EditLeadProfile from './EditLeadProfile';
 
 export default () => {
+    const user = {
+        id: 1,
+        firstName: "John",
+        lastName: "Doe",
+        phoneNumber: "123-456-7890",
+        isBuying: true,
+        isSelling: false,
+        marketArea: "New York City",
+        profilePicture: "https://randomuser.me/api/portraits/men/1.jpg"
+    };
     return (
         <div className='p-5'>
             <Routes>
                 <Route path="/signin" element={<LoginForm />} />
-                <Route path="/user_profile" element={<UserProfile />} />
+
+                ## needs to be changed to "/lead_profile/:id"
+                <Route path="/lead_profile" element={<LeadProfile user={user}/>} />
+                <Route path="/edit_lead_profile/:id" element={<EditLeadProfile user={user}/>} />
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
                 <Route path="/reset" element={
@@ -24,6 +38,7 @@ export default () => {
 
                     </div>
                 } />
+                ## the root route takes the user to the login form "home"
                 <Route path="*" element={<LoginForm />} />
             </Routes>
         </div>
