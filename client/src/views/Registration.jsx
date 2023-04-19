@@ -1,11 +1,16 @@
 import React from "react";
 import { Form, Button, Stack } from "react-bootstrap";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/user_profile");
+  }
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h1>Register Your Account</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>

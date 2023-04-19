@@ -1,10 +1,17 @@
 import React from "react";
 import { Form, Button, Stack } from "react-bootstrap";
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/lead_profile");
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <h1>Login</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
