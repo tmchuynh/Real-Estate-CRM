@@ -35,10 +35,10 @@ export default () => {
                 <Route path="/signin" element={<LoginForm />} />
 
                 ## needs to be changed to "/lead_profile/:id"
-                <Route path="/lead_profile" element={<LeadProfile user={lead}/>} />
-                <Route path="/edit_lead_profile/:id" element={<EditLeadProfile user={lead}/>} />
-                <Route path="/user_profile" element={<UserProfile user={user}/>} />
-                <Route path="/edit_user_profile/:id" element={<EditUserProfile user={lead}/>} />
+                <Route path="/lead_profile" element={<LeadProfile user={lead} />} />
+                <Route path="/edit_lead_profile/:id" element={<EditLeadProfile user={lead} />} />
+                <Route path="/user_profile" element={<UserProfile user={user} />} />
+                <Route path="/edit_user_profile/:id" element={<EditUserProfile user={lead} />} />
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
