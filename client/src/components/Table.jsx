@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import {Table, Button} from "react-bootstrap";
+import DynamicPagination from "./Pagination";
+
+const ITEMS_PER_PAGE = 15;
 
 const DynamicTable = ({ data }) => {
   const [tableData, setTableData] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleCellEdit = (newValue, rowIndex, columnIndex) => {
     const newData = [...tableData];
@@ -28,7 +32,32 @@ const DynamicTable = ({ data }) => {
     setTableData(newData);
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const renderData = () => {
+    return data.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((row, rowIndex) => (
+      <tr key={rowIndex}>
+        {row.map((cell, columnIndex) => (
+          <td
+            key={columnIndex}
+            onDoubleClick={handleCellDoubleClick}
+            onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)}
+          >
+            {cell}
+          </td>
+        ))}
+        <td>
+          <Button onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
+        </td>
+      </tr>
+    ));
+  };
+  
+
   return (
+    <>
     <Table striped bordered hover responsive>
       <thead>
         <tr>
@@ -39,28 +68,16 @@ const DynamicTable = ({ data }) => {
         </tr>
       </thead>
       <tbody>
-        {tableData.slice(1).map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, columnIndex) => (
-              <td
-                key={columnIndex}
-                onDoubleClick={handleCellDoubleClick}
-                onKeyDown={(e) =>
-                  handleCellKeyDown(e, rowIndex, columnIndex)
-                }
-              >
-                {cell}
-              </td>
-            ))}
-            <td>
-              <Button onClick={() => handleDeleteRow(rowIndex)}>
-                Delete
-              </Button>
-            </td>
-          </tr>
-        ))}
+        {renderData()}
       </tbody>
     </Table>
+    <DynamicPagination
+    itemsPerPage={ITEMS_PER_PAGE}
+    totalItems={data.length}
+    currentPage={currentPage}
+    onPageChange={handlePageChange}
+  />
+    </>
   );
 };
 
