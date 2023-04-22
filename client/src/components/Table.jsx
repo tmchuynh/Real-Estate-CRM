@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 
 const DynamicTable = ({ data }) => {
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive>
       <thead>
         <tr>
           {data[0].map((header, i) => (

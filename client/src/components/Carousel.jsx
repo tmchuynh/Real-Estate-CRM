@@ -1,32 +1,24 @@
 import React from "react";
 import Carousel from 'react-bootstrap';
 
-const UncontrolledExample = () => {
+const Carousel_ = ({ slides }) => {
   return (
     <Carousel>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=First slide&bg=373940"
-          alt="First slide"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=282c34"
-          alt="Second slide"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=20232a"
-          alt="Third slide"
-        />
-      </Carousel.Item>
+      {slides.map((slide, index) => (
+        <Carousel.Item key={index}>
+          <img
+            className="d-block w-100"
+            src={slide.image}
+            alt={slide.alt}
+          />
+          <Carousel.Caption>
+            <h3>{slide.title}</h3>
+            <p>{slide.description}</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      ))}
     </Carousel>
   );
 }
 
-export default UncontrolledExample;
+export default Carousel_;
