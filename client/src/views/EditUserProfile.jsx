@@ -11,11 +11,23 @@ const EditUserProfile = ({ user }) => {
     const [location, setLocation] = useState(user.location);
     const [title, setTitle] = useState(user.title);
     const [profilePicture, setProfilePicture] = useState(user.profilePicture);
+    const [newProfilePicture, setNewProfilePicture] = useState(null);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         // code to update user profile in the backend
         navigate('/user_profile');
+    }
+
+    const handleProfilePictureChange = (event) => {
+        setNewProfilePicture(event.target.files[0]);
+    }
+
+    const handleUpdateProfilePicture = () => {
+        if (newProfilePicture) {
+            setProfilePicture(URL.createObjectURL(newProfilePicture));
+            setNewProfilePicture(null);
+        }
     }
 
     return (
@@ -29,6 +41,16 @@ const EditUserProfile = ({ user }) => {
                         <Col md={3}>
                             <div className="profile-picture-container">
                                 <img src={profilePicture} alt={fullName} />
+                                <Button variant="primary" onClick={handleUpdateProfilePicture}>
+                                    <input
+                                        type="file"
+                                        onChange={handleProfilePictureChange}
+                                        accept="image/*"
+                                        style={{ opacity: 0, position: "absolute", width: "100%", height: "100%", left: 0, top: 0, cursor: "pointer" }}
+                                    />
+                                    Update Profile Picture
+                                </Button>
+
                             </div>
                         </Col>
                         <Col md={9}>
@@ -70,4 +92,4 @@ const EditUserProfile = ({ user }) => {
     )
 }
 
-export default EditUserProfile;
+export default EditUserProfile

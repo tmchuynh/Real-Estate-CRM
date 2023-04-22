@@ -15,13 +15,27 @@ const EditLeadProfile = ({ user }) => {
         profilePicture
     });
     const navigate = useNavigate();
+    const [newProfilePicture, setNewProfilePicture] = useState(null);
+    const [setProfilePicture] = useState(user.profilePicture);
+
 
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value, type, checked } = event.target;
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: value
+            [name]: type === "checkbox" ? checked : value
         }));
+    };
+
+    const handleUpdateProfilePicture = (event) => {
+        setNewProfilePicture(event.target.files[0]);
+    };
+
+    const handleProfilePictureChange = (event) => {
+        if (newProfilePicture) {
+            setProfilePicture(URL.createObjectURL(newProfilePicture));
+            setNewProfilePicture(null);
+        }
     };
 
     const handleSubmit = (event) => {
@@ -33,13 +47,22 @@ const EditLeadProfile = ({ user }) => {
         <>
             <div className="d-flex">
                 <SidebarNav />
-                
+
                 <Container>
                     <h2>Lead Profile</h2>
                     <Row className="mt-3">
                         <Col md={3}>
                             <div className="profile-picture-container">
-                                <Image src={formData.profilePicture} alt={`${formData.firstName} ${formData.lastName}`} roundedCircle fluid />
+                                <Image src={formData.profilePicture || "/default-profile-picture.jpg"} alt={`${formData.firstName} ${formData.lastName}`} roundedCircle fluid />
+                                <Button variant="primary" onClick={handleUpdateProfilePicture}>
+                                    <input
+                                        type="file"
+                                        onChange={handleProfilePictureChange}
+                                        accept="image/*"
+                                        style={{ opacity: 0, position: "absolute", width: "100%", height: "100%", left: 0, top: 0, cursor: "pointer" }}
+                                    />
+                                    Update Profile Picture
+                                </Button>
                             </div>
                         </Col>
                         <Col md={9}>
@@ -67,7 +90,9 @@ const EditLeadProfile = ({ user }) => {
                                     <Form.Label>Market Area</Form.Label>
                                     <Form.Control type="text" name="marketArea" value={formData.marketArea} onChange={handleInputChange} required />
                                 </Form.Group>
-                                <Button variant="primary" type="submit">Save</Button>
+                                <Button variant="primary" type="submit">
+                                    Save Changes
+                                </Button>
                             </Form>
                         </Col>
                     </Row>
