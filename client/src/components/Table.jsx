@@ -22,6 +22,12 @@ const DynamicTable = ({ data }) => {
     e.target.focus();
   };
 
+  const handleDeleteRow = (rowIndex) => {
+    const newData = [...tableData];
+    newData.splice(rowIndex, 1);
+    setTableData(newData);
+  };
+
   return (
     <Table striped bordered hover responsive>
       <thead>
@@ -29,6 +35,7 @@ const DynamicTable = ({ data }) => {
           {data[0].map((header, i) => (
             <th key={i}>{header}</th>
           ))}
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +52,11 @@ const DynamicTable = ({ data }) => {
                 {cell}
               </td>
             ))}
+            <td>
+              <button onClick={() => handleDeleteRow(rowIndex)}>
+                Delete
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>
