@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from "react-bootstrap"
 
 function CopyButton(props) {
   const [isCopied, setIsCopied] = useState(false);
@@ -16,9 +17,9 @@ function CopyButton(props) {
   }
 
   return (
-    <button onClick={handleClick}>
+    <Button onClick={handleClick}>
       {isCopied ? 'Copied!' : 'Copy'}
-    </button>
+    </Button>
   );
 }
 
