@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import {Table, Button} from "react-bootstrap";
+import { Table, Button, Form } from "react-bootstrap";
 import DynamicPagination from "./Pagination";
 
-const ITEMS_PER_PAGE = 15;
-
 const DynamicTable = ({ data }) => {
+  const DEFAULT_ITEMS_PER_PAGE = 15;
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
 
   const handleCellEdit = (newValue, rowIndex, columnIndex) => {
     const newData = [...tableData];
@@ -36,8 +36,12 @@ const DynamicTable = ({ data }) => {
     setCurrentPage(page);
   };
 
+  const handleItemsPerPageChange = (e) => {
+    setItemsPerPage(parseInt(e.target.value));
+  };
+
   const renderData = () => {
-    return data.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((row, rowIndex) => (
+    return tableData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
           <td
@@ -57,27 +61,33 @@ const DynamicTable = ({ data }) => {
   
 
   return (
-    <>
-    <Table striped bordered hover responsive>
-      <thead>
-        <tr>
-          {data[0].map((header, i) => (
-            <th key={i}>{header}</th>
-          ))}
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {renderData()}
-      </tbody>
-    </Table>
-    <DynamicPagination
-    itemsPerPage={ITEMS_PER_PAGE}
-    totalItems={data.length}
-    currentPage={currentPage}
-    onPageChange={handlePageChange}
-  />
-    </>
+    <div>
+      <Form.Select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+        <option value="5">5 rows per page</option>
+        <option value="10">10 rows per page</option>
+        <option value="15">15 rows per page</option>
+        <option value="20">20 rows per page</option>
+      </Form.Select>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            {data[0].map((header, i) => (
+              <th key={i}>{header}</th>
+            ))}
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {renderData()}
+        </tbody>
+      </Table>
+      <DynamicPagination
+        totalItems={tableData.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
+    </div>
   );
 };
 
