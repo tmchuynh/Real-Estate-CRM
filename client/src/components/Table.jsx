@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Table from "react-bootstrap";
+import {Table, Button} from "react-bootstrap";
 
 const DynamicTable = ({ data }) => {
   const [tableData, setTableData] = useState(data);
@@ -53,9 +53,9 @@ const DynamicTable = ({ data }) => {
               </td>
             ))}
             <td>
-              <button onClick={() => handleDeleteRow(rowIndex)}>
+              <Button onClick={() => handleDeleteRow(rowIndex)}>
                 Delete
-              </button>
+              </Button>
             </td>
           </tr>
         ))}

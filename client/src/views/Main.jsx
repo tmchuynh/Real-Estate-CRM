@@ -9,6 +9,7 @@ import LeadProfile from './LeadProfile';
 import EditLeadProfile from './EditLeadProfile';
 import UserProfile from './UserProfile';
 import EditUserProfile from './EditUserProfile';
+import Leads from './Leads';
 
 export default () => {
     const lead = {
@@ -39,6 +40,8 @@ export default () => {
                 <Route path="/edit_lead_profile/:id" element={<EditLeadProfile user={lead} />} />
                 <Route path="/user_profile" element={<UserProfile user={user} />} />
                 <Route path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
+
+                <Route path="/leads" element={<Leads/>} />
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
