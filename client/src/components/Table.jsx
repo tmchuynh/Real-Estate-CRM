@@ -64,7 +64,7 @@ const DynamicTable = ({ data }) => {
           </td>
         ))}
         <td>
-          <Button onClick={() => handleDetailsClick(row[0])}>Details</Button>
+          <Button onClick={() => handleDetailsClick(rowIndex)}>Details</Button>
 
           <Button onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
         </td>
