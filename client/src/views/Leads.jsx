@@ -1,10 +1,33 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import { Container } from "react-bootstrap"
 import SidebarNav from '../components/SideNav';
 import DynamicTable from '../components/Table';
 
 
 const Leads = () => {
+    /* 
+    **** These vars needed to query db with col sorting ****
+    **** Store bool for if user wants to sort that col  ****
+    **** if bool needs to append the query with a sort  ****
+    **** of the corresponding name                      ****
+    */
+    // const baseUrl = "localhost:8000/api/leads";
+    // const [sortName] = useState(false);
+    // const [sortEmail] = useState(false);
+    // const [sortPhone] = useState(false);
+    // const [sortStatus] = useState(false);
+
+    //query to grab the leads
+    //if filters, query needs operators to grab the filtered results
+    // useEffect(() => {
+    //     //Bool && query the router with the sort by that col
+    //     sortName && axios.get(`${BaseUrl}/name`)
+    //         .then(results => setTableData(results)
+    //         .catch(err => {
+    //             const errData = err.message.errors;
+    //             //map the errors to display
+
+    //         })
 
     const leadsData = [["Name", "Email", "Phone Number", "Status"],
     ["John Doe", "johndoe@example.com", "555-1234", "New"],
