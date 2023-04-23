@@ -8,7 +8,7 @@ import PasswordReset from './Password';
 import UserProfile from './UserProfile';
 import EditUserProfile from './EditUserProfile';
 import Leads from './Leads';
-import CustomModal from '../components/LeadPopUp';
+import CustomModal from '../components/LeadForm';
 import LeadDetails from './LeadDetails';
 
 export default function Main () {

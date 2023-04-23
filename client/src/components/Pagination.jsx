@@ -34,3 +34,4 @@ const DynamicPagination = ({ itemsPerPage, totalItems, currentPage, onPageChange
 }
 
 export default DynamicPagination;
+

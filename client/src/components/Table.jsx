@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
 import DynamicPagination from "./Pagination";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 const DynamicTable = ({ data }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
@@ -47,16 +49,16 @@ const DynamicTable = ({ data }) => {
   }
 
   const renderData = () => {
-    return tableData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((row, rowIndex) => (
+    return tableData.slice(1, currentPage * itemsPerPage).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
           <td
-            className=""
+            style={{textAlign:"center"}}
             key={columnIndex}
             onDoubleClick={handleCellDoubleClick}
             onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)}
           >
-            {cell}
+            {cell === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{color: "#04a201"}} /> : cell === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{color: "#d80e0e",}} /> : cell}
           </td>
         ))}
         <td>
@@ -66,6 +68,7 @@ const DynamicTable = ({ data }) => {
       </tr>
     ));
   };
+  
   
 
   return (
@@ -80,7 +83,7 @@ const DynamicTable = ({ data }) => {
         <thead>
           <tr>
             {data[0].map((header, i) => (
-              <th key={i}>{header}</th>
+              <th style={{textAlign: "center"}} key={i}>{header}</th>
             ))}
             <th>Action</th>
           </tr>
