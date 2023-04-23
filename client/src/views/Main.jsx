@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom'
-
+import { Container, Button } from 'react-bootstrap';
 import RegistrationForm from './Registration';
 import LoginForm from './Login';
 import PasswordReset from './Password';
@@ -37,13 +37,18 @@ export default function Main() {
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
                 <Route path="/reset" element={
-                    <div>
-                        <h3>We sent you an email which contains a link to reset your password
-                        </h3>
-                        <br /> <br /> <br />
-                        <Link to={'/signin'}>Go Back</Link>
+                    <Container className="mt-5">
+                        <h1>
+                            We sent you an email which contains a link to reset your password. This link will expire after 24 hours.
 
-                    </div>
+                            <br /><br />
+
+                            Check your email
+                        </h1>
+                        <Button to="/signin" className="d-block mt-3 text-center">
+                            Go Back
+                        </Button>
+                    </Container>
                 } />
                 ## the root route takes the user to the login form "home"
                 <Route path="*" element={<LoginForm />} />
