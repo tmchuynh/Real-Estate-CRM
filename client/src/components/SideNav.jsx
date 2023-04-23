@@ -9,11 +9,11 @@ const SidebarNav = () => {
       <Nav.Link href="/">
         <Button type="button" class="btn btn-primary">
           <FontAwesomeIcon icon={faHouse} className="mx-3"/>
-          Home
+          Lgout
         </Button>
       </Nav.Link>
 
-      <Nav.Link href="/lead_profile">
+      <Nav.Link href="/leads">
         <Button type="button" class="btn btn-primary">
           <FontAwesomeIcon icon={faUsers}  className="mx-3"/>
           Lead
