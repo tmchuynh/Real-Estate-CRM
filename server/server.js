@@ -3,11 +3,10 @@ import cors from 'cors';
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT;
-import '../server/config/mongoose.config.js';
+require('./server/config/mongoose.config');
 //REQUIRED FOR CRUD
 app.use(json(), cors(), urlencoded({ extended: true }));
 //ADD ALL MODEL ROUTES HERE
-require('./routes/user.routes')(app);
-require('./routes/lead.routes')(app);
+require('./server/routes/author.routes')(app);
 //THIS SHOULD BE LAST
-app.listen(port, () => console.log(`Listening on port: ${port}`) );
+app.listen(port, () => console.log(`Listening on port: port`) );
