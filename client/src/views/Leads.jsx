@@ -1,8 +1,9 @@
-import {React, useState, useEffect} from 'react';
-import { Container } from "react-bootstrap"
+import { React, useState, useEffect } from 'react';
+import { Button, Container } from "react-bootstrap"
 import SidebarNav from '../components/SideNav';
 import DynamicTable from '../components/Table';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const Leads = () => {
     /* 
@@ -57,13 +58,22 @@ const Leads = () => {
     ["Tom Wilson", "tomwilson@example.com", "555-7890", "Contacted"],
     ];
 
+    function addLead() {
+        // creates a new lead in the database
+    }
+
     return (
         <>
             <div className="d-flex">
 
                 <SidebarNav />
                 <Container className='m-3'>
-                    <h2>Leads</h2>
+                    <div className="d-flex justify-content-between">
+                        <h2>Leads</h2>
+                        <Button onClick={addLead} className='my-2'>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                    </div>
                     <DynamicTable data={leadsData} />
                 </Container>
             </div>

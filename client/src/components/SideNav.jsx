@@ -8,14 +8,14 @@ const SidebarNav = () => {
     <div class="btn-group-vertical justify-content-start">
       <Nav.Link href="/">
         <Button type="button" class="btn btn-primary">
-          <FontAwesomeIcon icon={faHouse} />
+          <FontAwesomeIcon icon={faHouse} className="mx-3"/>
           Home
         </Button>
       </Nav.Link>
 
       <Nav.Link href="/lead_profile">
         <Button type="button" class="btn btn-primary">
-          <FontAwesomeIcon icon={faUsers} />
+          <FontAwesomeIcon icon={faUsers}  className="mx-3"/>
           Lead
         </Button>
       </Nav.Link>

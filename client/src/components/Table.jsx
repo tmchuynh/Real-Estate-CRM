@@ -45,6 +45,7 @@ const DynamicTable = ({ data }) => {
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
           <td
+            className=""
             key={columnIndex}
             onDoubleClick={handleCellDoubleClick}
             onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)}
