@@ -5,7 +5,6 @@ import { Container, Form, Button, Alert } from 'react-bootstrap';
 
 const PasswordReset = () => {
   const [email, setEmail] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
