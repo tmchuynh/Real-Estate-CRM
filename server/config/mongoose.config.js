@@ -16,4 +16,4 @@ async function dbConnect() {
   }
 }
 
-export default dbConnect;const mongoose = require('mongoose');
+export default dbConnect;
