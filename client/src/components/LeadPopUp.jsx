@@ -1,4 +1,4 @@
-import { Modal, Form } from 'react-bootstrap';
+import { Modal, Form, Button } from 'react-bootstrap';
 
 function CustomModal(props) {
   const { title, body, onSubmit, onHide } = props;

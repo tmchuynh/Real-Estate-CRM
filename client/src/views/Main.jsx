@@ -8,6 +8,8 @@ import PasswordReset from './Password';
 import UserProfile from './UserProfile';
 import EditUserProfile from './EditUserProfile';
 import Leads from './Leads';
+import CustomModal from '../components/LeadPopUp';
+import LeadDetails from './LeadDetails';
 
 export default function Main () {
     const user = {
@@ -28,6 +30,8 @@ export default function Main () {
                 <Route path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
 
                 <Route path="/leads" element={<Leads/>} />
+                <Route path="/add_lead" element={<CustomModal/>} />
+                <Route path="/lead_details" element={<LeadDetails/>} />
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
