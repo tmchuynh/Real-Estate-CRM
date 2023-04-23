@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap'
-
+import { useNavigate } from 'react-router-dom';
 import { Chrono } from "react-chrono";
 
 function Timeline({ items }) {
@@ -12,6 +12,7 @@ function Timeline({ items }) {
 }
 
 const LeadDetails = ({ index }) => {
+    const navigate = useNavigate();
     const [timeline, setTimeline] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [event, setEvent] = useState('');
@@ -23,9 +24,17 @@ const LeadDetails = ({ index }) => {
         setEvent('');
     };
 
+    const goBack = () => {
+        navigate("/leads")
+    }
+
     return (
         <div>
+            <div className="d-flex justify-content-between">
+
             <h2>Lead Details</h2>
+            <Button onClick={goBack}>Back</Button>
+            </div>
             {/* <p>Name: {index.name}</p>
             <p>Email: {index.email}</p>
             <p>Phone Number: {index.phone}</p> */}
