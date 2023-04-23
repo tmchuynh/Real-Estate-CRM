@@ -11,7 +11,7 @@ import Leads from './Leads';
 import CustomModal from '../components/LeadForm';
 import LeadDetails from './LeadDetails';
 
-export default function Main () {
+export default function Main() {
     const user = {
         email: "john.doe@example.com",
         password: "password123",
@@ -29,9 +29,10 @@ export default function Main () {
                 <Route path="/user_profile" element={<UserProfile user={user} />} />
                 <Route path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
 
-                <Route path="/leads" element={<Leads/>} />
-                <Route path="/add_lead" element={<CustomModal/>} />
-                <Route path="/lead_details" element={<LeadDetails/>} />
+                <Route path="/leads" element={<Leads />} />
+                <Route path="/add_lead" element={<CustomModal />} />
+                <Route path="/lead_details/:id" element={<LeadDetails />} />
+
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />

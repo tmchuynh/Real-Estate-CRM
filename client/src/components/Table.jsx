@@ -44,32 +44,35 @@ const DynamicTable = ({ data }) => {
     setItemsPerPage(parseInt(e.target.value));
   };
 
-  const handleDetailsClick = () => {
-    navigate('/lead_details')
+  const handleDetailsClick = (leadId) => {
+    navigate(`/lead_details/${leadId}`);
   }
+
+
 
   const renderData = () => {
     return tableData.slice(1, currentPage * itemsPerPage).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
           <td
-            style={{textAlign:"center"}}
+            style={{ textAlign: "center" }}
             key={columnIndex}
             onDoubleClick={handleCellDoubleClick}
             onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)}
           >
-            {cell === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{color: "#04a201"}} /> : cell === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{color: "#d80e0e",}} /> : cell}
+            {cell === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#04a201" }} /> : cell === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#d80e0e", }} /> : cell}
           </td>
         ))}
         <td>
-          <Button onClick={handleDetailsClick}>Details</Button>
+          <Button onClick={() => handleDetailsClick(row[0])}>Details</Button>
+
           <Button onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
         </td>
       </tr>
     ));
   };
-  
-  
+
+
 
   return (
     <div>
@@ -83,7 +86,7 @@ const DynamicTable = ({ data }) => {
         <thead>
           <tr>
             {data[0].map((header, i) => (
-              <th style={{textAlign: "center"}} key={i}>{header}</th>
+              <th style={{ textAlign: "center" }} key={i}>{header}</th>
             ))}
             <th>Action</th>
           </tr>
