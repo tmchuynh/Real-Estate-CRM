@@ -8,7 +8,6 @@ import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 const DynamicTable = ({ data }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
   const navigate = useNavigate();
-  const [detail, setDetails] = useState("");
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
