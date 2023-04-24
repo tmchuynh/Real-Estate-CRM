@@ -8,6 +8,7 @@ import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 const DynamicTable = ({ data }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
   const navigate = useNavigate();
+  const [detail, setDetails] = useState("");
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
@@ -44,8 +45,9 @@ const DynamicTable = ({ data }) => {
     setItemsPerPage(parseInt(e.target.value));
   };
 
-  const handleDetailsClick = (leadId) => {
-    navigate(`/lead_details/${leadId}`);
+  const handleDetailsClick = (lead) => {
+    console.log(lead[0]);
+    navigate(`/lead_details/${lead[0]}`);
   }
 
 
@@ -64,7 +66,7 @@ const DynamicTable = ({ data }) => {
           </td>
         ))}
         <td>
-          <Button onClick={() => handleDetailsClick(rowIndex)}>Details</Button>
+          <Button onClick={() => handleDetailsClick(row)}>Details</Button>
 
           <Button onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
         </td>

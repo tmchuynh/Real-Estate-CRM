@@ -20,9 +20,10 @@ const LeadDetails = ({ index }) => {
                 <SidebarNav />
                 <Container fluid className='m-3'>
                     <h2>Lead Details</h2>
-                    {/* <p>Name: {index.name}</p>
-            <p>Email: {index.email}</p>
-            <p>Phone Number: {index.phone}</p> */}
+                    <p>{index}</p>
+                    {/* <p>Name: {index[0]}</p>
+                    <p>Email: {index[1]}</p>
+                    <p>Phone Number: {index[2]}</p> */}
 
                     <h3>Timeline</h3>
                     <Stack gap={4}>
