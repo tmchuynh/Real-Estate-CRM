@@ -4,11 +4,24 @@ import SidebarNav from '../components/SideNav';
 import CopyButton from '../components/CopyBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import PrintIcon from '@mui/icons-material/Print';
+import ShareIcon from '@mui/icons-material/Share';
+import BasicSpeedDial from '../components/SpeedDial';
+
 
 const LeadDetails = ({ index }) => {
     const [timeline, setTimeline] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [event, setEvent] = useState("");
+
+    const actions = [
+        { icon: <FileCopyIcon />, name: 'Copy' },
+        { icon: <SaveIcon />, name: 'Save' },
+        { icon: <PrintIcon />, name: 'Print' },
+        { icon: <ShareIcon />, name: 'Share' },
+    ];
 
     const handleAddEvent = (e) => {
         e.preventDefault();
@@ -121,6 +134,7 @@ const LeadDetails = ({ index }) => {
                         )}
 
                     </Stack>
+                    <BasicSpeedDial actions={actions} />
                 </Container>
             </div>
         </>
