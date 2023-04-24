@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import SidebarNav from "../components/SideNav"
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPen } from '@fortawesome/free-solid-svg-icons'
+import { Tooltip } from '@mui/material'
+
 
 const UserProfile = ({ user }) => {
     const { fullName, email, password, location, title, profilePicture } = user;
@@ -32,11 +34,14 @@ const UserProfile = ({ user }) => {
 
                                 <h1>{fullName}'s Profile</h1>
 
-                                <Link to={`/edit_user_profile/${user.id}`}>
-                                    <Button>
-                                        <FontAwesomeIcon icon={faUserPen} />
-                                    </Button>
-                                </Link>
+                                <Tooltip title="Edit Profile">
+
+                                    <Link to={`/edit_user_profile/${user.id}`}>
+                                        <Button>
+                                            <FontAwesomeIcon icon={faUserPen} />
+                                        </Button>
+                                    </Link>
+                                </Tooltip>
                             </div>
                             <p>Email: {email}</p>
                             <p>Location: {location}</p>
