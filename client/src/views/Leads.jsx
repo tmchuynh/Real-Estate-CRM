@@ -6,14 +6,9 @@ import LeadForm from '../components/LeadForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-const Leads = () => {
+const Leads = ({leads}) => {
 
-    const [leadsData, setLeadsData] = useState([
-        ["First Name", "Last Name", "Email", "Phone Number", "Status", "Buying", "Selling", "Market Area"],
-        ['John', 'Doe', 'john.doe@example.com', '555-123-4567', "Potential", "True", "False", 'New York'],
-        ['Jane', 'Smith', 'jane.smith@example.com', '555-987-6543', "First-Contact", "False", "True", 'Los Angeles'],
-        ['Bob', 'Johnson', 'bob.johnson@example.com', '555-555-5555', "First-Contact", "True", "True", 'Chicago'],
-    ]);
+    const [leadsData, setLeadsData] = useState(leads);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
