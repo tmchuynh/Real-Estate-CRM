@@ -17,7 +17,7 @@ const PasswordReset = () => {
   };
 
   return (
-    <Container>
+    <Container fluid>
       <h1>Password Reset</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">

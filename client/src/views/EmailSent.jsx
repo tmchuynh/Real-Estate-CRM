@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const EmailSent = () => {
     return ( 
-        <Container className="mt-5">
+        <Container fluid className="mt-5">
         <h1>
             We sent you an email which contains a link to reset your password. This link will expire after 24 hours.
 

@@ -35,7 +35,7 @@ const EditUserProfile = ({ user }) => {
             <div className="d-flex">
                 <SidebarNav />
 
-                <Container>
+                <Container fluid>
                     <h2>Edit User Profile</h2>
                     <Row className="mt-3">
                         <Col md={3}>

@@ -36,7 +36,7 @@ const Leads = () => {
         <>
             <div className="d-flex">
                 <SidebarNav />
-                <Container className='m-3'>
+                <Container fluid className='m-3'>
                     <div className="d-flex justify-content-between">
                         <h2>Leads</h2>
                         <Button onClick={showModal} className='my-2'>

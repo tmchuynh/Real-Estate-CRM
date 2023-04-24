@@ -5,7 +5,7 @@ import { faUsers, faHouse, faUserGear } from '@fortawesome/free-solid-svg-icons'
 
 const SidebarNav = () => {
   return (
-    <div class="btn-group-vertical justify-content-start">
+    <div className="btn-group-vertical justify-content-start" style={{width: "14rem"}}>
       <Nav.Link href="/">
         <Button type="button" class="btn btn-primary">
           <FontAwesomeIcon icon={faHouse} className="mx-3" />
