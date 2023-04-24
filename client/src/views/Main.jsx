@@ -36,7 +36,7 @@ export default function Main() {
 
                 <Route path="/leads" element={<Leads leads={leads}/>} />
                 <Route path="/add_lead" element={<CustomModal />} />
-                <Route path="/lead_details/:id" element={<LeadDetails />} />
+                <Route path="/lead_details/:id" element={<LeadDetails index={leads[1]}/>} />
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
