@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import RegistrationForm from './Registration';
 import LoginForm from './Login';
 import PasswordReset from './Password';
@@ -9,6 +10,7 @@ import EditUserProfile from './EditUserProfile';
 import Leads from './Leads';
 import CustomModal from '../components/LeadForm';
 import LeadDetails from './LeadDetails';
+import EmailSent from './EmailSent';
 
 export default function Main() {
     const user = {
@@ -24,7 +26,7 @@ export default function Main() {
             <Routes>
                 <Route path="/signin" element={<LoginForm />} />
 
-                ## needs to be changed to "/lead_profile/:id"
+                # the user that is logged in
                 <Route path="/user_profile" element={<UserProfile user={user} />} />
                 <Route path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
 
@@ -32,23 +34,10 @@ export default function Main() {
                 <Route path="/add_lead" element={<CustomModal />} />
                 <Route path="/lead_details/:id" element={<LeadDetails />} />
 
-
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
-                <Route path="/reset" element={
-                    <Container className="mt-5">
-                        <h1>
-                            We sent you an email which contains a link to reset your password. This link will expire after 24 hours.
+                <Route path="/reset" element={<EmailSent/>} />
 
-                            <br /><br />
-
-                            Check your email
-                        </h1>
-                        <Button to="/signin" className="d-block mt-3 text-center">
-                            Go Back
-                        </Button>
-                    </Container>
-                } />
                 ## the root route takes the user to the login form "home"
                 <Route path="*" element={<LoginForm />} />
             </Routes>
