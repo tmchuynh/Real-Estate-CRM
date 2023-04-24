@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SidebarNav from "../components/SideNav"
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserPen } from '@fortawesome/free-solid-svg-icons'
+import { Tooltip } from '@mui/material'
+
 
 const UserProfile = ({ user }) => {
     const { fullName, email, password, location, title, profilePicture } = user;
-    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
-    const toggleShowPassword = () => {
-        setShowPassword(!showPassword);
+    const resetPassword = (user) => {
+        navigate("/reset");
     }
 
     return (
@@ -16,8 +21,8 @@ const UserProfile = ({ user }) => {
             <div className="d-flex">
                 <SidebarNav />
 
-                <Container>
-                    <h2>User Profile</h2>
+                <Container fluid>
+
                     <Row className="mt-3">
                         <Col md={3}>
                             <div className="profile-picture-container">
@@ -25,21 +30,24 @@ const UserProfile = ({ user }) => {
                             </div>
                         </Col>
                         <Col md={9}>
-                            <h1>{fullName}'s Profile</h1>
-                            <p>Email: {email}</p>
-                            <p>
-                                Password:
-                                {showPassword ? ` ${password}` : ' •••••••••••••••••'}
-                                <div>
-                                    <Button variant="link" onClick={toggleShowPassword}>
-                                        {showPassword ? 'Hide' : 'Show'}
-                                    </Button>
-                                </div>
+                            <div className="d-flex justify-content-between">
 
-                            </p>
+                                <h1>{fullName}'s Profile</h1>
+
+                                <Tooltip title="Edit Profile">
+
+                                    <Link to={`/edit_user_profile/${user.id}`}>
+                                        <Button>
+                                            <FontAwesomeIcon icon={faUserPen} />
+                                        </Button>
+                                    </Link>
+                                </Tooltip>
+                            </div>
+                            <p>Email: {email}</p>
                             <p>Location: {location}</p>
                             <p>Title: {title}</p>
-                            <Link to={`/edit_user_profile/${user.id}`}><Button>Edit</Button></Link>
+
+                            <Button onClick={resetPassword}>Reset My Password</Button>
                         </Col>
                     </Row>
                 </Container>

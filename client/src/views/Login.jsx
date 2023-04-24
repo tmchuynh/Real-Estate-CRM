@@ -7,7 +7,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/lead_profile");
+    navigate("/leads");
   }
 
   return (

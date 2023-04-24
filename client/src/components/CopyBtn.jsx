@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from "react-bootstrap"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function CopyButton(props) {
   const [isCopied, setIsCopied] = useState(false);
@@ -17,9 +17,7 @@ function CopyButton(props) {
   }
 
   return (
-    <Button onClick={handleClick}>
-      {isCopied ? 'Copied!' : 'Copy'}
-    </Button>
+    <FontAwesomeIcon icon="fa-regular fa-clipboard" onClick={handleClick}/>
   );
 }
 

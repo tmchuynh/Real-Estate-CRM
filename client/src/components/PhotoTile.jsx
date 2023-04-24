@@ -6,7 +6,7 @@ const PhotoTile = ({ photos }) => {
   const { mainPhoto, smallPhotos, mediumPhotos } = photos;
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col>
           <Image src={mainPhoto} fluid />

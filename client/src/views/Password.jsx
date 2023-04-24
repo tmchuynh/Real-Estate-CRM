@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button , Nav} from 'react-bootstrap';
 
 const PasswordReset = () => {
   const [email, setEmail] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -18,7 +17,7 @@ const PasswordReset = () => {
   };
 
   return (
-    <Container>
+    <Container fluid>
       <h1>Password Reset</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
@@ -30,7 +29,11 @@ const PasswordReset = () => {
         </Button>
       </Form>
 
-      <Link to={'/signin'}>Go Back</Link>
+      <Nav.Link href='/signin'>
+        <Button className="d-block mt-3 text-center">
+          Go Back
+        </Button>
+      </Nav.Link>
     </Container>
   );
 };
