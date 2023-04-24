@@ -92,9 +92,9 @@ const LeadDetails = ({ index }) => {
                     </div>
                     <div className="d-flex gap-3">
                         <p>
-                            <b>Marketing Area: </b>
+                            <b>Market Area: </b>
                         </p>
-                        <p id='marketing_area'>
+                        <p id='market_area'>
                             {index[7]}
                         </p>
                     </div>
