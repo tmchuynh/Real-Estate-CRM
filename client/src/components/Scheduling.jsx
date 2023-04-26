@@ -4,6 +4,7 @@ import moment from 'moment';
 import MyCalendar from './MyCalendar';
 import EventForm from './EventForm';
 import Timeline from './Timeline';
+import SidebarNav from './SideNav';
 
 const Scheduling = () => {
     const [events, setEvents] = useState([]);
@@ -36,24 +37,29 @@ const Scheduling = () => {
     };
 
     return (
-        <Container>
-            <Row className="mt-4">
-                <Col md={4}>
-                    <h4 className="text-center">Add Event</h4>
-                    <EventForm onAddEvent={handleAddEvent} />
-                </Col>
-                <Col md={8}>
-                    <h4 className="text-center">Calendar</h4>
-                    <MyCalendar events={formatEventsForCalendar()} />
-                </Col>
-            </Row>
-            <Row className="mt-4">
-                <Col>
-                    <h4 className="text-center">Schedule</h4>
-                    <Timeline>{renderEvents()}</Timeline>
-                </Col>
-            </Row>
-        </Container>
+        <>
+            <div className="d-flex">
+                <SidebarNav />
+                <Container>
+                    <Row className="mt-4">
+                        <Col md={4}>
+                            <h4 className="text-center">Add Event</h4>
+                            <EventForm onAddEvent={handleAddEvent} />
+                        </Col>
+                        <Col md={8}>
+                            <h4 className="text-center">Calendar</h4>
+                            <MyCalendar events={formatEventsForCalendar()} />
+                        </Col>
+                    </Row>
+                    <Row className="mt-4">
+                        <Col>
+                            <h4 className="text-center">Schedule</h4>
+                            <Timeline>{renderEvents()}</Timeline>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        </>
     );
 };
 
