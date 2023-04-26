@@ -34,13 +34,13 @@ export default function Main() {
                 <Route path="/user_profile" element={<UserProfile user={user} />} />
                 <Route path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
 
-                <Route path="/leads" element={<Leads leads={leads}/>} />
+                <Route path="/leads" element={<Leads leads={leads} />} />
                 <Route path="/add_lead" element={<CustomModal />} />
-                <Route path="/lead_details/:id" element={<LeadDetails index={leads[1]}/>} />
+                <Route path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
-                <Route path="/reset" element={<EmailSent/>} />
+                <Route path="/reset" element={<EmailSent />} />
 
                 ## the root route takes the user to the login form "home"
                 <Route path="*" element={<LoginForm />} />
