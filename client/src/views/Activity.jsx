@@ -52,9 +52,24 @@ const Activity = () => {
 
                     <DynamicBarChart data={{
                         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                        values: [65, 59, 80, 81, 56, 55, 40],
-                        title: 'Sales per Month',
-                        colors: ['#007bff']
+                        datasets: [
+                            {
+                                label: 'Sales',
+                                backgroundColor: '#007bff',
+                                borderColor: '#007bff',
+                                hoverBackgroundColor: '#007bff',
+                                hoverBorderColor: '#007bff',
+                                data: [65, 59, 80, 81, 56, 55, 40],
+                            },
+                            {
+                                label: 'Expenses',
+                                backgroundColor: '#28a745',
+                                borderColor: '#28a745',
+                                hoverBackgroundColor: '#28a745',
+                                hoverBorderColor: '#28a745',
+                                data: [28, 48, 40, 19, 86, 27, 90],
+                            },
+                        ],
                     }} />
 
 

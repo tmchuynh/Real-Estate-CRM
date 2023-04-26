@@ -7,33 +7,44 @@ Chart.register(CategoryScale, LinearScale, BarController, BarElement);
 
 
 const DynamicBarChart = ({ data }) => {
+  const { labels, datasets } = data;
 
-  // Set chart data
   const chartData = {
-    labels: data.labels,
-    datasets: [
-      {
-        label: data.title,
-        data: data.values,
-        backgroundColor: data.colors,
-      }
-    ]
+    labels,
+    datasets: datasets.map((dataset) => ({
+      label: dataset.label,
+      backgroundColor: dataset.backgroundColor,
+      borderColor: dataset.borderColor,
+      borderWidth: 1,
+      hoverBackgroundColor: dataset.hoverBackgroundColor,
+      hoverBorderColor: dataset.hoverBorderColor,
+      data: dataset.data,
+    })),
   };
 
-  // Set chart options
   const chartOptions = {
+    maintainAspectRatio: false,
     scales: {
       yAxes: [{
         ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
+          beginAtZero: true,
+        },
+      }],
+    },
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        usePointStyle: true,
+        fontSize: 12,
+      },
+    },
   };
 
   return (
     <Bar data={chartData} options={chartOptions} />
   );
 };
+
 
 export default DynamicBarChart;
