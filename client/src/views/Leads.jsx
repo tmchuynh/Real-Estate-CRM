@@ -3,23 +3,17 @@ import { Modal, Button, Container } from "react-bootstrap"
 import SidebarNav from '../components/SideNav';
 import DynamicTable from '../components/Table';
 import LeadForm from '../components/LeadForm';
-import BasicSpeedDial from '../components/SpeedDial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import PrintIcon from '@mui/icons-material/Print';
-import ShareIcon from '@mui/icons-material/Share';
 
-const Leads = ({ leads }) => {
-    const actions = [
-        { icon: <FileCopyIcon />, name: 'Copy' },
-        { icon: <SaveIcon />, name: 'Save' },
-        { icon: <PrintIcon />, name: 'Print' },
-        { icon: <ShareIcon />, name: 'Share' },
-    ];
+const Leads = () => {
 
-    const [leadsData, setLeadsData] = useState(leads);
+    const [leadsData, setLeadsData] = useState([
+        ["First Name", "Last Name", "Email", "Phone Number", "Status", "Buying", "Selling", "Market Area"],
+        ['John', 'Doe', 'john.doe@example.com', '555-123-4567', "Potential", "True", "False", 'New York'],
+        ['Jane', 'Smith', 'jane.smith@example.com', '555-987-6543', "First-Contact", "False", "True", 'Los Angeles'],
+        ['Bob', 'Johnson', 'bob.johnson@example.com', '555-555-5555', "First-Contact", "True", "True", 'Chicago'],
+    ]);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,8 +45,6 @@ const Leads = ({ leads }) => {
                     </div>
                     <DynamicTable data={leadsData} />
                 </Container>
-                <BasicSpeedDial actions={actions} />
-
             </div>
             {isModalOpen &&
                 <Modal show={showModal} onHide={hideModal}>
@@ -68,5 +60,5 @@ const Leads = ({ leads }) => {
     );
 }
 
-
 export default Leads;
+
