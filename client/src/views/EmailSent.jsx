@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Button, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const EmailSent = () => {
     return ( 
@@ -13,7 +12,7 @@ const EmailSent = () => {
             Check your email
         </h1>
 
-        <Nav.Link href={'/signin'}>
+        <Nav.Link href='/signin'>
             <Button className="d-block mt-3 text-center">
                 Go Back
             </Button>

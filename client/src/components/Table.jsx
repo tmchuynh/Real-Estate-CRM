@@ -44,8 +44,9 @@ const DynamicTable = ({ data }) => {
     setItemsPerPage(parseInt(e.target.value));
   };
 
-  const handleDetailsClick = (leadId) => {
-    navigate(`/lead_details/${leadId}`);
+  const handleDetailsClick = (lead) => {
+    console.log(lead[0]);
+    navigate(`/lead_details/${lead[0]}`);
   }
 
 
@@ -64,7 +65,7 @@ const DynamicTable = ({ data }) => {
           </td>
         ))}
         <td>
-          <Button onClick={() => handleDetailsClick(rowIndex)}>Details</Button>
+          <Button onClick={() => handleDetailsClick(row)}>Details</Button>
 
           <Button onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
         </td>

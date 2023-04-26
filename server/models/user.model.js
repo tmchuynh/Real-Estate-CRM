@@ -32,8 +32,4 @@ const UserSchema = new Schema({
         type: String,
         required: false
     }
-}, {timestamps: true});
-
-
-const User = model('User', UserSchema);
-export default User;
+});

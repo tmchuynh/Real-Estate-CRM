@@ -19,6 +19,12 @@ export default function Main() {
         title: "Software Engineer",
         profilePicture: "https://randomuser.me/api/portraits/men/9.jpg"
     };
+    const leads = [
+        ["First Name", "Last Name", "Email", "Phone Number", "Status", "Buying", "Selling", "Market Area"],
+        ['John', 'Doe', 'john.doe@example.com', '555-123-4567', "Potential", "True", "False", 'New York'],
+        ['Jane', 'Smith', 'jane.smith@example.com', '555-987-6543', "First-Contact", "False", "True", 'Los Angeles'],
+        ['Bob', 'Johnson', 'bob.johnson@example.com', '555-555-5555', "First-Contact", "True", "True", 'Chicago'],
+    ];
     return (
         <div className='p-5'>
             <Routes>
@@ -28,13 +34,13 @@ export default function Main() {
                 <Route path="/user_profile" element={<UserProfile user={user} />} />
                 <Route path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
 
-                <Route path="/leads" element={<Leads />} />
+                <Route path="/leads" element={<Leads leads={leads} />} />
                 <Route path="/add_lead" element={<CustomModal />} />
-                <Route path="/lead_details/:id" element={<LeadDetails />} />
+                <Route path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
-                <Route path="/reset" element={<EmailSent/>} />
+                <Route path="/reset" element={<EmailSent />} />
 
                 ## the root route takes the user to the login form "home"
                 <Route path="*" element={<LoginForm />} />
