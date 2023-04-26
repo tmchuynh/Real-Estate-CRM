@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import ListingCard from '../components/ListingCard';
 import SidebarNav from '../components/SideNav';
 import DynamicCarousel from '../components/DynamicCarousel';
-import DynamicPagination from '../components/DynamicPagination';
 import { Stack } from '@mui/material';
 import DynamicBarChart from '../components/DyanmicBarChart';
 import { Container } from 'react-bootstrap';
+import Scheduling from '../components/Scheduling';
 
 const Activity = () => {
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [currentSlides, setCurrentSlides] = React.useState([]);
     const itemsPerPage = 3;
 
     const slides = [
@@ -35,13 +36,18 @@ const Activity = () => {
         }
     ];
 
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
+    React.useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setCurrentSlides(slides.slice(startIndex, endIndex));
+    }, [currentPage, itemsPerPage]);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
     };
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const currentSlides = slides.slice(startIndex, endIndex);
 
     return (
         <div className="d-flex">
@@ -49,6 +55,27 @@ const Activity = () => {
             <Container fluid>
 
                 <Stack gap={3} className='m-3'>
+
+                    <Scheduling />
+
+                    <DynamicCarousel
+                        slides={currentSlides.map((slide) => (
+                            <ListingCard
+                                key={slide.id}
+                                image={slide.image}
+                                alt={slide.alt}
+                                title={slide.title}
+                                description={slide.description}
+                            />
+                        ))}
+                        currentPage={currentPage}
+                        totalItems={slides.length}
+                        itemsPerPage={itemsPerPage}
+                        onPageChange={handlePageChange}
+                    />
+
+
+
 
                     <DynamicBarChart data={{
                         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -73,28 +100,6 @@ const Activity = () => {
                     }} />
 
 
-                    <DynamicCarousel
-                        slides={currentSlides.map(slide => (
-                            <ListingCard
-                                key={slide.id}
-                                image={slide.image}
-                                alt={slide.alt}
-                                title={slide.title}
-                                description={slide.description}
-                            />
-                        ))}
-                        itemsPerPage={itemsPerPage}
-                        arrows={true}
-                        autoPlay={true}
-                        interval={5000}
-                        pauseOnHover={true}
-                    />
-                    <DynamicPagination
-                        itemsPerPage={itemsPerPage}
-                        totalItems={slides.length}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                    />
                 </Stack>
             </Container>
         </div>

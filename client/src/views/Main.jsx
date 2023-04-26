@@ -9,7 +9,6 @@ import Leads from './Leads';
 import CustomModal from '../components/LeadForm';
 import LeadDetails from './LeadDetails';
 import EmailSent from './EmailSent';
-import Scheduling from './Scheduling';
 import Activity from './Activity';
 import Listings from './Listings';
 import ListingDetails from './ListingsDetails';
@@ -75,8 +74,6 @@ export default function Main() {
                 <Route path="/leads" element={<Leads leads={leads} />} />
                 <Route path="/add_lead" element={<CustomModal />} />
                 <Route path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
-
-                <Route path="/calendar" element={<Scheduling/>}/>
 
                 <Route path="/activity" element={<Activity/>}/>
 

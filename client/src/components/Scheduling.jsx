@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import moment from 'moment';
-import MyCalendar from '../components/MyCalendar';
-import EventForm from '../components/EventForm';
-import Timeline from '../components/Timeline';
-import SidebarNav from '../components/SideNav';
+import MyCalendar from './MyCalendar';
+import EventForm from './EventForm';
+import Timeline from './Timeline';
 
 const Scheduling = () => {
     const [events, setEvents] = useState([]);
@@ -39,7 +38,6 @@ const Scheduling = () => {
     return (
         <>
             <div className="d-flex">
-                <SidebarNav />
                 <Container>
                     <Row className="mt-4">
                         <Col md={4}>
@@ -49,12 +47,6 @@ const Scheduling = () => {
                         <Col md={8}>
                             <h4 className="text-center">Calendar</h4>
                             <MyCalendar events={formatEventsForCalendar()} />
-                        </Col>
-                    </Row>
-                    <Row className="mt-4">
-                        <Col>
-                            <h4 className="text-center">Schedule</h4>
-                            <Timeline>{renderEvents()}</Timeline>
                         </Col>
                     </Row>
                 </Container>
