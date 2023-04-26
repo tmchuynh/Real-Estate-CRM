@@ -10,7 +10,6 @@ const EditUserProfile = ({ user }) => {
     const navigate = useNavigate();
     const [fullName, setFullName] = useState(user.fullName);
     const [email, setEmail] = useState(user.email);
-    const [password, setPassword] = useState(user.password);
     const [location, setLocation] = useState(user.location);
     const [title, setTitle] = useState(user.title);
     const [profilePicture, setProfilePicture] = useState(user.profilePicture);

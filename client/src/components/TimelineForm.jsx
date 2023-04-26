@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Timeline from "./Timeline";
-import { Button, Container, Form, Stack } from 'react-bootstrap'
+import { Button, Stack } from 'react-bootstrap'
 import TimelineItem from "./TimelineItem";
 
 class TimelineForm extends Component {
