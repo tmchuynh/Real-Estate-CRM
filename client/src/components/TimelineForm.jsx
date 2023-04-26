@@ -46,17 +46,19 @@ class TimelineForm extends Component {
 
     renderEvents() {
         return this.state.events.map((val, index) => {
+            const date = new Date().toLocaleDateString();
             return (
                 <TimelineItem
                     key={index}
+                    date={date}
                     time={val.time}
                     eventName={val.eventName}
                     eventDetail={val.eventDetail}
-                    action={val.action}
                 />
             );
         });
     }
+    
 
     render() {
         return (
@@ -79,12 +81,6 @@ class TimelineForm extends Component {
                                     className="form-control"
                                     value={this.state.eventDetail}
                                     onChange={this.handleChangeEventDetail}
-                                />
-                                <label htmlFor="Action">Action</label>
-                                <input
-                                    className="form-control"
-                                    value={this.state.action}
-                                    onChange={this.handleChangeAction}
                                 />
                             </div>
                             <button type="submit" className="btn btn-primary">
