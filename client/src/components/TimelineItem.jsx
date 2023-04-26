@@ -7,7 +7,7 @@ function TimelineItem(props) {
             <Col md={1} className="timeline_date">
                 <Badge bg="primary">{props.date}</Badge>
             </Col>
-            <Col md={2}>
+            <Col md={1}>
                 <div className="timeline_events_time">{props.time}</div>
             </Col>
             <Col md={8} className="timeline_events">

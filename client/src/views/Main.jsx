@@ -9,6 +9,7 @@ import Leads from './Leads';
 import CustomModal from '../components/LeadForm';
 import LeadDetails from './LeadDetails';
 import EmailSent from './EmailSent';
+import Schedule from './Schedule';
 
 export default function Main() {
     const user = {
@@ -43,6 +44,8 @@ export default function Main() {
                 <Route path="/leads" element={<Leads leads={leads} />} />
                 <Route path="/add_lead" element={<CustomModal />} />
                 <Route path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
+
+                <Route path="/calendar" element={<Schedule/>}/>
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />

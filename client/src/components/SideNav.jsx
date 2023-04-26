@@ -28,6 +28,27 @@ const SidebarNav = () => {
           Leads
         </Button>
       </Nav.Link>
+
+      <Nav.Link href="/leads">
+        <Button type="button" className="btn btn-primary">
+          <FontAwesomeIcon icon={faUsers} className="mx-3" />
+          My Activity
+        </Button>
+      </Nav.Link>
+
+      <Nav.Link href="/calendar">
+        <Button type="button" className="btn btn-primary">
+          <FontAwesomeIcon icon={faUsers} className="mx-3" />
+          Schedule
+        </Button>
+      </Nav.Link>
+
+      <Nav.Link href="/leads">
+        <Button type="button" className="btn btn-primary">
+          <FontAwesomeIcon icon={faUsers} className="mx-3" />
+          My Listings
+        </Button>
+      </Nav.Link>
     </div>
   );
 };
