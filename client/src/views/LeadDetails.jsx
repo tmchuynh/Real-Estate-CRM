@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Container, Form, Stack } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import SidebarNav from '../components/SideNav';
 import Copy from '../components/CopyBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import TimelineForm from '../components/TimelineForm';
 
 
 const LeadDetails = ({ index }) => {
@@ -101,28 +102,11 @@ const LeadDetails = ({ index }) => {
                         </p>
                     </div>
 
-                    <h3>Timeline</h3>
-                    <Stack gap={4}>
-                        <ul>
-                            {timeline.map((event, index) => (
-                                <li key={index}>{event}</li>
-                            ))}
-                        </ul>
 
-                        <Button onClick={() => setShowForm(true)}>Add Event</Button>
+                            <TimelineForm/>
 
-                        {showForm && (
-                            <Form onSubmit={handleAddEvent}>
-                                <div className="d-flex">
 
-                                    <Form.Control type="text" value={event} onChange={(e) => setEvent(e.target.value)} />
 
-                                    <Button type="submit" className='ms-3'>Add</Button>
-                                </div>
-                            </Form>
-                        )}
-
-                    </Stack>
                 </Container>
             </div>
         </>
