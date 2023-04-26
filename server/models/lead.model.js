@@ -9,7 +9,7 @@ const LeadSchema = new mongoose.Schema({
         correctTld: true, //correctTld is stronger email validation
         index: true,
         required: [true, "Please enter a valid email address"],
-        minLength: [5, `Email must be at least ${MINLENGTH} characters long!`]
+        minLength: [5, `Email must be at least MINLENGTH characters long!`]
     },
     // password: {
     //     type: String,
@@ -19,21 +19,21 @@ const LeadSchema = new mongoose.Schema({
     phoneNumber: {
         type: String,
         required: [true, 'Phone Number is required!'],
-        minLength: [10, `Phone Number must be exactly ${MINLENGTH} characters. Don't include '-' or spaces.`],
-        maxLength: [10, `Phone Number must be exactly ${MINLENGTH} characters. Don't include '-' or spaces.`]
+        minLength: [10, `Phone Number must be exactly MINLENGTH characters. Don't include '-' or spaces.`],
+        maxLength: [10, `Phone Number must be exactly MAXLENGTH characters. Don't include '-' or spaces.`]
     },
     firstName: {
         type: String,
         required: [true, 'First Name is required.'],
-        minLength: [1, `First Name must be at least ${MINLENGTH} characters`],
-        maxLength: [256, `Why is your name longer than ${MAXLENGTH} characters?`],
+        minLength: [1, `First Name must be at least MINLENGTH characters`],
+        maxLength: [256, `Why is your name longer than MAXLENGTH characters?`],
         index: true
     },
     lastName: {
         type: String,
         required: [true, 'Last Name is required.'],
-        minLength: [1, `Last Name must be at least ${MINLENGTH} characters`],
-        maxLength: [256, `Why is your name longer than ${MAXLENGTH} characters?`],
+        minLength: [1, `Last Name must be at least MINLENGTH characters`],
+        maxLength: [256, `Why is your name longer than MAXLENGTH characters?`],
         index: true
     },
     isBuying: {
@@ -49,6 +49,10 @@ const LeadSchema = new mongoose.Schema({
     marketArea: {
         type: String,
         required: false
+    },
+    agent: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
 
@@ -64,19 +68,21 @@ LeadSchema.pre('validate', function (next) {
     next();
 });
 
-//using bcrypt to hash passwords
-LeadSchema.pre('save', function (next) {
-    bcrypt.hash(this.password, 10)
-        .then(hash => {
-            this.password = hash;
-            next();
-        });
-});
+//No Login for Lead yet --planned for future update
 
-//create a method to compare for user login attemps
-LeadSchema.methods.comparePassword = async function (plainTextPassword) {
-    return await bcrypt.compare(plainTextPassword, this.password);
-};
+// //using bcrypt to hash passwords
+// LeadSchema.pre('save', function (next) {
+//     bcrypt.hash(this.password, 10)
+//         .then(hash => {
+//             this.password = hash;
+//             next();
+//         });
+// });
+
+// //create a method to compare for user login attemps
+// LeadSchema.methods.comparePassword = async function (plainTextPassword) {
+//     return await bcrypt.compare(plainTextPassword, this.password);
+// };
 
 
 

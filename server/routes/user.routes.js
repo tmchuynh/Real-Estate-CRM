@@ -1,6 +1,7 @@
 const UserController = require('../controllers/user.controller');
+const express = require('express');
 
-module.exports = function(app) {
+module.exports = function userRoutes (app) {
     //get all users (probably won't use this)
     app.get('/api/users', UserController.getAllUsers);
     //search for a user - will be enabled with first, last, and email fields as search strings
