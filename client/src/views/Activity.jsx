@@ -44,7 +44,7 @@ const Activity = () => {
     return (
         <div className="d-flex">
             <SidebarNav />
-            <Stack gap={3}>
+            <Stack gap={3} className='m-3'>
 
             <DynamicCarousel
                 slides={currentSlides.map(slide => (

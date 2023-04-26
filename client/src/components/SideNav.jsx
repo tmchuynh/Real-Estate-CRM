@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Button, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers, faHouse, faUserGear } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faHouse, faUserGear, faChartLine, faCalendarWeek, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import "../images/logo.png";
 
 const SidebarNav = () => {
@@ -10,7 +10,7 @@ const SidebarNav = () => {
       <Image src="../images/logo.png" alt="RealAgentDesk logo" />
       <Nav.Link href="/">
         <Button type="button" className="btn btn-primary">
-          <FontAwesomeIcon icon={faHouse} className="mx-3" />
+          <FontAwesomeIcon  icon={faRightFromBracket} className="mx-3" />
           Logout
         </Button>
       </Nav.Link>
@@ -31,21 +31,21 @@ const SidebarNav = () => {
 
       <Nav.Link href="/activity">
         <Button type="button" className="btn btn-primary">
-          <FontAwesomeIcon icon={faUsers} className="mx-3" />
+          <FontAwesomeIcon icon={faChartLine} className="mx-3" />
           My Activity
         </Button>
       </Nav.Link>
 
       <Nav.Link href="/calendar">
         <Button type="button" className="btn btn-primary">
-          <FontAwesomeIcon icon={faUsers} className="mx-3" />
+          <FontAwesomeIcon icon={faCalendarWeek} className="mx-3" />
           Schedule
         </Button>
       </Nav.Link>
 
       <Nav.Link href="/leads">
         <Button type="button" className="btn btn-primary">
-          <FontAwesomeIcon icon={faUsers} className="mx-3" />
+        <FontAwesomeIcon icon={faHouse} className="mx-3" />
           My Listings
         </Button>
       </Nav.Link>
