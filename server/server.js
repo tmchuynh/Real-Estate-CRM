@@ -1,25 +1,14 @@
-import express, { json, urlencoded } from 'express';
-import dotenv from "dotenv";
-import cors from 'cors';
-import router from './routes/user.routes.js';
-import './config/mongoose.config.js';
-
+const express = require('express');
+const cors = require('cors');
 const app = express();
-dotenv.config();
-
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
+const port = process.env.PORT;
+require('./config/mongoose.config');
 //REQUIRED FOR CRUD
-app.use(json(), cors(), urlencoded({ extended: true }));
-app.use("", router);
-
-
+app.use(express.json(), cors(), express.urlencoded({ extended: true }));
+//ADD ALL MODEL ROUTES HERE
+require('./routes/user.routes')(app);
+// require('./routes/lead.routes')(app);
 //THIS SHOULD BE LAST
-async function serverStart() {
-    try {
-        const port = process.env.PORT ||5000;
-        app.listen(port, () => console.log(`Listening on port: ${port}`));
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-serverStart()
+app.listen(port, () => console.log(`Listening on port: ${port}`) );

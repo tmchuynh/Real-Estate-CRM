@@ -1,13 +1,13 @@
-import express from 'express';
-import { createOneUser, getAllUsers, getOneUserById, deleteOneUserById, updateOneUserById } from '../controllers/user.controller.js';
+const UserController = require('../controllers/user.controller');
 
-const router = express.Router();
-
-router.get('/api/users', getAllUsers)
-router.post('/api/users', createOneUser)
-router.get('/api/users/:id', getOneUserById)
-router.put('/api/users/:id', updateOneUserById)
-router.delete('/api/users/:id', deleteOneUserById)
-
-export default router;
-
+module.exports = function(app) {
+    app.get('/api/users', UserController.getAllUsers)
+    app.get('/api/users/first/:firstName', UserController.getOneUserByFirstName)
+    app.get('/api/users/last/:lastName', UserController.getOneUserByLastName)
+    app.get('/api/users/email/:email', UserController.getOneUserByEmail)
+    app.post('/api/users/login/:email', UserController.tryLoginOneUserByEmail)
+    app.post('/api/users', UserController.createOneUser)
+    app.get('/api/users/id/:id', UserController.getOneUserById)
+    app.put('/api/users/:id', UserController.updateOneUserById)
+    app.delete('/api/users/:id', UserController.deleteOneUserById)
+}
