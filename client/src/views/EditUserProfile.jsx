@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarNav from "../components/SideNav";
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Image, Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material'
@@ -43,20 +43,23 @@ const EditUserProfile = ({ user }) => {
                     <Row className="mt-3">
                         <Col md={3}>
                             <div className="profile-picture-container">
-                                <img src={profilePicture} alt={fullName} />
-                                <Tooltip title="Update Profile Picture">
-                                    <Button variant="primary" onClick={handleUpdateProfilePicture} className='my-2'>
-                                        <input
-                                            type="file"
-                                            onChange={handleProfilePictureChange}
-                                            accept="image/*"
-                                            style={{ opacity: 0, position: "absolute", width: "100%", height: "100%", left: 0, top: 0, cursor: "pointer" }}
-                                        />
+                                <Stack gap={3}>
+
+                                    <Image src={profilePicture} alt={fullName} roundedCircle className='w-50 m-auto'/>
+                                    <Tooltip title="Update Profile Picture">
+                                        <Button variant="primary" onClick={handleUpdateProfilePicture} className='my-2'>
+                                            <input
+                                                type="file"
+                                                onChange={handleProfilePictureChange}
+                                                accept="image/*"
+                                                style={{ opacity: 0, position: "absolute", width: "100%", height: "100%", left: 0, top: 0, cursor: "pointer" }}
+                                            />
 
 
-                                        <FontAwesomeIcon icon={faCameraRetro} />
-                                    </Button>
-                                </Tooltip>
+                                            <FontAwesomeIcon icon={faCameraRetro} />
+                                        </Button>
+                                    </Tooltip>
+                                </Stack>
                             </div>
                         </Col>
                         <Col md={9}>
