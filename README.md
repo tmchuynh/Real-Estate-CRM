@@ -58,7 +58,7 @@ Describe your project
 
 The following tools were used in this project:
 
-- [MongoDB](https://www.mongodb.com/blog/post/big-reasons-upgrade-mongodb-6-0)
+- [MongoDB](https://www.mongodb.com/blog/post/big-reasons-upgrade-mongodb-6-0) with [Mongoose](https://mongoosejs.com/)
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
 

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarNav from "../components/SideNav";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
+import { Tooltip } from '@mui/material'
 
 const EditUserProfile = ({ user }) => {
     const navigate = useNavigate();
@@ -35,22 +38,25 @@ const EditUserProfile = ({ user }) => {
             <div className="d-flex">
                 <SidebarNav />
 
-                <Container>
+                <Container fluid>
                     <h2>Edit User Profile</h2>
                     <Row className="mt-3">
                         <Col md={3}>
                             <div className="profile-picture-container">
                                 <img src={profilePicture} alt={fullName} />
-                                <Button variant="primary" onClick={handleUpdateProfilePicture}>
-                                    <input
-                                        type="file"
-                                        onChange={handleProfilePictureChange}
-                                        accept="image/*"
-                                        style={{ opacity: 0, position: "absolute", width: "100%", height: "100%", left: 0, top: 0, cursor: "pointer" }}
-                                    />
-                                    Update Profile Picture
-                                </Button>
+                                <Tooltip title="Update Profile Picture">
+                                    <Button variant="primary" onClick={handleUpdateProfilePicture} className='my-2'>
+                                        <input
+                                            type="file"
+                                            onChange={handleProfilePictureChange}
+                                            accept="image/*"
+                                            style={{ opacity: 0, position: "absolute", width: "100%", height: "100%", left: 0, top: 0, cursor: "pointer" }}
+                                        />
 
+
+                                        <FontAwesomeIcon icon={faCameraRetro} />
+                                    </Button>
+                                </Tooltip>
                             </div>
                         </Col>
                         <Col md={9}>
