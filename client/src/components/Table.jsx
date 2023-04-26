@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
-import DynamicPagination from "./Pagination";
-import { useNavigate } from "react-router-dom";
+import DynamicPagination from "./DynamicPagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
-const DynamicTable = ({ data }) => {
+const DynamicTable = ({ data, handleDetailsClick }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
-  const navigate = useNavigate();
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
@@ -44,15 +42,15 @@ const DynamicTable = ({ data }) => {
     setItemsPerPage(parseInt(e.target.value));
   };
 
-  const handleDetailsClick = (lead) => {
-    console.log(lead[0]);
-    navigate(`/lead_details/${lead[0]}`);
-  }
+
 
 
 
   const renderData = () => {
-    return tableData.slice(1, currentPage * itemsPerPage).map((row, rowIndex) => (
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage + 1;
+  
+    return tableData.slice(startIndex +1, endIndex).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
           <td
@@ -66,12 +64,12 @@ const DynamicTable = ({ data }) => {
         ))}
         <td>
           <Button onClick={() => handleDetailsClick(row)}>Details</Button>
-
           <Button onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
         </td>
       </tr>
     ));
   };
+  
 
 
 

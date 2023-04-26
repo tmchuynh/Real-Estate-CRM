@@ -1,1 +1,0 @@
-import { getAllUsers, createOneUser, getOneUserById, updateOneUserById, deleteOneUserById } from '../controllers/user.controller';

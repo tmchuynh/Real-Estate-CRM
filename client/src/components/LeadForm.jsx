@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Autocomplete } from '@mui/material';
+import { MultiSelect } from '@mantine/core';
 
 function LeadForm({ onSave, onCancel }) {
   const [name, setName] = useState('');
@@ -46,7 +47,10 @@ function LeadForm({ onSave, onCancel }) {
       marketArea,
     });
   };
-
+  const [data, setData] = useState([
+    { value: 'react', label: 'React' },
+    { value: 'ng', label: 'Angular' },
+  ]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -87,16 +91,13 @@ function LeadForm({ onSave, onCancel }) {
         />
       </div>
       <div className="mb-3 form-check">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="status"
-          checked={status}
-          onChange={(e) => setStatus(e.target.checked)}
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={top100Films}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Status" />}
         />
-        <label htmlFor="status" className="form-check-label">
-          Status
-        </label>
       </div>
       <div className="mb-3 form-check">
         <input
@@ -123,7 +124,7 @@ function LeadForm({ onSave, onCancel }) {
         </label>
       </div>
       <div className="mb-3">
-        <label htmlFor="marketArea" className="form-label">
+        {/* <label htmlFor="marketArea" className="form-label">
           Market Area
         </label>
         <input
@@ -132,14 +133,27 @@ function LeadForm({ onSave, onCancel }) {
           id="marketArea"
           value={marketArea}
           onChange={(e) => setMarketArea(e.target.value)}
+        /> */}
+        <MultiSelect
+          label="Creatable MultiSelect"
+          data={data}
+          placeholder="Select Market Area"
+          searchable
+          creatable
+          maxDropdownHeight={160}
+          limit={20}
+          radius="lg"
+          dropdownPosition="bottom"
+          error="Pick at least one market area"
+          transitionProps={{ duration: 150, transition: 'pop-top-left', timingFunction: 'ease' }}
+          getCreateLabel={(query) => `+ Create ${query}`}
+          onCreate={(query) => {
+            const item = { value: query, label: query };
+            setData((current) => [...current, item]);
+            return item;
+          }}
         />
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Movie" />}
-        />
+
       </div>
       <button type="submit" className="btn btn-primary">
         Save
