@@ -53,7 +53,7 @@ UserSchema.pre('validate', function (next) {
     next();
 });
 
-//using bcrypt to hash passwords
+//using bcrypt to hash passwords before saving a User Document
 UserSchema.pre('save', function (next) {
     bcrypt.hash(this.password, 10)
         .then(hash => {
@@ -62,7 +62,10 @@ UserSchema.pre('save', function (next) {
         });
 });
 
-
+//create a method to compare for user login attemps
+UserSchema.methods.comparePassword = async function (plainTextPassword) {
+    return await bcrypt.compare(plainTextPassword, this.password);
+};
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
