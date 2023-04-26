@@ -1,46 +1,29 @@
 import React, { useState } from "react";
-import DynamicPagination from "./DynamicPagination";
-import Carousel from 'react-bootstrap/Carousel';
-import ListingCard from './ListingCard';
+import { Carousel } from 'react-bootstrap';
 
-const DynamicCarousel = ({ slides, currentPage, itemsPerPage, onPageChange }) => {
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentSlides = slides.slice(startIndex, endIndex);
+const DynamicCarousel = ({ slides, itemsPerPage }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handlePageChange = (page) => {
-    onPageChange(page);
-  }
-
-  const handlePrev = () => {
-    onPageChange(currentPage - 1);
-  }
-
-  const handleNext = () => {
-    onPageChange(currentPage + 1);
-  }
+  const currentSlides = slides.slice(activeIndex, activeIndex + itemsPerPage);
 
   return (
     <div>
-      <Carousel prevIcon={<span aria-hidden="true" className="carousel-control-prev-icon" />}
-        nextIcon={<span aria-hidden="true" className="carousel-control-next-icon" />}
+      <Carousel
+        activeIndex={activeIndex}
+        onSelect={() => { }}
+        interval={null}
         prevLabel={null}
         nextLabel={null}
+        indicators={false}
+        controls={false}
+        slide={true}
       >
         {currentSlides.map((slide, index) => (
           <Carousel.Item key={index}>
-            <ListingCard />
+            {slide}
           </Carousel.Item>
         ))}
       </Carousel>
-      <div className="d-flex justify-content-center mt-3">
-        <DynamicPagination
-          itemsPerPage={itemsPerPage}
-          totalItems={slides.length}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </div>
     </div>
   );
 }
