@@ -29,7 +29,7 @@ const SidebarNav = () => {
         </Button>
       </Nav.Link>
 
-      <Nav.Link href="/leads">
+      <Nav.Link href="/activity">
         <Button type="button" className="btn btn-primary">
           <FontAwesomeIcon icon={faUsers} className="mx-3" />
           My Activity

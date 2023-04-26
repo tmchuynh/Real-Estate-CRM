@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
-import DynamicPagination from "./Pagination";
+import DynamicPagination from "./DynamicPagination";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
