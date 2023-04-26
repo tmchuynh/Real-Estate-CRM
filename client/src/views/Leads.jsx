@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { Modal, Button, Container } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
 import SidebarNav from '../components/SideNav';
 import DynamicTable from '../components/Table';
 import LeadForm from '../components/LeadForm';
@@ -7,11 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
-const Leads = ({leads}) => {
+const Leads = ({ leads }) => {
 
     const [leadsData, setLeadsData] = useState(leads);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const navigate = useNavigate();
+
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -28,6 +32,11 @@ const Leads = ({leads}) => {
         hideModal();
     }
 
+    const handleDetailsClick = (lead) => {
+        console.log(lead[0]);
+        navigate(`/lead_details/${lead[0]}`);
+    }
+
     return (
         <>
             <div className="d-flex">
@@ -39,7 +48,7 @@ const Leads = ({leads}) => {
                             <FontAwesomeIcon icon={faPlus} />
                         </Button>
                     </div>
-                    <DynamicTable data={leadsData} />
+                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} />
                 </Container>
             </div>
             {isModalOpen &&

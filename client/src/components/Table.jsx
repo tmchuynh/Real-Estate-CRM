@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
 import DynamicPagination from "./DynamicPagination";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
-const DynamicTable = ({ data }) => {
+const DynamicTable = ({ data, handleDetailsClick }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
-  const navigate = useNavigate();
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
@@ -44,10 +42,7 @@ const DynamicTable = ({ data }) => {
     setItemsPerPage(parseInt(e.target.value));
   };
 
-  const handleDetailsClick = (lead) => {
-    console.log(lead[0]);
-    navigate(`/lead_details/${lead[0]}`);
-  }
+
 
 
 

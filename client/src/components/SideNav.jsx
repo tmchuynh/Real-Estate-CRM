@@ -43,7 +43,7 @@ const SidebarNav = () => {
         </Button>
       </Nav.Link>
 
-      <Nav.Link href="/leads">
+      <Nav.Link href="/listings">
         <Button type="button" className="btn btn-primary">
         <FontAwesomeIcon icon={faHouse} className="mx-3" />
           My Listings

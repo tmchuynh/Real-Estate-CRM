@@ -3,8 +3,10 @@ import { Carousel } from 'react-bootstrap';
 
 const DynamicCarousel = ({ slides, itemsPerPage }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  
 
-  const currentSlides = slides.slice(activeIndex, activeIndex + itemsPerPage);
+  const currentSlides = slides ? slides.slice(activeIndex, activeIndex + itemsPerPage) : [];
+
 
   return (
     <div>
