@@ -3,6 +3,7 @@ import { Bar } from 'react-chartjs-2';
 import Chart from "chart.js/auto";
 import "chartjs-adapter-date-fns";
 import { CategoryScale, LinearScale, BarController, BarElement } from "chart.js";
+import { Container } from 'react-bootstrap';
 Chart.register(CategoryScale, LinearScale, BarController, BarElement);
 
 
@@ -42,7 +43,10 @@ const DynamicBarChart = ({ data }) => {
   };
 
   return (
-    <Bar data={chartData} options={chartOptions} />
+    <Container>
+
+      <Bar data={chartData} options={chartOptions} />
+    </Container>
   );
 };
 
