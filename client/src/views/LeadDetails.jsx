@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Container, Form, Stack } from 'react-bootstrap'
 import SidebarNav from '../components/SideNav';
-import CopyButton from '../components/CopyBtn';
+import Copy from '../components/CopyBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -48,7 +48,7 @@ const LeadDetails = ({ index }) => {
                         <p id='email'>
                             {index[2]}
                         </p>
-                        <CopyButton email="email" />
+                        <Copy email="email" />
                     </div>
                     <div className="d-flex gap-3">
                         <p>
@@ -57,7 +57,7 @@ const LeadDetails = ({ index }) => {
                         <p id='phone_number'>
                             {index[3]}
                         </p>
-                        <CopyButton email="phone_number" />
+                        <Copy email="phone_number" />
                     </div>
                     <div className="d-flex gap-3">
                         <p>
