@@ -52,7 +52,10 @@ const DynamicTable = ({ data }) => {
 
 
   const renderData = () => {
-    return tableData.slice(1, currentPage * itemsPerPage).map((row, rowIndex) => (
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage + 1;
+  
+    return tableData.slice(startIndex +1, endIndex).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
           <td
@@ -66,12 +69,12 @@ const DynamicTable = ({ data }) => {
         ))}
         <td>
           <Button onClick={() => handleDetailsClick(row)}>Details</Button>
-
           <Button onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
         </td>
       </tr>
     ));
   };
+  
 
 
 
