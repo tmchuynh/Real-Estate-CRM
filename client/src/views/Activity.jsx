@@ -14,21 +14,21 @@ const Activity = () => {
     const slides = [
         {
             id: 1,
-            image: "https://example.com/slide1.jpg",
+            image: "https://imgs.search.brave.com/sVi4mmw7T5R6IDL6AQFvgx7tmwxfUVOgsKfX98XYCOw/rs:fit:1200:803:1/g:ce/aHR0cHM6Ly9zdWZm/b2xrbW90aHMuY28u/dWsvcGhvdG9zL2Fj/dGl2ZS8yMzA2MC5T/dGV3YXJ0X0JlbGZp/ZWxkLjE1ODk5OTA1/NzIuanBn",
             alt: "Slide 1",
             title: "Slide 1",
             description: "This is the first slide",
         },
         {
             id: 2,
-            image: "https://example.com/slide2.jpg",
+            image: "https://imgs.search.brave.com/MPivDH8wKdoHt_v7CKSp_TkhTb8hMgDvjTksja6IKls/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/bm9yZm9sa21vdGhz/LmNvLnVrL3Bob3Rv/cy9hY3RpdmUvMjQ1/MDAuU3RlcGhlbl9Z/b3VuZ3MuMTQ5ODIw/MjAyOS5qcGc",
             alt: "Slide 2",
             title: "Slide 2",
             description: "This is the second slide",
         },
         {
             id: 3,
-            image: "https://example.com/slide3.jpg",
+            image: "https://imgs.search.brave.com/CiqSZQvFCp-JAoNWzaXc3SRq1PEzA6owIXTXBAc4qjs/rs:fit:1200:851:1/g:ce/aHR0cHM6Ly9zdWZm/b2xrbW90aHMuY28u/dWsvcGhvdG9zL2Fj/dGl2ZS8xNjgwMC5B/bnRvbnlfV3Jlbi4x/NTcxMzQ4NzYyLmpw/Zw",
             alt: "Slide 3",
             title: "Slide 3",
             description: "This is the third slide",
