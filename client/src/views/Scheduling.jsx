@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import moment from 'moment';
-import MyCalendar from './MyCalendar';
-import EventForm from './EventForm';
-import Timeline from './Timeline';
-import SidebarNav from './SideNav';
+import MyCalendar from '../components/MyCalendar';
+import EventForm from '../components/EventForm';
+import Timeline from '../components/Timeline';
+import SidebarNav from '../components/SideNav';
 
 const Scheduling = () => {
     const [events, setEvents] = useState([]);

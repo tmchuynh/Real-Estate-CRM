@@ -9,7 +9,7 @@ import Leads from './Leads';
 import CustomModal from '../components/LeadForm';
 import LeadDetails from './LeadDetails';
 import EmailSent from './EmailSent';
-import Scheduling from '../components/Scheduling';
+import Scheduling from './Scheduling';
 import Activity from './Activity';
 
 export default function Main() {

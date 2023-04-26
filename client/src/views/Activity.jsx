@@ -4,6 +4,8 @@ import SidebarNav from '../components/SideNav';
 import DynamicCarousel from '../components/DynamicCarousel';
 import DynamicPagination from '../components/DynamicPagination';
 import { Stack } from '@mui/material';
+import DynamicBarChart from '../components/DyanmicBarChart';
+import { Container } from 'react-bootstrap';
 
 const Activity = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -44,31 +46,42 @@ const Activity = () => {
     return (
         <div className="d-flex">
             <SidebarNav />
-            <Stack gap={3} className='m-3'>
+            <Container fluid>
 
-            <DynamicCarousel
-                slides={currentSlides.map(slide => (
-                    <ListingCard
-                        key={slide.id}
-                        image={slide.image}
-                        alt={slide.alt}
-                        title={slide.title}
-                        description={slide.description}
+                <Stack gap={3} className='m-3'>
+
+                    <DynamicBarChart data={{
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                        values: [65, 59, 80, 81, 56, 55, 40],
+                        title: 'Sales per Month',
+                        colors: ['#007bff']
+                    }} />
+
+
+                    <DynamicCarousel
+                        slides={currentSlides.map(slide => (
+                            <ListingCard
+                                key={slide.id}
+                                image={slide.image}
+                                alt={slide.alt}
+                                title={slide.title}
+                                description={slide.description}
+                            />
+                        ))}
+                        itemsPerPage={itemsPerPage}
+                        arrows={true}
+                        autoPlay={true}
+                        interval={5000}
+                        pauseOnHover={true}
                     />
-                ))}
-                itemsPerPage={itemsPerPage}
-                arrows={true}
-                autoPlay={true}
-                interval={5000}
-                pauseOnHover={true}
-            />
-            <DynamicPagination
-                itemsPerPage={itemsPerPage}
-                totalItems={slides.length}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-                />
-            </Stack>
+                    <DynamicPagination
+                        itemsPerPage={itemsPerPage}
+                        totalItems={slides.length}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                    />
+                </Stack>
+            </Container>
         </div>
     );
 };
