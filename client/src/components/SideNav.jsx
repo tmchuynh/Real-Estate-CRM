@@ -1,11 +1,13 @@
 import React from "react";
-import { Nav, Button } from "react-bootstrap";
+import { Nav, Button, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers, faHouse, faUserGear } from '@fortawesome/free-solid-svg-icons'
+import "../images/logo.png";
 
 const SidebarNav = () => {
   return (
     <div className="btn-group-vertical justify-content-start" style={{width: "14rem"}}>
+      <Image src="../images/logo.png" alt="RealAgentDesk logo" />
       <Nav.Link href="/">
         <Button type="button" className="btn btn-primary">
           <FontAwesomeIcon icon={faHouse} className="mx-3" />
