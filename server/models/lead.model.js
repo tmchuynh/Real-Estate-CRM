@@ -43,7 +43,4 @@ const LeadSchema = new Schema({
     marketArea: {
         type: String,
         required: false
-    },
-}, {timestamps: true});
-const Lead = mongoose.model('Lead', LeadSchema);
-module.exports = Lead;
+    }
