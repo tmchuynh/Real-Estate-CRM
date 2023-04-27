@@ -88,25 +88,21 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     }
   };
 
-  const sortedTableData = React.useMemo(() => {
-    if (sortColumnIndex === null) {
-      return tableData;
+  const sortedTableData = tableData.slice(1).sort((a, b) => {
+    const valA = a[sortColumnIndex];
+    const valB = b[sortColumnIndex];
+  
+    if (typeof valA === "string" && typeof valB === "string") {
+      return sortDirection === "asc"
+        ? valA.localeCompare(valB)
+        : valB.localeCompare(valA);
+    } else {
+      return sortDirection === "asc" ? valA - valB : valB - valA;
     }
-    const sortedData = [...tableData].sort((a, b) => {
-      const valA = a[sortColumnIndex];
-      const valB = b[sortColumnIndex];
+  });
+  
+  
 
-      if (typeof valA === "string" && typeof valB === "string") {
-        return sortDirection === "asc"
-          ? valA.localeCompare(valB)
-          : valB.localeCompare(valA);
-      } else {
-        return sortDirection === "asc" ? valA - valB : valB - valA;
-      }
-    });
-
-    return sortedData;
-  }, [sortColumnIndex, sortDirection, tableData]);
 
   const renderTableHeader = () => {
     if (data.length === 0) return null;
@@ -163,7 +159,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                 <td
                   key={columnIndex}
                   contentEditable={true}
-                  suppressContentEditableWarning={true}
+                  suppressContentEditableWarning={false}
                   onKeyDown={(e) =>
                     handleCellKeyDown(e, rowIndex, columnIndex)
                   }
