@@ -56,7 +56,7 @@ const ListingDetails = ({ index }) => {
                         <b>Bedrooms: </b>
                     </p>
                     <p id='bedroom'>
-                        {index.bedroom}
+                        {index.bedrooms}
                     </p>
                 </div>
                 <div className="d-flex gap-3">

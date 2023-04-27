@@ -36,214 +36,47 @@ export default function Main() {
 
     const houseListings = [
         {
-            "Address": "123 Main St",
-            "Price": "$250,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2",
-            "Square Feet": "1800",
-            "Status": "For Sale"
+            address: "987 Maple Lane",
+            listingPrice: "$350,000",
+            bedrooms: "3",
+            bathrooms: "2.5",
+            squareFeet: "2000",
+            status: "For Sale"
         },
         {
-            "Address": "456 Elm St",
-            "Price": "$400,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3",
-            "Square Feet": "2400",
-            "Status": "For Sale"
+            address: "654 Pine Street",
+            listingPrice: "$275,000",
+            bedrooms: "2",
+            bathrooms: "1",
+            squareFeet: "1200",
+            status: "For Sale"
         },
         {
-            "Address": "789 Oak St",
-            "Price": "$600,000",
-            "Bedrooms": "5",
-            "Bathrooms": "4",
-            "Square Feet": "3200",
-            "Status": "Pending"
+            address: "321 Cedar Avenue",
+            listingPrice: "$450,000",
+            bedrooms: "4",
+            bathrooms: "3",
+            squareFeet: "2500",
+            status: "Pending"
         },
         {
-            "Address": "111 Pine St",
-            "Price": "$350,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2",
-            "Square Feet": "2000",
-            "Status": "Sold"
+            address: "111 Oakwood Drive",
+            listingPrice: "$700,000",
+            bedrooms: "6",
+            bathrooms: "4.5",
+            squareFeet: "3800",
+            status: "For Sale"
         },
         {
-            "Address": "222 Maple St",
-            "Price": "$500,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3",
-            "Square Feet": "2800",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "333 Cedar St",
-            "Price": "$450,000",
-            "Bedrooms": "4",
-            "Bathrooms": "2.5",
-            "Square Feet": "2500",
-            "Status": "Pending"
-        },
-        {
-            "Address": "444 Birch St",
-            "Price": "$375,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2",
-            "Square Feet": "1900",
-            "Status": "Sold"
-        },
-        {
-            "Address": "555 Walnut St",
-            "Price": "$700,000",
-            "Bedrooms": "5",
-            "Bathrooms": "4.5",
-            "Square Feet": "3500",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "666 Spruce St",
-            "Price": "$525,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3",
-            "Square Feet": "2700",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "777 Chestnut St",
-            "Price": "$475,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2.5",
-            "Square Feet": "2200",
-            "Status": "Pending"
-        },
-        {
-            "Address": "888 Fir St",
-            "Price": "$300,000",
-            "Bedrooms": "2",
-            "Bathrooms": "1",
-            "Square Feet": "1500",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "999 Pineapple St",
-            "Price": "$900,000",
-            "Bedrooms": "6",
-            "Bathrooms": "5",
-            "Square Feet": "4000",
-            "Status": "Pending"
-        },
-        {
-            "Address": "1010 Oakwood Dr",
-            "Price": "$750,000",
-            "Bedrooms": "5",
-            "Bathrooms": "4",
-            "Square Feet": "3500",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "1212 Magnolia St",
-            "Price": "$425,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2.5",
-            "Square Feet": "2200",
-            "Status": "Sold"
-        },
-        {
-            "Address": "1313 Willow Ave",
-            "Price": "$625,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3",
-            "Square Feet": "2700",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "1414 Maplewood Ln",
-            "Price": "$875,000",
-            "Bedrooms": "5",
-            "Bathrooms": "4.5",
-            "Square Feet": "4000",
-            "Status": "Pending"
-        },
-        {
-            "Address": "1515 Cedarwood Blvd",
-            "Price": "$575,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3",
-            "Square Feet": "2500",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "1616 Oakwood Dr",
-            "Price": "$425,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2",
-            "Square Feet": "1900",
-            "Status": "Sold"
-        },
-        {
-            "Address": "1717 Pine St",
-            "Price": "$675,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3.5",
-            "Square Feet": "3200",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "1818 Elmwood Ave",
-            "Price": "$350,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2",
-            "Square Feet": "1800",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "1919 Walnut St",
-            "Price": "$525,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3",
-            "Square Feet": "2600",
-            "Status": "Pending"
-        },
-        {
-            "Address": "2020 Birchwood Ln",
-            "Price": "$425,000",
-            "Bedrooms": "3",
-            "Bathrooms": "2",
-            "Square Feet": "2000",
-            "Status": "Sold"
-        },
-        {
-            "Address": "2121 Magnolia St",
-            "Price": "$675,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3.5",
-            "Square Feet": "3100",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "2222 Willow Ave",
-            "Price": "$750,000",
-            "Bedrooms": "5",
-            "Bathrooms": "4",
-            "Square Feet": "3400",
-            "Status": "Pending"
-        },
-        {
-            "Address": "2323 Maplewood Ln",
-            "Price": "$925,000",
-            "Bedrooms": "6",
-            "Bathrooms": "5",
-            "Square Feet": "4200",
-            "Status": "For Sale"
-        },
-        {
-            "Address": "2424 Cedarwood Blvd",
-            "Price": "$625,000",
-            "Bedrooms": "4",
-            "Bathrooms": "3",
-            "Square Feet": "2800",
-            "Status": "For Sale"
+            address: "222 Elmwood Place",
+            listingPrice: "$525,000",
+            bedrooms: "3",
+            bathrooms: "2.5",
+            squareFeet: "2200",
+            status: "Sold"
         }
     ]
+
 
 
     return (

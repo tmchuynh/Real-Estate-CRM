@@ -72,12 +72,12 @@ const LeadDetails = ({ index }) => {
                         <p>
                             <b>Buying: </b>
                         </p>
-                        {index.isBuying === "True" ? (
+                        {index.buying === "True" ? (
                             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#04a201" }} />
-                        ) : index.isBuying === "False" ? (
+                        ) : index.buying === "False" ? (
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#d80e0e" }} />
                         ) : (
-                            index.isBuying
+                            index.buying
                         )}
                     </div>
 
@@ -85,12 +85,12 @@ const LeadDetails = ({ index }) => {
                         <p>
                             <b>Selling: </b>
                         </p>
-                        {index.isSelling === "True" ? (
+                        {index.selling === "True" ? (
                             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#04a201" }} />
-                        ) : index.isSelling === "False" ? (
+                        ) : index.selling === "False" ? (
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#d80e0e" }} />
                         ) : (
-                            index.isSelling
+                            index.selling
                         )}
                     </div>
                     <div className="d-flex gap-3">
