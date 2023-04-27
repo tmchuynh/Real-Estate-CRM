@@ -108,7 +108,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     if (data.length === 0) return null;
     const header = Object.keys(data[0]);
     return (
-      <tr>
+      <tr className={styles.headerFont}>
         {header.map((key, index) => {
           return (
             <th key={index} style={{ textAlign: "center" }}>
