@@ -45,8 +45,8 @@ const Leads = ({ leads }) => {
         (value) => /^(True|False)$/.test(value), // validation for the sixth column that only allows "True" or "False"
         (value) => /^(True|False)$/.test(value), // validation for the seventh column that only allows "True" or "False"
         (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the eighth column that only allows letters with 4 or more characters
-      ];
-      
+    ];
+
 
     return (
         <>
@@ -59,7 +59,7 @@ const Leads = ({ leads }) => {
                             <FontAwesomeIcon icon={faPlus} />
                         </Button>
                     </div>
-                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} validations={validations}/>
+                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} validations={validations} />
                 </Container>
             </div>
             {isModalOpen &&

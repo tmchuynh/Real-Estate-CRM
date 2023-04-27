@@ -35,6 +35,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
       const rows = document.querySelectorAll("tr");
       const cells = rows[rowIndex].querySelectorAll("td");
       const nextColumnIndex = (columnIndex + 1) % cells.length;
+      console.log(nextColumnIndex);
       const nextRowIndex = rowIndex + Math.floor((columnIndex + 1) / cells.length);
       if (nextRowIndex < rows.length) {
         cells[nextColumnIndex].setAttribute("contentEditable", true);

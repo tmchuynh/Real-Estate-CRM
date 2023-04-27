@@ -34,7 +34,7 @@ export default function Main() {
     ['David', 'Johnson', 'david.johnson@example.com', '555-222-3333', "Potential", "True", "True", 'Denver']
     ];
 
-    const houseListings = [  ["Address", "Price", "Bedrooms", "Bathrooms", "Square Feet", "Status"],
+    const houseListings = [["Address", "Price", "Bedrooms", "Bathrooms", "Square Feet", "Status"],
     ["123 Main St", "$250,000", "3", "2", "1800", "For Sale"],
     ["456 Elm St", "$400,000", "4", "3", "2400", "For Sale"],
     ["789 Oak St", "$600,000", "5", "4", "3200", "Pending"],
@@ -59,8 +59,8 @@ export default function Main() {
     ["2020 Cedar Rd", "$450,000", "3", "2", "2000", "Sold"],
     ["2121 Oakwood Dr", "$725,000", "5", "4.5", "3100", "For Sale"],
     ["2222 Magnolia Ln", "$500,000", "4", "3", "2600", "Pending"]
-  ];
-  
+    ];
+
 
     return (
         <div className='p-5'>
@@ -75,10 +75,10 @@ export default function Main() {
                 <Route path="/add_lead" element={<CustomModal />} />
                 <Route exact path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
 
-                <Route path="/activity" element={<Activity/>}/>
+                <Route path="/activity" element={<Activity />} />
 
-                <Route path="/listings" element={<Listings listings={houseListings}/>}/>
-                <Route path="/listings_details/:id" element={<ListingDetails index={houseListings[1]}/>}/>
+                <Route path="/listings" element={<Listings listings={houseListings} />} />
+                <Route path="/listings_details/:id" element={<ListingDetails index={houseListings[1]} />} />
 
 
                 <Route path="/register" element={<RegistrationForm />} />
