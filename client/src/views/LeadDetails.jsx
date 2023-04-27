@@ -11,7 +11,7 @@ const LeadDetails = (props) => {
     const [timeline, setTimeline] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [event, setEvent] = useState("");
-    const {firstName, lastName, email, phoneNumber, status, buying, selling, marketArea } = props.lead;
+    const { firstName, lastName, email, phoneNumber, status, buying, selling, marketArea } = props.lead;
     console.log(firstName);
 
 
@@ -105,7 +105,7 @@ const LeadDetails = (props) => {
                     </div>
 
 
-                            <TimelineForm/>
+                    <TimelineForm />
 
 
 
