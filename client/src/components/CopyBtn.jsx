@@ -5,9 +5,11 @@ import { Tooltip } from '@mui/material'
 
 function CopyButton(props) {
   const [isCopied, setIsCopied] = useState(false);
+  
 
-  function handleClick() {
-    const targetElement = document.getElementById(props.targetElementId);
+  function handleCopy() {
+    const targetElement = document.getElementById(props.element);
+    console.log(props);
     if (targetElement) {
       navigator.clipboard.writeText(targetElement.innerText);
       setIsCopied(true);
@@ -20,7 +22,7 @@ function CopyButton(props) {
 
   return (
     <Tooltip title="Copy">
-      <FontAwesomeIcon icon={faClipboard} onClick={handleClick} />
+      <FontAwesomeIcon icon={faClipboard} onClick={handleCopy} />
     </Tooltip>
   );
 }
