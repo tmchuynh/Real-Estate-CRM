@@ -125,6 +125,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                 textAlign: "center",
                 direction: "ltr",
                 unicodeBidi: "embed",
+                whiteSpace: "pre-wrap"
               }}
               key={columnIndex}
               onDoubleClick={columnIndex !== row.length - 1 ? handleCellDoubleClick : null}

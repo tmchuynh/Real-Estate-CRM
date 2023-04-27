@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import SidebarNav from '../components/SideNav';
