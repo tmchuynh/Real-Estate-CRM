@@ -22,19 +22,20 @@ export default function Main() {
         title: "Software Engineer",
         profilePicture: "https://randomuser.me/api/portraits/men/9.jpg"
     };
-    const leads = [["First Name", "Last Name", "Email", "Phone Number", "Status", "Buying", "Selling", "Market Area"],
-    ['John', 'Doe', 'john.doe@example.com', '555-123-4567', "Potential", "True", "False", 'New York'],
-    ['Jane', 'Smith', 'jane.smith@example.com', '555-987-6543', "First-Contact", "False", "True", 'Los Angeles'],
-    ['Bob', 'Johnson', 'bob.johnson@example.com', '555-555-5555', "First-Contact", "True", "True", 'Chicago'],
-    ['Alice', 'Brown', 'alice.brown@example.com', '555-111-2222', "Potential", "False", "True", 'San Francisco'],
-    ['Chris', 'Lee', 'chris.lee@example.com', '555-333-4444', "Potential", "True", "True", 'Boston'],
-    ['Olivia', 'Garcia', 'olivia.garcia@example.com', '555-777-8888', "First-Contact", "False", "False", 'Houston'],
-    ['Mark', 'Taylor', 'mark.taylor@example.com', '555-999-0000', "Potential", "True", "False", 'Miami'],
-    ['Linda', 'Wong', 'linda.wong@example.com', '555-444-5555', "First-Contact", "False", "False", 'Seattle'],
-    ['David', 'Johnson', 'david.johnson@example.com', '555-222-3333', "Potential", "True", "True", 'Denver']
+    const leads = [
+        { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', phoneNumber: '555-123-4567', status: 'Potential', buying: true, selling: false, marketArea: 'New York' },
+        { firstName: 'Jane', lastName: 'Smith', email: 'jane.smith@example.com', phoneNumber: '555-987-6543', status: 'First-Contact', buying: false, selling: true, marketArea: 'Los Angeles' },
+        { firstName: 'Bob', lastName: 'Johnson', email: 'bob.johnson@example.com', phoneNumber: '555-555-5555', status: 'First-Contact', buying: true, selling: true, marketArea: 'Chicago' },
+        { firstName: 'Alice', lastName: 'Brown', email: 'alice.brown@example.com', phoneNumber: '555-111-2222', status: 'Potential', buying: false, selling: true, marketArea: 'San Francisco' },
+        { firstName: 'Chris', lastName: 'Lee', email: 'chris.lee@example.com', phoneNumber: '555-333-4444', status: 'Potential', buying: true, selling: true, marketArea: 'Boston' },
+        { firstName: 'Olivia', lastName: 'Garcia', email: 'olivia.garcia@example.com', phoneNumber: '555-777-8888', status: 'First-Contact', buying: false, selling: false, marketArea: 'Houston' },
+        { firstName: 'Mark', lastName: 'Taylor', email: 'mark.taylor@example.com', phoneNumber: '555-999-0000', status: 'Potential', buying: true, selling: false, marketArea: 'Miami' },
+        { firstName: 'Linda', lastName: 'Wong', email: 'linda.wong@example.com', phoneNumber: '555-444-5555', status: 'First-Contact', buying: false, selling: false, marketArea: 'Seattle' },
+        { firstName: 'David', lastName: 'Johnson', email: 'david.johnson@example.com', phoneNumber: '555-222-3333', status: 'Potential', buying: true, selling: true, marketArea: 'Denver' }
     ];
 
-    const houseListings = [  ["Address", "Price", "Bedrooms", "Bathrooms", "Square Feet", "Status"],
+
+    const houseListings = [["Address", "Price", "Bedrooms", "Bathrooms", "Square Feet", "Status"],
     ["123 Main St", "$250,000", "3", "2", "1800", "For Sale"],
     ["456 Elm St", "$400,000", "4", "3", "2400", "For Sale"],
     ["789 Oak St", "$600,000", "5", "4", "3200", "Pending"],
@@ -59,8 +60,8 @@ export default function Main() {
     ["2020 Cedar Rd", "$450,000", "3", "2", "2000", "Sold"],
     ["2121 Oakwood Dr", "$725,000", "5", "4.5", "3100", "For Sale"],
     ["2222 Magnolia Ln", "$500,000", "4", "3", "2600", "Pending"]
-  ];
-  
+    ];
+
 
     return (
         <div className='p-5'>
@@ -75,10 +76,10 @@ export default function Main() {
                 <Route path="/add_lead" element={<CustomModal />} />
                 <Route exact path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
 
-                <Route path="/activity" element={<Activity/>}/>
+                <Route path="/activity" element={<Activity />} />
 
-                <Route path="/listings" element={<Listings listings={houseListings}/>}/>
-                <Route path="/listings_details/:id" element={<ListingDetails index={houseListings[1]}/>}/>
+                <Route path="/listings" element={<Listings listings={houseListings} />} />
+                <Route path="/listings_details/:id" element={<ListingDetails index={houseListings[1]} />} />
 
 
                 <Route path="/register" element={<RegistrationForm />} />
