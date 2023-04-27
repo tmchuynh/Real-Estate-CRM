@@ -49,7 +49,6 @@ const Leads = ({ leads }) => {
         (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the eighth column that only allows letters with 4 or more characters
     ];
 
-    const columnsToShow = ["firstName", "lastName", "status"]
 
 
     return (
@@ -69,7 +68,6 @@ const Leads = ({ leads }) => {
                         data={leadsData}
                         handleDetailsClick={handleDetailsClick}
                         validations={validations}
-                        columnsToShow={columnsToShow}
                     />
                 </Container>
             </div>
