@@ -15,7 +15,7 @@ const SidebarNav = () => {
       <Nav.Link href="/leads" className={`${styles.marginY}`}>
         <Button
           type="button"
-          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          className={`btn btn-primary ${styles.widthBtn} `}
           style={{
             backgroundColor: "#6b3fa0",
             color: "#fae206",
@@ -40,7 +40,7 @@ const SidebarNav = () => {
       <Nav.Link href="/activity" className={`${styles.marginY}`}>
         <Button
           type="button"
-          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          className={`btn btn-primary ${styles.widthBtn} `}
           style={{
             backgroundColor: "#6b3fa0",
             color: "#fae206",
@@ -66,7 +66,7 @@ const SidebarNav = () => {
       <Nav.Link href="/listings" className={`${styles.marginY}`}>
         <Button
           type="button"
-          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          className={`btn btn-primary ${styles.widthBtn} `}
           style={{
             backgroundColor: "#6b3fa0",
             color: "#fae206",
@@ -91,7 +91,7 @@ const SidebarNav = () => {
       <Nav.Link href="/documents" className={`${styles.marginY}`}>
         <Button
           type="button"
-          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          className={`btn btn-primary ${styles.widthBtn} `}
           style={{
             backgroundColor: "#6b3fa0",
             color: "#fae206",
@@ -117,7 +117,7 @@ const SidebarNav = () => {
       <Nav.Link href="/resources" className={`${styles.marginY}`}>
         <Button
           type="button"
-          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          className={`btn btn-primary ${styles.widthBtn} `}
           style={{
             backgroundColor: "#6b3fa0",
             color: "#fae206",
@@ -142,7 +142,7 @@ const SidebarNav = () => {
       <Nav.Link href="/user_profile" className={`${styles.marginY}`}>
         <Button
           type="button"
-          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          className={`btn btn-primary ${styles.widthBtn} `}
           style={{
             backgroundColor: "#6b3fa0",
             color: "#fae206",
@@ -167,7 +167,7 @@ const SidebarNav = () => {
       <Nav.Link href="/" className={`${styles.marginY}`}>
         <Button
           type="button"
-          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          className={`btn btn-primary ${styles.widthBtn} `}
           style={{
             backgroundColor: "#6b3fa0",
             color: "#fae206",
