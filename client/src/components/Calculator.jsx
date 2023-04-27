@@ -12,22 +12,24 @@ const RealEstateCalculator = () => {
     const [maintenanceRate, setMaintenanceRate] = React.useState("");
     const [managementRate, setManagementRate] = React.useState("");
 
-    const [netIncome, setNetIncome] = React.useState("");
-    const [cashOnCashReturn, setCashOnCashReturn] = React.useState("");
-    const [capRate, setCapRate] = React.useState("");
+    const [netIncome, setNetIncome] = React.useState(0);
+    const [cashOnCashReturn, setCashOnCashReturn] = React.useState(0);
+    const [capRate, setCapRate] = React.useState(0);
 
-    const calculate = () => {
-        const grossIncome = monthlyRent * 12;
+
+    const calculate = (e) => {
+        e.preventDefault();
+        const grossIncome = Number(monthlyRent) * 12;
         const vacancyLoss = grossIncome * (vacancyRate / 100);
         const effectiveGrossIncome = grossIncome - vacancyLoss;
         const operatingExpenses =
             effectiveGrossIncome *
             (maintenanceRate / 100 + managementRate / 100 + propertyTaxRate / 100) +
-            propertyInsurance * 12 +
-            closingCosts +
+            Number(propertyInsurance) * 12 +
+            Number(closingCosts) +
             (salePrice * (commissionRate / 100));
         const netIncome = effectiveGrossIncome - operatingExpenses;
-        const cashOnCashReturn = (netIncome / (salePrice + closingCosts)) * 100;
+        const cashOnCashReturn = (netIncome / (salePrice + Number(closingCosts))) * 100;
         const capRate = (netIncome / salePrice) * 100;
 
         setNetIncome(netIncome.toFixed(2));
@@ -130,14 +132,12 @@ const RealEstateCalculator = () => {
                 Calculate
             </Button>
 
-            {netIncome && (
-                <div>
-                    <h2>Results:</h2>
-                    <p>Net Income: ${netIncome}</p>
-                    <p>Cash on Cash Return: {cashOnCashReturn}%</p>
-                    <p>Cap Rate: {capRate}%</p>
-                </div>
-            )}
+            <div>
+                <h2>Results:</h2>
+                <p>Net Income: ${netIncome}</p>
+                <p>Cash on Cash Return: {cashOnCashReturn}%</p>
+                <p>Cap Rate: {capRate}%</p>
+            </div>
         </Form>
     );
 };
