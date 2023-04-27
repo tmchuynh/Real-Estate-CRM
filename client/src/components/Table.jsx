@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
 import DynamicPagination from "./DynamicPagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCircleCheck, faCircleXmark, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 import styles from "../Style.modules.css/Main.module.css";
 
 const DynamicTable = ({ data, handleDetailsClick }) => {
@@ -43,11 +43,44 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
     setItemsPerPage(parseInt(e.target.value));
   };
 
+  const [sortColumnIndex, setSortColumnIndex] = useState(null);
+  const [sortDirection, setSortDirection] = useState(null);
+
+  const handleSortClick = (columnIndex) => {
+    if (sortColumnIndex === columnIndex) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortColumnIndex(columnIndex);
+      setSortDirection("asc");
+    }
+  };
+
+  const sortData = () => {
+    if (sortColumnIndex !== null) {
+      const sortedData = tableData.slice(1).sort((a, b) => {
+        const valueA = a[sortColumnIndex];
+        const valueB = b[sortColumnIndex];
+        if (valueA < valueB) {
+          return sortDirection === "asc" ? -1 : 1;
+        } else if (valueA > valueB) {
+          return sortDirection === "asc" ? 1 : -1;
+        } else {
+          return 0;
+        }
+      });
+      return [tableData[1], ...sortedData];
+    } else {
+      return tableData;
+    }
+  };
+  
+
   const renderData = () => {
+    const sortedData = sortData();
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage + 1;
 
-    return tableData.slice(startIndex + 1, endIndex).map((row, rowIndex) => (
+    return sortedData.slice(startIndex + 1, endIndex).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
           <td
@@ -56,7 +89,7 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
             onDoubleClick={handleCellDoubleClick}
             onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)}
           >
-            {cell === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} /> : cell === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} /> : cell}
+            {sortedData[rowIndex][columnIndex] === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} /> : sortedData[rowIndex][columnIndex] === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} /> : sortedData[rowIndex][columnIndex]}
           </td>
         ))}
         <td>
@@ -69,17 +102,28 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
 
   return (
     <div>
-      <Form.Select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.tableSelect} style={{ backgroundColor: "#6b3fa0", color: "#fff", borderColor: "#6b3fa0", marginBottom: "1rem" }}>
-        <option value="5" style={{ backgroundColor: "#6b3fa0", color: "#fff" }}>5 rows per page</option>
-        <option value="10" style={{ backgroundColor: "#6b3fa0", color: "#fff" }}>10 rows per page</option>
-        <option value="15" style={{ backgroundColor: "#6b3fa0", color: "#fff" }}>15 rows per page</option>
-        <option value="20" style={{ backgroundColor: "#6b3fa0", color: "#fff" }}>20 rows per page</option>
+      <Form.Select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.tableSelect} >
+        <option value="5">5 rows per page</option>
+        <option value="10">10 rows per page</option>
+        <option value="15">15 rows per page</option>
+        <option value="20">20 rows per page</option>
       </Form.Select>
       <Table striped bordered hover responsive className={styles.table}>
         <thead>
-          <tr>
+          <tr className="text-center">
             {data[0].map((header, index) => (
-              <th key={index}>{header}</th>
+              <th key={index}
+                onClick={() => handleSortClick(index)}
+                style={{ cursor: "pointer" }}
+              >{header}
+
+                {sortColumnIndex === index && (
+                  <FontAwesomeIcon
+                    icon={sortDirection === "asc" ? faSortUp : faSortDown}
+                    style={{ marginLeft: "0.5rem" }}
+                  />
+                )}
+              </th>
             ))}
             <th>Actions</th>
           </tr>
