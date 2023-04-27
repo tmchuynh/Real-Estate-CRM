@@ -3,19 +3,6 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.detailsButton {
-    background-color: #6b3fa0;
-    color: #fae206;
-    border-color: #000000;
-    padding: 1rem;
-}
-
-.deleteButton {
-    background-color: #fff;
-    border: 1px solid #6b3fa0;
-}
-
-
 .headerFont {
     font-size: .75rem;
 }
