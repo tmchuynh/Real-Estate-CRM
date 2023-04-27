@@ -22,17 +22,18 @@ export default function Main() {
         title: "Software Engineer",
         profilePicture: "https://randomuser.me/api/portraits/men/9.jpg"
     };
-    const leads = [["First Name", "Last Name", "Email", "Phone Number", "Status", "Buying", "Selling", "Market Area"],
-    ['John', 'Doe', 'john.doe@example.com', '555-123-4567', "Potential", "True", "False", 'New York'],
-    ['Jane', 'Smith', 'jane.smith@example.com', '555-987-6543', "First-Contact", "False", "True", 'Los Angeles'],
-    ['Bob', 'Johnson', 'bob.johnson@example.com', '555-555-5555', "First-Contact", "True", "True", 'Chicago'],
-    ['Alice', 'Brown', 'alice.brown@example.com', '555-111-2222', "Potential", "False", "True", 'San Francisco'],
-    ['Chris', 'Lee', 'chris.lee@example.com', '555-333-4444', "Potential", "True", "True", 'Boston'],
-    ['Olivia', 'Garcia', 'olivia.garcia@example.com', '555-777-8888', "First-Contact", "False", "False", 'Houston'],
-    ['Mark', 'Taylor', 'mark.taylor@example.com', '555-999-0000', "Potential", "True", "False", 'Miami'],
-    ['Linda', 'Wong', 'linda.wong@example.com', '555-444-5555', "First-Contact", "False", "False", 'Seattle'],
-    ['David', 'Johnson', 'david.johnson@example.com', '555-222-3333', "Potential", "True", "True", 'Denver']
+    const leads = [
+        { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', phoneNumber: '555-123-4567', status: 'Potential', buying: true, selling: false, marketArea: 'New York' },
+        { firstName: 'Jane', lastName: 'Smith', email: 'jane.smith@example.com', phoneNumber: '555-987-6543', status: 'First-Contact', buying: false, selling: true, marketArea: 'Los Angeles' },
+        { firstName: 'Bob', lastName: 'Johnson', email: 'bob.johnson@example.com', phoneNumber: '555-555-5555', status: 'First-Contact', buying: true, selling: true, marketArea: 'Chicago' },
+        { firstName: 'Alice', lastName: 'Brown', email: 'alice.brown@example.com', phoneNumber: '555-111-2222', status: 'Potential', buying: false, selling: true, marketArea: 'San Francisco' },
+        { firstName: 'Chris', lastName: 'Lee', email: 'chris.lee@example.com', phoneNumber: '555-333-4444', status: 'Potential', buying: true, selling: true, marketArea: 'Boston' },
+        { firstName: 'Olivia', lastName: 'Garcia', email: 'olivia.garcia@example.com', phoneNumber: '555-777-8888', status: 'First-Contact', buying: false, selling: false, marketArea: 'Houston' },
+        { firstName: 'Mark', lastName: 'Taylor', email: 'mark.taylor@example.com', phoneNumber: '555-999-0000', status: 'Potential', buying: true, selling: false, marketArea: 'Miami' },
+        { firstName: 'Linda', lastName: 'Wong', email: 'linda.wong@example.com', phoneNumber: '555-444-5555', status: 'First-Contact', buying: false, selling: false, marketArea: 'Seattle' },
+        { firstName: 'David', lastName: 'Johnson', email: 'david.johnson@example.com', phoneNumber: '555-222-3333', status: 'Potential', buying: true, selling: true, marketArea: 'Denver' }
     ];
+
 
     const houseListings = [["Address", "Price", "Bedrooms", "Bathrooms", "Square Feet", "Status"],
     ["123 Main St", "$250,000", "3", "2", "1800", "For Sale"],
