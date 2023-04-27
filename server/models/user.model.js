@@ -9,12 +9,12 @@ const UserSchema = new mongoose.Schema({
         correctTld: true, //correctTld is stronger email validation
         index: true,
         required: [true, 'Please enter a valid email address'],
-        minLength: [5, 'Email must be at least 5 characters long!']
+        minLength: [5, 'Email must be at least {MINLENGTH} characters long!']
     },
     password: {
         type: String,
         required: [true, 'Password is required!'],
-        minLength: [8, 'Password must be at least 8 characters.']
+        minLength: [8, 'Password must be at least {MINLENGTH} characters.']
     },
     firstName: {
         type: String,

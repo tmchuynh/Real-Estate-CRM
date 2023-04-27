@@ -11,7 +11,7 @@ const EventSchema = new mongoose.Schema({
     eventDescription: {
         type: String,
         required: true,
-        minLength: [5, "Come on, put at least 5 characters for a description!"]
+        minLength: [5, "Come on, put at least {MINLENGTH} characters for a description!"]
     }
 }, { timestamps: true });
 
@@ -22,7 +22,7 @@ const LeadSchema = new mongoose.Schema({
         correctTld: true, //correctTld is stronger email validation
         index: true,
         required: [true, "Please enter a valid email address"],
-        minLength: [5, `Email must be at least MINLENGTH characters long!`]
+        minLength: [5, `Email must be at least {MINLENGTH} characters long!`]
     },
     // password: {
     //     type: String,
@@ -32,21 +32,21 @@ const LeadSchema = new mongoose.Schema({
     phoneNumber: {
         type: String,
         required: [true, 'Phone Number is required!'],
-        minLength: [10, `Phone Number must be exactly MINLENGTH characters. Don't include '-' or spaces.`],
-        maxLength: [10, `Phone Number must be exactly MAXLENGTH characters. Don't include '-' or spaces.`]
+        minLength: [10, `Phone Number must be exactly {MINLENGTH} characters. Don't include '-' or spaces.`],
+        maxLength: [10, `Phone Number must be exactly {MAXLENGTH} characters. Don't include '-' or spaces.`]
     },
     firstName: {
         type: String,
         required: [true, 'First Name is required.'],
-        minLength: [1, `First Name must be at least MINLENGTH characters`],
-        maxLength: [256, `Why is your name longer than MAXLENGTH characters?`],
+        minLength: [1, `First Name must be at least {MINLENGTH} characters`],
+        maxLength: [256, `Why is your name longer than {MAXLENGTH} characters?`],
         index: true
     },
     lastName: {
         type: String,
         required: [true, 'Last Name is required.'],
-        minLength: [1, `Last Name must be at least MINLENGTH characters`],
-        maxLength: [256, `Why is your name longer than MAXLENGTH characters?`],
+        minLength: [1, `Last Name must be at least {MINLENGTH} characters`],
+        maxLength: [256, `Why is your name longer than {MAXLENGTH} characters?`],
         index: true
     },
     status: {

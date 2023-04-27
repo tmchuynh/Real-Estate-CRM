@@ -32,6 +32,13 @@ module.exports.getAllUsers = (req, res) => {
         .catch(err => { res.status(400).json({ ...err, message: err.message }) });
 };
 
+//GET one User by Id
+module.exports.getOneUserById = (req, res) => {
+    User.findById({_id: req.body.id})
+        .then(user => { res.json(user) })
+        .catch(err => { res.status(400).json({ ...err, message: err.message }) });
+};
+
 // Dynamic query by URL query terms using async/await with try
 module.exports.searchForUsers = async (req, res) => {
     console.log(`Received these search terms ${req.query.first}`);
@@ -139,7 +146,7 @@ module.exports.checkUserSession = async (req, res) => {
     const userId = req.session.userId;
     if (userId) {
         const isUserValid = await User.findOne({ _id: userId });
-        isUserValid && res.send(true);
+        isUserValid && res.send(userId);
     }
     //else false 
     else res.send(false);
