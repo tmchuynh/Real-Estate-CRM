@@ -45,6 +45,30 @@ const ListingDetails = ({ index }) => {
                 </div>
                 <div className="d-flex gap-3">
                     <p>
+                        <b>City: </b>
+                    </p>
+                    <p id='city'>
+                        {index.city}
+                    </p>
+                </div>
+                <div className="d-flex gap-3">
+                    <p>
+                        <b>County: </b>
+                    </p>
+                    <p id='county'>
+                        {index.county}
+                    </p>
+                </div>
+                <div className="d-flex gap-3">
+                    <p>
+                        <b>Zip Code: </b>
+                    </p>
+                    <p id='zipCode'>
+                        {index.zipCode}
+                    </p>
+                </div>
+                <div className="d-flex gap-3">
+                    <p>
                         <b>Listing Price: </b>
                     </p>
                     <p id='listing_price'>
@@ -80,6 +104,22 @@ const ListingDetails = ({ index }) => {
                         <b>Status: </b>
                     </p>
                     {index.status}
+                </div>
+                <div className="d-flex gap-3">
+                    <p>
+                        <b>School District: </b>
+                    </p>
+                    <p id='schoolDistrict'>
+                        {index.schoolDistrict}
+                    </p>
+                </div>
+                <div className="d-flex gap-3">
+                    <p>
+                        <b>Year Built: </b>
+                    </p>
+                    <p id='yearBuilt'>
+                        {index.yearBuilt}
+                    </p>
                 </div>
                 <Button onClick={() => setShowModal(true)}>View All Photos</Button>
 

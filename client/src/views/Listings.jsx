@@ -49,7 +49,9 @@ const Listings = ({ listings }) => {
                             </Button>
                         </Tooltip>
                     </div>
-                    <DynamicTable data={listingsData} handleDetailsClick={handleDetailsClick} />
+                    <DynamicTable 
+                    data={listingsData} 
+                    handleDetailsClick={handleDetailsClick} />
                 </Container>
             </div>
             {isModalOpen &&

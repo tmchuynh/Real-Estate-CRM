@@ -15,14 +15,7 @@ tr:nth-child(even) {
     border: 1px solid #6b3fa0;
 }
 
-.tableSelect {
-    background-color: #6b3fa0;
-    padding: 10px;
-    border: none;
-    box-shadow: none;
-}
 
-.tableSelect option {
-    background-color: #8a5dc1;
-    color: #000000;
+.headerFont {
+    font-size: .75rem;
 }

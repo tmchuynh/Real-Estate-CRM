@@ -3,7 +3,7 @@ import { Table, Button, Form, Stack } from "react-bootstrap";
 import DynamicPagination from "./DynamicPagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
-import styles from "../Style.modules.css/Table.module.css";
+import styles from "../Style.module.css/Table.module.css";
 
 const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
@@ -88,35 +88,54 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     }
   };
 
-  const sortedTableData = React.useMemo(() => {
-    if (sortColumnIndex === null) {
-      return tableData;
+  const sortedTableData = tableData.slice(1).sort((a, b) => {
+    const valA = a[sortColumnIndex];
+    const valB = b[sortColumnIndex];
+  
+    if (typeof valA === "string" && typeof valB === "string") {
+      return sortDirection === "asc"
+        ? valA.localeCompare(valB)
+        : valB.localeCompare(valA);
+    } else {
+      return sortDirection === "asc" ? valA - valB : valB - valA;
     }
-    const sortedData = [...tableData].sort((a, b) => {
-      const valA = a[sortColumnIndex];
-      const valB = b[sortColumnIndex];
+  });
+  
+  
 
-      if (typeof valA === "string" && typeof valB === "string") {
-        return sortDirection === "asc"
-          ? valA.localeCompare(valB)
-          : valB.localeCompare(valA);
-      } else {
-        return sortDirection === "asc" ? valA - valB : valB - valA;
-      }
-    });
-
-    return sortedData;
-  }, [sortColumnIndex, sortDirection, tableData]);
 
   const renderTableHeader = () => {
     if (data.length === 0) return null;
     const header = Object.keys(data[0]);
     return (
-      <tr>
+      <tr className={styles.headerFont}>
         {header.map((key, index) => {
           return (
             <th key={index} style={{ textAlign: "center" }}>
               {key.toUpperCase()}
+              <Button
+                variant="link"
+                size="sm"
+                className={styles.sortButton}
+                onClick={() => handleSortClick(index)}
+              >
+                <FontAwesomeIcon
+                  icon={faSortUp}
+                  className={
+                    sortColumnIndex === index && sortDirection === "asc"
+                      ? styles.sortIconActive
+                      : styles.sortIconInactive
+                  }
+                />
+                <FontAwesomeIcon
+                  icon={faSortDown}
+                  className={
+                    sortColumnIndex === index && sortDirection === "desc"
+                      ? styles.sortIconActive
+                      : styles.sortIconInactive
+                  }
+                />
+              </Button>
             </th>
           );
         })}
@@ -140,7 +159,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                 <td
                   key={columnIndex}
                   contentEditable={true}
-                  suppressContentEditableWarning={true}
+                  suppressContentEditableWarning={false}
                   onKeyDown={(e) =>
                     handleCellKeyDown(e, rowIndex, columnIndex)
                   }
