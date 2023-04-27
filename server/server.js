@@ -1,8 +1,10 @@
 /*
-**************************************************
-THIS IS AN EXPRESS SERVER WITH REACT FRONT END
+******************************************************************
+THIS IS A REAL ESTATE CRM USING EXPRESS AND REACT FRONT-END
 WE WILL BE USING SESSION AND COOKIE PARSER TO TRACK USER SESSIONS
-CORS ALLOWS REACT TO MAKE REQUESTS TO THE SERVER
+CORS ALLOWS THE REACT FRONT-END TO MAKE REQUESTS TO THE SERVER API
+USER AND LEAD MODELS, ROUTES, CONTROLLERS MAKE UP THE MVP LOGIC
+******************************************************************
 */
 const express = require('express');
 const session = require('express-session');
@@ -21,9 +23,6 @@ app.use(express.json(), cors(), express.urlencoded({ extended: true }), cookiePa
 //ADD ALL MODEL ROUTES HERE
 require('./routes/user.routes')(app);
 require('./routes/lead.routes')(app);
-
-// userRoutes(app);
-// leadRoutes(app);
 
 //THIS SHOULD BE LAST
 app.listen(port, () => console.log(`Listening on port: ${port}`) );

@@ -2,6 +2,19 @@ const mongoose = require('mongoose');
 const Email = require('mongoose-type-email');
 const bcrypt = require('bcrypt');
 
+const EventSchema = new mongoose.Schema({
+    eventName: {
+        type: String,
+        required: true,
+        minLength: [3, "Event Name must be at least 3 characters long!"]
+    },
+    eventDescription: {
+        type: String,
+        required: true,
+        minLength: [5, "Come on, put at least 5 characters for a description!"]
+    }
+}, { timestamps: true });
+
 const LeadSchema = new mongoose.Schema({
     //mongoose added Email datatype that auto validates using an email regex
     email: {
@@ -36,6 +49,10 @@ const LeadSchema = new mongoose.Schema({
         maxLength: [256, `Why is your name longer than MAXLENGTH characters?`],
         index: true
     },
+    status: {
+        type: String,
+        required: false
+    },
     isBuying: {
         type: Boolean,
         required: true,
@@ -53,6 +70,9 @@ const LeadSchema = new mongoose.Schema({
     agent: {
         type: String,
         required: true
+    },
+    timelineEvents: {
+        type: EventSchema
     }
 }, { timestamps: true });
 
