@@ -91,7 +91,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const sortedTableData = tableData.slice(1).sort((a, b) => {
     const valA = a[sortColumnIndex];
     const valB = b[sortColumnIndex];
-  
+
     if (typeof valA === "string" && typeof valB === "string") {
       return sortDirection === "asc"
         ? valA.localeCompare(valB)
@@ -100,8 +100,8 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
       return sortDirection === "asc" ? valA - valB : valB - valA;
     }
   });
-  
-  
+
+
 
 
   const renderTableHeader = () => {
@@ -177,13 +177,44 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
               <td>
                 <div className="d-flex gap-1">
                   <Button
-                    className={styles.detailsButton}
+                    type="button"
+                    className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+                    style={{
+                      backgroundColor: "#6b3fa0",
+                      color: "#fae206",
+                      borderColor: "#000000",
+                      transition: "background-color 0.2s, color 0.2s"
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.backgroundColor = "#f0f5fa";
+                      e.target.style.color = "#6b3fa0";
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.backgroundColor = "#6b3fa0";
+                      e.target.style.color = "#fae206";
+                    }}
                     onClick={() => handleDetailsClick(row)}
                   >
                     Details
                   </Button>
                   <Button
-                    className={styles.deleteButton}
+                    type="button"
+                    className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+                    style={{
+                      backgroundColor: "#f0f5fa",
+                      border: "2px solid #6b3fa0",
+                      color: "#6b3fa0",
+                      borderColor: "#000000",
+                      transition: "background-color 0.2s, color 0.2s"
+                    }}
+                    onMouseOver={(e) => {
+                      e.target.style.backgroundColor = "#6b3fa0";
+                      e.target.style.color = "#f0f5fa";
+                    }}
+                    onMouseOut={(e) => {
+                      e.target.style.backgroundColor = "#f0f5fa";
+                      e.target.style.color = "#6b3fa0";
+                    }}
                     onClick={() => handleDeleteRow(rowIndex)}
                   >
                     Delete

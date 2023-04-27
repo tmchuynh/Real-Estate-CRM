@@ -4,8 +4,9 @@ import SidebarNav from '../components/SideNav';
 import DynamicCarousel from '../components/DynamicCarousel';
 import { Stack } from '@mui/material';
 import DynamicBarChart from '../components/DyanmicBarChart';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Scheduling from '../components/Scheduling';
+import Calculator from '../components/Calculator';
 
 const slides = [
     {
@@ -47,27 +48,34 @@ const Activity = () => {
             <Container fluid>
                 <Stack gap={3}>
                     <Scheduling />
-                    <DynamicBarChart data={{
-                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                        datasets: [
-                            {
-                                label: 'Sales',
-                                backgroundColor: '#007bff',
-                                borderColor: '#007bff',
-                                hoverBackgroundColor: '#007bff',
-                                hoverBorderColor: '#007bff',
-                                data: [65, 59, 80, 81, 56, 55, 40],
-                            },
-                            {
-                                label: 'Expenses',
-                                backgroundColor: '#28a745',
-                                borderColor: '#28a745',
-                                hoverBackgroundColor: '#28a745',
-                                hoverBorderColor: '#28a745',
-                                data: [28, 48, 40, 19, 86, 27, 90],
-                            },
-                        ],
-                    }} />
+                    <div className="d-flex">
+                            <Col sm={4}>
+
+                                <Calculator />
+                            </Col>
+                                <DynamicBarChart data={{
+                                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                    datasets: [
+                                        {
+                                            label: 'Sales',
+                                            backgroundColor: '#007bff',
+                                            borderColor: '#007bff',
+                                            hoverBackgroundColor: '#007bff',
+                                            hoverBorderColor: '#007bff',
+                                            data: [65, 59, 80, 81, 56, 55, 40],
+                                        },
+                                        {
+                                            label: 'Expenses',
+                                            backgroundColor: '#28a745',
+                                            borderColor: '#28a745',
+                                            hoverBackgroundColor: '#28a745',
+                                            hoverBorderColor: '#28a745',
+                                            data: [28, 48, 40, 19, 86, 27, 90],
+                                        },
+                                    ],
+                                }} />
+
+                    </div>
                     <DynamicCarousel slides={createCards(slides)} itemsPerPage={itemsPerPage} />
                 </Stack>
             </Container >
