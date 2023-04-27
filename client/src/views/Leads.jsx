@@ -7,16 +7,18 @@ import LeadForm from '../components/LeadForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material';
+import axios from 'axios';
 
 
 
 const Leads = ({ leads }) => {
+    const [allLeadsforLoggedUser, setAllLeadsforLoggedUser] = useState(leads);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [leadErrors, setLeadErrors] = useState([]);
+    const navigate = useNavigate();
+    const baseUrl = "http://localhost:8000/api";
 
     const [leadsData, setLeadsData] = useState(leads);
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const navigate = useNavigate();
 
 
     const showModal = () => {
@@ -33,6 +35,26 @@ const Leads = ({ leads }) => {
         });
         hideModal();
     }
+
+    //query for pull all Lead documents of currently logged in User
+    async function getAllLeadsForLoggedUser(loggedUserId) {
+        try {
+            if (loggedUserId) {
+                //the server grabs userId from express-session, so we don't need a URL param
+                // "Lead.find().where({ agent: req.session.userId }).sort({ lastName: 1 })"
+                const allLeads = await axios.get(`${baseUrl}/leads`);
+                setAllLeadsforLoggedUser(allLeads);
+            }
+        } catch (err) {
+            const errResponse = err.response.data.errors;
+            const errArr = [];
+            for (const key of Object.keys(errResponse)) {
+                errArr.push(errResponse[key].message);
+            }
+            setLeadErrors(errArr);
+        }
+    };
+
     // Gray: Update this function to grab the lead that was clicked on
     const handleDetailsClick = (lead) => {
         console.log(lead[0]);
@@ -65,7 +87,7 @@ const Leads = ({ leads }) => {
                         </Tooltip>
                     </div>
                     <DynamicTable
-                        data={leadsData}
+                        data={allLeadsforLoggedUser}
                         handleDetailsClick={handleDetailsClick}
                         validations={validations}
                     />
