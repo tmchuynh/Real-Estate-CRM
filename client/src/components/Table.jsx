@@ -10,12 +10,24 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
+  const [cellErrors, setCellErrors] = useState([]);
 
   const handleCellEdit = (newValue, rowIndex, columnIndex) => {
+    // Reset cellErrors state
+    setCellErrors(null);
+
+    // Perform validations on the new value here
+    if (validations[columnIndex] && !validations[columnIndex](newValue)) {
+      setCellErrors("Please enter a valid value.");
+      return;
+    }
+
+    // Update the table data state with the new value
     const newData = [...tableData];
     newData[rowIndex][columnIndex] = newValue;
     setTableData(newData);
   };
+
 
   const handleCellKeyDown = (e, rowIndex, columnIndex) => {
     if (e.key === "Tab") {
@@ -90,18 +102,24 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     const sortedData = sortData();
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage + 1;
-
+  
     return sortedData.slice(startIndex + 1, endIndex).map((row, rowIndex) => {
       // Define cell errors for this row
       return (
         <tr key={rowIndex}>
           {row.map((cell, columnIndex) => (
             <td
-              style={{ textAlign: "center" }}
+              style={{
+                textAlign: "center",
+                direction: "ltr",
+                unicodeBidi: "embed",
+              }}
               key={columnIndex}
-              onDoubleClick={handleCellDoubleClick}
+              onDoubleClick={columnIndex !== row.length - 1 ? handleCellDoubleClick : null}
               onKeyDown={(e) => handleCellKeyDown(e, rowIndex + 1, columnIndex)}
+              contentEditable={columnIndex !== row.length - 1}
             >
+  
               {cell === "True" ? (
                 <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
               ) : cell === "False" ? (
@@ -118,8 +136,9 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
         </tr>
       );
     });
-
+  
   };
+  
 
 
 
