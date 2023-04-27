@@ -6,6 +6,8 @@ import { Stack } from '@mui/material';
 import DynamicBarChart from '../components/DyanmicBarChart';
 import { Container } from 'react-bootstrap';
 import Scheduling from '../components/Scheduling';
+import styles from "../Style.modules.css/SideBar.module.css";
+
 
 const Activity = () => {
     const [currentPage, setCurrentPage] = React.useState(1);

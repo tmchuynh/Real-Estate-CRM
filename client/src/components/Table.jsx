@@ -3,7 +3,7 @@ import { Table, Button, Form, Stack } from "react-bootstrap";
 import DynamicPagination from "./DynamicPagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
-import styles from "../Style.modules.css/Main.module.css";
+import styles from "../Style.modules.css/Table.module.css";
 
 const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
@@ -164,6 +164,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                     Details
                   </Button>
                   <Button
+                    className={styles.deleteButton}
                     onClick={() => handleDeleteRow(rowIndex)}
                   >
                     Delete
