@@ -6,11 +6,17 @@ import DynamicPagination from './DynamicPagination';
 const DynamicCarousel = ({ slides = [], itemsPerPage }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentSlides, setCurrentSlides] = useState(slides.slice(0, itemsPerPage));
 
-  const currentSlides = slides.slice(activeIndex, activeIndex + itemsPerPage);
+
   const handlePageChange = (newPage) => {
+    const newActiveIndex = (newPage - 1) * itemsPerPage;
+    setActiveIndex(newActiveIndex);
     setCurrentPage(newPage);
+    const newCurrentSlides = slides.slice(newActiveIndex, newActiveIndex + itemsPerPage);
+    setCurrentSlides(newCurrentSlides);
   };
+  
 
   return (
     <div>

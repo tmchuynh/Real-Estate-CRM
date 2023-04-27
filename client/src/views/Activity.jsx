@@ -33,7 +33,7 @@ const slides = [
 
 const createCards = (slides) => {
     return slides.map((slide) => (
-        <ListingCard key={slide.id} slide={slide} />
+        <ListingCard key={slide.id} image={slide.image} alt={slide.alt} title={slide.title} description={slide.description} />
     ));
 };
 
