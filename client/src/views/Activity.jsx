@@ -36,6 +36,11 @@ const Activity = () => {
         }
     ];
 
+    /* This is a React hook called `useEffect` that is used to perform side effects in functional
+    components. In this case, it is used to update the `currentSlides` state variable whenever the
+    `currentPage` or `itemsPerPage` variables change. It calculates the start and end index of the
+    slides to be displayed based on the current page and items per page, and then updates the
+    `currentSlides` state variable with the corresponding slice of the `slides` array. */
     React.useEffect(() => {
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;

@@ -69,6 +69,10 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const [sortColumnIndex, setSortColumnIndex] = useState(null);
   const [sortDirection, setSortDirection] = useState(null);
 
+  /**
+   * This function handles sorting of a table column based on the column index and current sort
+   * direction.
+   */
   const handleSortClick = (columnIndex) => {
     if (sortColumnIndex === columnIndex) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
@@ -78,6 +82,11 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     }
   };
 
+  /**
+   * The function sorts table data based on a specified column index and direction.
+   * @returns The `sortData` function returns either the sorted data (if `sortColumnIndex` is not null)
+   * or the original `tableData` (if `sortColumnIndex` is null).
+   */
   const sortData = () => {
     if (sortColumnIndex !== null) {
       const sortedData = [...tableData].sort((a, b) => {
@@ -102,7 +111,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     const sortedData = sortData();
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage + 1;
-  
+
     return sortedData.slice(startIndex + 1, endIndex).map((row, rowIndex) => {
       // Define cell errors for this row
       return (
@@ -119,7 +128,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
               onKeyDown={(e) => handleCellKeyDown(e, rowIndex + 1, columnIndex)}
               contentEditable={columnIndex !== row.length - 1}
             >
-  
+
               {cell === "True" ? (
                 <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
               ) : cell === "False" ? (
@@ -136,9 +145,9 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
         </tr>
       );
     });
-  
+
   };
-  
+
 
 
 
