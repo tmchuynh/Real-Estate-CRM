@@ -74,9 +74,9 @@ const LeadDetails = (props) => {
                         <p>
                             <b>Buying: </b>
                         </p>
-                        {buying === "True" ? (
+                        {buying === true ? (
                             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#04a201" }} />
-                        ) : buying === "False" ? (
+                        ) : buying === false ? (
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#d80e0e" }} />
                         ) : (
                             buying
@@ -87,9 +87,9 @@ const LeadDetails = (props) => {
                         <p>
                             <b>Selling: </b>
                         </p>
-                        {selling === "True" ? (
+                        {selling === true ? (
                             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#04a201" }} />
-                        ) : selling === "False" ? (
+                        ) : selling === false ? (
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#d80e0e" }} />
                         ) : (
                             selling

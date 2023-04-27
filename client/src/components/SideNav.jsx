@@ -7,7 +7,7 @@ import styles from "../Style.modules.css/Main.module.css";
 
 const SidebarNav = () => {
   return (
-    <div className={`btn-group-vertical justify-content-start ${styles.gradient}`} style={{ width: "14rem" }}>
+    <div className={`btn-group-vertical justify-content-start align-items-center ${styles.gradient}`} style={{ width: "14rem" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
         <Image src={logo} alt="RealAgentDesk logo" style={{ width: "10rem" }} />
       </div>

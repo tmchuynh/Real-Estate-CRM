@@ -91,7 +91,7 @@ export default function Main() {
                 <Route path="/leads" element={<Leads leads={leads} />} />
                 <Route path="/add_lead" element={<CustomModal />} />
                 {/* update index={leads[1]} to target the lead that was clicked on */}
-                <Route exact path="/lead_details/:id" element={<LeadDetails lead={{ firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', phoneNumber: '555-123-4567', status: 'Potential', buying: true, selling: false, marketArea: 'New York' }} />} />
+                <Route exact path="/lead_details/:id" element={<LeadDetails lead={leads[6]} />} />
 
                 <Route path="/activity" element={<Activity />} />
 

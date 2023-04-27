@@ -1,3 +1,4 @@
 ☐ Update all static data to queried data
 ☐ Update handleDetailsClick from Leads.jsx
 ☐ Add POST route for adding Lead Event
+☐ Add Gatekeeping for all routes that aren't login/reg via the /api/users/authorization Express route that checks if user in session
