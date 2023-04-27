@@ -1,4 +1,5 @@
 import React from 'react';
+import TimelineItem from './TimelineItem';
 
 function Timeline(props) {
     return (

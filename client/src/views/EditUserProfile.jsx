@@ -5,6 +5,7 @@ import { Container, Row, Col, Form, Button, Image, Stack } from 'react-bootstrap
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material'
+import styles from "../Style.modules.css/Leads.module.css";
 // import axios from 'axios';
 
 const EditUserProfile = ({ user }) => {
@@ -72,7 +73,7 @@ const EditUserProfile = ({ user }) => {
                             <div className="profile-picture-container">
                                 <Stack gap={3}>
 
-                                    <Image src={profilePicture} alt={fullName} roundedCircle className='w-50 m-auto' />
+                                    <Image src={profilePicture} alt={fullName}  className={`w-50 m-auto ${styles.profilePicture}`} />
                                     <Tooltip title="Update Profile Picture">
                                         <Button variant="primary" className='my-2' >
                                             <input

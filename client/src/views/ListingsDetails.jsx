@@ -87,7 +87,7 @@ const ListingDetails = ({ index }) => {
 
             <Modal show={showModal} onHide={() => setShowModal(false)} size='xl'>
                 <Modal.Header closeButton>
-                    <Modal.Title>Photos</Modal.Title>
+                    <Modal.Title>All Photos</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <DynamicCarousel slides={photos.map(photo => (
