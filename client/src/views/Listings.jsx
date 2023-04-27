@@ -6,6 +6,7 @@ import ListingForm from '../components/ListingForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
+import { Tooltip } from '@mui/material';
 
 
 const Listings = ({ listings }) => {
@@ -31,7 +32,6 @@ const Listings = ({ listings }) => {
         hideModal();
     }
     const handleDetailsClick = (lead) => {
-        console.log(lead[0]);
         navigate(`/listings_details/${lead[0]}`);
     }
 
@@ -43,9 +43,11 @@ const Listings = ({ listings }) => {
                 <Container fluid className='m-3'>
                     <div className="d-flex justify-content-between">
                         <h2>Listings</h2>
-                        <Button onClick={showModal} className='my-2'>
-                            <FontAwesomeIcon icon={faPlus} />
-                        </Button>
+                        <Tooltip title="Add Listing">
+                            <Button onClick={showModal} className='my-2'>
+                                <FontAwesomeIcon icon={faPlus} />
+                            </Button>
+                        </Tooltip>
                     </div>
                     <DynamicTable data={listingsData} handleDetailsClick={handleDetailsClick} />
                 </Container>

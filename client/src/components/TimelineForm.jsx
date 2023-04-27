@@ -31,6 +31,10 @@ class TimelineForm extends Component {
         this.setState({ action: e.target.value });
     }
 
+    /**
+     * This function handles the submission of a form by adding the form data to an array of events in the
+     * component's state.
+     */
     handleSubmit(e) {
         e.preventDefault();
         const events = this.state.events;
@@ -44,6 +48,14 @@ class TimelineForm extends Component {
         this.setState({ events, eventName: "", eventDetail: "", action: "", showForm: false });
     }
 
+    /**
+     * This function maps through an array of events and returns a TimelineItem component for each event
+     * with the current date and event details.
+     * @returns The `renderEvents()` method is returning an array of `TimelineItem` components, one for
+     * each event in the `this.state.events` array. Each `TimelineItem` component is passed the `date`,
+     * `time`, `eventName`, and `eventDetail` props from the corresponding event object in the
+     * `this.state.events` array.
+     */
     renderEvents() {
         return this.state.events.map((val, index) => {
             const date = new Date().toLocaleDateString();
@@ -58,7 +70,7 @@ class TimelineForm extends Component {
             );
         });
     }
-    
+
 
     render() {
         return (
