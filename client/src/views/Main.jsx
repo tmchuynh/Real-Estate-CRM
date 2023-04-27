@@ -13,6 +13,8 @@ import Activity from './Activity';
 import Listings from './Listings';
 import ListingDetails from './ListingsDetails';
 import axios from 'axios';
+import Documents from '../components/Documents';
+import Resources from './Resources';
 
 export default function Main() {
     /*
@@ -171,9 +173,16 @@ export default function Main() {
 
                 <Route path="/activity" element={<Activity />} />
 
-                {/* <Route path="/listings" element={<Listings listings={houseListings} />} />
-                <Route path="/listings_details/:id" element={<ListingDetails index={houseListings[1]} />} /> */}
 
+                <Route path="/documents" element={<Documents />} />
+
+
+                <Route path="/resources" element={<Resources />} />
+
+
+
+                <Route path="/listings" element={<Listings listings={houseListings} />} />
+                <Route path="/listings_details/:id" element={<ListingDetails index={houseListings[1]} />} />
 
                 <Route path="/register" element={<RegistrationForm />} />
                 <Route path="/password" element={<PasswordReset />} />
