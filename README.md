@@ -68,6 +68,11 @@ The following were implemented in this project:
 
 - [React Bootstrap](https://react-bootstrap.github.io/getting-started/introduction/)
 - [Bootswatch](https://bootswatch.com/)
+- [Mui React UI Tools](https://mui.com/)
+- [Mantine React](https://mantine.dev/)
+- [React Big Calendar](https://github.com/jquense/react-big-calendar)
+- [chartjs-adapter-data-fns](https://github.com/chartjs/chartjs-adapter-date-fns)
+- [Chart.js](https://www.chartjs.org/)
 
 ## :white_check_mark: Requirements ##
 
