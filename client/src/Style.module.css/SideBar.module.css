@@ -11,7 +11,7 @@
 }
 
 .widthBtn {
-    width: 12rem;
+    width: 13rem;
 }
 
 .button {
@@ -19,6 +19,7 @@
     color: #fae206;
     border-color: #000000;
     padding: 1rem;
+    text-align: left;
 }
 
 
