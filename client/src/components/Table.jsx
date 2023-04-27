@@ -60,8 +60,8 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
           </td>
         ))}
         <td>
-          <Button className={`${styles.actionButton} ${styles.btn} ${styles.marginX}`} onClick={() => handleDetailsClick(row)}>Details</Button>
-          <Button className={`${styles.actionButton} ${styles.btn} ${styles.marginX}`} onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
+          <Button className={`${styles.actionButton} ${styles.button} ${styles.marginX}`} onClick={() => handleDetailsClick(row)}>Details</Button>
+          <Button className={`${styles.actionButton} ${styles.button} ${styles.marginX}`} onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
         </td>
       </tr>
     ));

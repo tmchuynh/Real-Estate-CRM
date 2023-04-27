@@ -13,14 +13,14 @@ const SidebarNav = () => {
       </div>
 
       <Nav.Link href="/leads" className={`${styles.marginY}`}>
-        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.btn}`}>
+        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}>
           <FontAwesomeIcon icon={faUsers} className="mx-3" />
           Leads
         </Button>
       </Nav.Link>
 
       <Nav.Link href="/activity" className={`${styles.marginY}`}>
-        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.btn}`}>
+        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}>
           <FontAwesomeIcon icon={faChartLine} className="mx-3" />
           My Activity
         </Button>
@@ -28,21 +28,21 @@ const SidebarNav = () => {
 
 
       <Nav.Link href="/listings" className={`${styles.marginY}`}>
-        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.btn}`}>
+        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}>
           <FontAwesomeIcon icon={faHouse} className="mx-3" />
           My Listings
         </Button>
       </Nav.Link>
 
       <Nav.Link href="/user_profile" className={`${styles.marginY}`}>
-        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.btn}`}>
+        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}>
           <FontAwesomeIcon icon={faUserGear} className="mx-3" />
           My Profile
         </Button>
       </Nav.Link>
 
       <Nav.Link href="/" className={`${styles.marginY}`}>
-        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.btn}`}>
+        <Button type="button" className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}>
           <FontAwesomeIcon icon={faRightFromBracket} className="mx-3" />
           Logout
         </Button>
