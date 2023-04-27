@@ -120,7 +120,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     });
   };
   
-
+// return( {sortedTableData .map( => ( {Object.assign(Object.keys(row).map((key, colIdx) => (
   const renderTableBody = () => {
     return (
       <tbody>
@@ -131,7 +131,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
           )
           .map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {row.map((cell, columnIndex) => (
+              {Object.keys(row).map((key, columnIndex) => (
                 <td
                   key={columnIndex}
                   contentEditable={true}
@@ -141,7 +141,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                   }
                   onDoubleClick={handleCellDoubleClick}
                 >
-                  {cellErrors[rowIndex] &&
+                  {/* {cellErrors[rowIndex] &&
                     cellErrors[rowIndex][columnIndex] !== undefined ? (
                     <FontAwesomeIcon
                       icon={faCircleXmark}
@@ -152,24 +152,30 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                       icon={faCircleCheck}
                       className={styles.validIcon}
                     />
+                  )} */}
+                  {row[key] === true ? (
+                    <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
+                  ) : row[key] === false ? (
+                    <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
+                  ) : (
+                    row[key]
                   )}
-                  {cell}
                 </td>
               ))}
               <td>
-                <Button
-                  variant="primary"
-                  className={styles.detailsButton}
-                  onClick={() => handleDetailsClick(row)}
-                >
-                  Details
-                </Button>{" "}
-                <Button
-                  variant="danger"
-                  onClick={() => handleDeleteRow(rowIndex)}
-                >
-                  Delete
-                </Button>
+                <div className="d-flex gap-1">
+                  <Button
+                    className={styles.detailsButton}
+                    onClick={() => handleDetailsClick(row)}
+                  >
+                    Details
+                  </Button>{" "}
+                  <Button
+                    onClick={() => handleDeleteRow(rowIndex)}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </td>
             </tr>
           ))}
@@ -181,25 +187,21 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
     <>
       <Form.Group controlId="formGridItemsPerPage">
         <Form.Label>Items per page</Form.Label>
-        <Form.Control
-          as="select"
-          defaultValue={DEFAULT_ITEMS_PER_PAGE}
-          onChange={handleItemsPerPageChange}
-        >
-          <option>15</option>
-          <option>25</option>
-          <option>50</option>
-          <option>100</option>
-        </Form.Control>
+        <Form.Select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.tableSelect} >
+        <option value="5">5 rows per page</option>
+        <option value="10">10 rows per page</option>
+        <option value="15">15 rows per page</option>
+        <option value="20">20 rows per page</option>
+      </Form.Select>
       </Form.Group>
       <Table striped bordered hover responsive>
         {renderTableHeader()}
         {renderTableBody()}
       </Table>
       <DynamicPagination
-        data={sortedTableData}
-        currentPage={currentPage}
+        totalItems={tableData.length}
         itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
         onPageChange={handlePageChange}
       />
     </>

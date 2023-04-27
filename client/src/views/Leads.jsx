@@ -31,7 +31,7 @@ const Leads = ({ leads }) => {
         });
         hideModal();
     }
-
+    // Gray: Update this function to grab the lead that was clicked on
     const handleDetailsClick = (lead) => {
         console.log(lead[0]);
         navigate(`/lead_details/${lead[0]}`);
