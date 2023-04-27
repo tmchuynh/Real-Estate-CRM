@@ -1,0 +1,50 @@
+.timeline {
+  padding: 40px 0;
+}
+
+.timeline-header {
+  margin-bottom: 40px;
+}
+
+.timeline-events {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 60px;
+}
+
+.timeline-events-side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #ccc;
+}
+
+.timeline-events-time {
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+}
+
+.timeline-events-item {
+  margin-left: 20px;
+}
+
+.timeline-events-primary {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.timeline-events-secondary {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.timeline-events-action {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #666;
+}
