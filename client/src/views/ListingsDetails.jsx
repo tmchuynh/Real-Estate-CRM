@@ -82,7 +82,7 @@ const ListingDetails = ({ index }) => {
                     </p>
                     {index[5]}
                 </div>
-                <Button onClick={() => setShowModal(true)}>Open Carousel</Button>
+                <Button onClick={() => setShowModal(true)}>View All Photos</Button>
 
             </Container>
 
@@ -91,10 +91,9 @@ const ListingDetails = ({ index }) => {
                     <Modal.Title>Photos</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <DynamicCarousel slides={photos.map(photo => {
-                        <Figures photo={photo}/>
-                    })} itemsPerPage={2} />
-
+                    <DynamicCarousel slides={photos.map(photo => (
+                        <Figures photo={photo} key={photo.src} />
+                    ))} itemsPerPage={2} />
                 </Modal.Body>
             </Modal>
 

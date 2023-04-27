@@ -69,11 +69,11 @@ export default function Main() {
 
                 # the user that is logged in
                 <Route path="/user_profile" element={<UserProfile user={user} />} />
-                <Route path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
+                <Route exact path="/edit_user_profile/:id" element={<EditUserProfile user={user} />} />
 
                 <Route path="/leads" element={<Leads leads={leads} />} />
                 <Route path="/add_lead" element={<CustomModal />} />
-                <Route path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
+                <Route exact path="/lead_details/:id" element={<LeadDetails index={leads[1]} />} />
 
                 <Route path="/activity" element={<Activity/>}/>
 

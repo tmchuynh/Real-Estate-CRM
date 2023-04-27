@@ -57,7 +57,7 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
 
   const sortData = () => {
     if (sortColumnIndex !== null) {
-      const sortedData = tableData.slice(1).sort((a, b) => {
+      const sortedData = [...tableData].sort((a, b) => {
         const valueA = a[sortColumnIndex];
         const valueB = b[sortColumnIndex];
         if (valueA < valueB) {
@@ -68,18 +68,16 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
           return 0;
         }
       });
-      return [tableData[1], ...sortedData];
+      return sortedData;
     } else {
       return tableData;
     }
   };
-  
-
   const renderData = () => {
     const sortedData = sortData();
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage + 1;
-
+  
     return sortedData.slice(startIndex + 1, endIndex).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
@@ -89,7 +87,7 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
             onDoubleClick={handleCellDoubleClick}
             onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)}
           >
-            {sortedData[rowIndex][columnIndex] === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} /> : sortedData[rowIndex][columnIndex] === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} /> : sortedData[rowIndex][columnIndex]}
+            {sortedData[rowIndex + 1][columnIndex] === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} /> : sortedData[rowIndex + 1][columnIndex] === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} /> : sortedData[rowIndex + 1][columnIndex]}
           </td>
         ))}
         <td>
@@ -99,6 +97,8 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
       </tr>
     ));
   };
+  
+  
 
   return (
     <div>

@@ -31,7 +31,6 @@ const Listings = ({ listings }) => {
         hideModal();
     }
     const handleDetailsClick = (lead) => {
-        console.log(lead[0]);
         navigate(`/listings_details/${lead[0]}`);
     }
 
