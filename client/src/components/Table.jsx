@@ -18,11 +18,22 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
   };
 
   const handleCellKeyDown = (e, rowIndex, columnIndex) => {
-    if (e.key === "Enter") {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const rows = document.querySelectorAll("tr");
+      const cells = rows[rowIndex].querySelectorAll("td");
+      const nextColumnIndex = (columnIndex + 1) % cells.length;
+      const nextRowIndex = rowIndex + Math.floor((columnIndex + 1) / cells.length);
+      if (nextRowIndex < rows.length) {
+        cells[nextColumnIndex].setAttribute("contentEditable", true);
+        cells[nextColumnIndex].focus();
+      }
+    } else {
       const newValue = e.target.textContent;
       handleCellEdit(newValue, rowIndex, columnIndex);
     }
   };
+
 
   const handleCellDoubleClick = (e) => {
     e.target.contentEditable = true;
@@ -73,11 +84,13 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
       return tableData;
     }
   };
+
+
   const renderData = () => {
     const sortedData = sortData();
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage + 1;
-  
+
     return sortedData.slice(startIndex + 1, endIndex).map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, columnIndex) => (
@@ -85,9 +98,15 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
             style={{ textAlign: "center" }}
             key={columnIndex}
             onDoubleClick={handleCellDoubleClick}
-            onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)}
+            onKeyDown={(e) => handleCellKeyDown(e, rowIndex + 1, columnIndex)}
           >
-            {sortedData[rowIndex + 1][columnIndex] === "True" ? <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} /> : sortedData[rowIndex + 1][columnIndex] === "False" ? <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} /> : sortedData[rowIndex + 1][columnIndex]}
+            {cell === "True" ? (
+              <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
+            ) : cell === "False" ? (
+              <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
+            ) : (
+              cell
+            )}
           </td>
         ))}
         <td>
@@ -97,8 +116,9 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
       </tr>
     ));
   };
-  
-  
+
+
+
 
   return (
     <div>
