@@ -20,7 +20,8 @@ const SidebarNav = () => {
             backgroundColor: "#6b3fa0",
             color: "#fae206",
             borderColor: "#000000",
-            transition: "background-color 0.2s, color 0.2s"
+            transition: "background-color 0.2s, color 0.2s",
+            textAlign: "left"
           }}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = "#f0f5fa";
@@ -44,7 +45,8 @@ const SidebarNav = () => {
             backgroundColor: "#6b3fa0",
             color: "#fae206",
             borderColor: "#000000",
-            transition: "background-color 0.2s, color 0.2s"
+            transition: "background-color 0.2s, color 0.2s",
+            textAlign: "left"
           }}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = "#f0f5fa";
@@ -69,7 +71,8 @@ const SidebarNav = () => {
             backgroundColor: "#6b3fa0",
             color: "#fae206",
             borderColor: "#000000",
-            transition: "background-color 0.2s, color 0.2s"
+            transition: "background-color 0.2s, color 0.2s",
+            textAlign: "left"
           }}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = "#f0f5fa";
@@ -93,7 +96,8 @@ const SidebarNav = () => {
             backgroundColor: "#6b3fa0",
             color: "#fae206",
             borderColor: "#000000",
-            transition: "background-color 0.2s, color 0.2s"
+            transition: "background-color 0.2s, color 0.2s",
+            textAlign: "left"
           }}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = "#f0f5fa";
@@ -109,6 +113,32 @@ const SidebarNav = () => {
         </Button>
       </Nav.Link>
 
+
+      <Nav.Link href="/resources" className={`${styles.marginY}`}>
+        <Button
+          type="button"
+          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          style={{
+            backgroundColor: "#6b3fa0",
+            color: "#fae206",
+            borderColor: "#000000",
+            transition: "background-color 0.2s, color 0.2s",
+            textAlign: "left"
+          }}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "#f0f5fa";
+            e.target.style.color = "#6b3fa0";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "#6b3fa0";
+            e.target.style.color = "#fae206";
+          }}
+        >
+          <FontAwesomeIcon icon={faChartLine} className="mx-3" />
+          Resources
+        </Button>
+      </Nav.Link>
+
       <Nav.Link href="/user_profile" className={`${styles.marginY}`}>
         <Button
           type="button"
@@ -117,7 +147,8 @@ const SidebarNav = () => {
             backgroundColor: "#6b3fa0",
             color: "#fae206",
             borderColor: "#000000",
-            transition: "background-color 0.2s, color 0.2s"
+            transition: "background-color 0.2s, color 0.2s",
+            textAlign: "left"
           }}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = "#f0f5fa";
@@ -141,7 +172,8 @@ const SidebarNav = () => {
             backgroundColor: "#6b3fa0",
             color: "#fae206",
             borderColor: "#000000",
-            transition: "background-color 0.2s, color 0.2s"
+            transition: "background-color 0.2s, color 0.2s",
+            textAlign: "left"
           }}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = "#f0f5fa";

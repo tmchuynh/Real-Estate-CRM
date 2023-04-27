@@ -13,6 +13,7 @@ import Activity from './Activity';
 import Listings from './Listings';
 import ListingDetails from './ListingsDetails';
 import Documents from '../components/Documents';
+import Resources from './Resources';
 
 export default function Main() {
     const user = {
@@ -279,6 +280,10 @@ export default function Main() {
                 <Route path="/activity" element={<Activity />} />
 
                 <Route path="/documents" element={<Documents />} />
+
+
+                <Route path="/resources" element={<Resources />} />
+
 
 
                 <Route path="/listings" element={<Listings listings={houseListings} />} />

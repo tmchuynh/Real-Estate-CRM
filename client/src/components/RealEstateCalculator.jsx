@@ -38,9 +38,15 @@ const RealEstateCalculator = () => {
     };
 
     return (
-        <Form>
+        <Form className="p-3">
             <Stack gap={3}>
 
+                <div>
+                    <h2>Results:</h2>
+                    <p>Net Income: ${netIncome}</p>
+                    <p>Cash on Cash Return: {cashOnCashReturn}%</p>
+                    <p>Cap Rate: {capRate}%</p>
+                </div>
                 <Form.Group controlId="salePrice">
                     <Form.Label>Sale Price</Form.Label>
                     <Form.Control
@@ -141,12 +147,6 @@ const RealEstateCalculator = () => {
                     Calculate
                 </Button>
 
-                <div>
-                    <h2>Results:</h2>
-                    <p>Net Income: ${netIncome}</p>
-                    <p>Cash on Cash Return: {cashOnCashReturn}%</p>
-                    <p>Cap Rate: {capRate}%</p>
-                </div>
             </Stack>
         </Form>
     );
