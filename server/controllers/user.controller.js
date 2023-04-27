@@ -69,10 +69,28 @@ module.exports.deleteOneUserById = (req, res) => {
 };
 
 //UPDATE one User by ID
-module.exports.updateOneUserById = (req, res) => {
-    User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })
-        .then(updatedUser => { res.json(updatedUser) })
-        .catch(err => { res.status(400).json({ ...err, message: err.message }) });
+module.exports.updateOneUserById = async (req, res) => {
+    /*
+    ****************************************************************** 
+    need to hash the password if it is part of the update
+    ******************************************************************
+    */
+    try {
+        //check if user exists first
+        const user = await User.findById({ _id: req.params.id });
+        if (!user) {
+            return res.status(400).json({ message: "User not found!"});
+        }
+
+        //hash pw if in body and update req.body with hashed pw
+        if (req.body.password) {
+            req.body.password = await bcrypt.hash(req.body.password, 10);
+        }
+        const updatedUser = await User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true });
+        res.json(updatedUser);
+        } catch (err) { 
+            res.status(400).json({ ...err, message: err.message }) 
+        };
 };
 
 /*           
