@@ -12,6 +12,7 @@ import EmailSent from './EmailSent';
 import Activity from './Activity';
 import Listings from './Listings';
 import ListingDetails from './ListingsDetails';
+import Documents from '../components/Documents';
 
 export default function Main() {
     const user = {
@@ -276,6 +277,9 @@ export default function Main() {
                 <Route exact path="/lead_details/:id" element={<LeadDetails lead={leads[6]} />} />
 
                 <Route path="/activity" element={<Activity />} />
+
+                <Route path="/documents" element={<Documents />} />
+
 
                 <Route path="/listings" element={<Listings listings={houseListings} />} />
                 <Route path="/listings_details/:id" element={<ListingDetails index={houseListings[1]} />} />

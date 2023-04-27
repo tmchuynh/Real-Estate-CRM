@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Button, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers, faHouse, faUserGear, faChartLine, faCalendarWeek, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faHouse, faUserGear, faChartLine, faFolderOpen, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import logo from "../images/image.png";
 import styles from "../Style.module.css/SideBar.module.css";
 
@@ -82,6 +82,30 @@ const SidebarNav = () => {
         >
           <FontAwesomeIcon icon={faHouse} className="mx-3" />
           My Listings
+        </Button>
+      </Nav.Link>
+
+      <Nav.Link href="/documents" className={`${styles.marginY}`}>
+        <Button
+          type="button"
+          className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
+          style={{
+            backgroundColor: "#6b3fa0",
+            color: "#fae206",
+            borderColor: "#000000",
+            transition: "background-color 0.2s, color 0.2s"
+          }}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "#f0f5fa";
+            e.target.style.color = "#6b3fa0";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "#6b3fa0";
+            e.target.style.color = "#fae206";
+          }}
+        >
+          <FontAwesomeIcon icon={faFolderOpen} className="mx-3" />
+          My Documents
         </Button>
       </Nav.Link>
 
