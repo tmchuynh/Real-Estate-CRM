@@ -117,6 +117,29 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
           return (
             <th key={index} style={{ textAlign: "center" }}>
               {key.toUpperCase()}
+              <Button
+                variant="link"
+                size="sm"
+                className={styles.sortButton}
+                onClick={() => handleSortClick(index)}
+              >
+                <FontAwesomeIcon
+                  icon={faSortUp}
+                  className={
+                    sortColumnIndex === index && sortDirection === "asc"
+                      ? styles.sortIconActive
+                      : styles.sortIconInactive
+                  }
+                />
+                <FontAwesomeIcon
+                  icon={faSortDown}
+                  className={
+                    sortColumnIndex === index && sortDirection === "desc"
+                      ? styles.sortIconActive
+                      : styles.sortIconInactive
+                  }
+                />
+              </Button>
             </th>
           );
         })}
