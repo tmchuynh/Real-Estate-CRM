@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import React from "react";
 import Pagination from "react-bootstrap/Pagination";
 
@@ -13,9 +14,11 @@ const DynamicPagination = ({ itemsPerPage, totalItems, currentPage, onPageChange
 
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
-        <Pagination.Item key={i} active={i === currentPage} onClick={() => handlePageChange(i)}>
-          {i}
-        </Pagination.Item>
+        <Tooltip title={`Page #${i}`}>
+          <Pagination.Item key={i} active={i === currentPage} onClick={() => handlePageChange(i)}>
+            {i}
+          </Pagination.Item>
+        </Tooltip>
       );
     }
 
@@ -24,11 +27,23 @@ const DynamicPagination = ({ itemsPerPage, totalItems, currentPage, onPageChange
 
   return (
     <Pagination >
-      <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-      <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+      <Tooltip title="First page">
+        <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
+      </Tooltip>
+
+      <Tooltip title="Previous page">
+        <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+      </Tooltip>
+
       {renderPageNumbers()}
-      <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
-      <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+
+      <Tooltip title="Next page">
+        <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+      </Tooltip>
+
+      <Tooltip title="Last page">
+        <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+      </Tooltip>
     </Pagination>
   );
 }

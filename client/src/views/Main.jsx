@@ -34,32 +34,49 @@ export default function Main() {
     ];
 
 
-    const houseListings = [["Address", "Price", "Bedrooms", "Bathrooms", "Square Feet", "Status"],
-    ["123 Main St", "$250,000", "3", "2", "1800", "For Sale"],
-    ["456 Elm St", "$400,000", "4", "3", "2400", "For Sale"],
-    ["789 Oak St", "$600,000", "5", "4", "3200", "Pending"],
-    ["111 Pine St", "$350,000", "3", "2", "2000", "Sold"],
-    ["222 Maple St", "$500,000", "4", "3", "2800", "For Sale"],
-    ["333 Cedar St", "$450,000", "4", "2.5", "2500", "Pending"],
-    ["444 Birch St", "$375,000", "3", "2", "1900", "Sold"],
-    ["555 Walnut St", "$700,000", "5", "4.5", "3500", "For Sale"],
-    ["666 Spruce St", "$525,000", "4", "3", "2700", "For Sale"],
-    ["777 Chestnut St", "$475,000", "3", "2.5", "2200", "Pending"],
-    ["888 Fir St", "$300,000", "2", "1", "1500", "For Sale"],
-    ["999 Pineapple St", "$900,000", "6", "5", "4000", "Pending"],
-    ["1010 Oakwood Dr", "$750,000", "5", "4", "3500", "For Sale"],
-    ["1212 Magnolia Ln", "$600,000", "4", "3.5", "3000", "Sold"],
-    ["1313 Cedar Ave", "$400,000", "3", "2", "1800", "For Sale"],
-    ["1414 Maple Rd", "$525,000", "4", "3", "2400", "Pending"],
-    ["1515 Oak Blvd", "$425,000", "3", "2.5", "2100", "Sold"],
-    ["1616 Pine St", "$675,000", "4", "3.5", "2900", "For Sale"],
-    ["1717 Cherry Ln", "$800,000", "5", "4", "3300", "Pending"],
-    ["1818 Plum Dr", "$350,000", "3", "2", "1700", "For Sale"],
-    ["1919 Walnut St", "$525,000", "4", "3", "2500", "For Sale"],
-    ["2020 Cedar Rd", "$450,000", "3", "2", "2000", "Sold"],
-    ["2121 Oakwood Dr", "$725,000", "5", "4.5", "3100", "For Sale"],
-    ["2222 Magnolia Ln", "$500,000", "4", "3", "2600", "Pending"]
-    ];
+    const houseListings = [
+        {
+            address: "987 Maple Lane",
+            listingPrice: "$350,000",
+            bedrooms: "3",
+            bathrooms: "2.5",
+            squareFeet: "2000",
+            status: "For Sale"
+        },
+        {
+            address: "654 Pine Street",
+            listingPrice: "$275,000",
+            bedrooms: "2",
+            bathrooms: "1",
+            squareFeet: "1200",
+            status: "For Sale"
+        },
+        {
+            address: "321 Cedar Avenue",
+            listingPrice: "$450,000",
+            bedrooms: "4",
+            bathrooms: "3",
+            squareFeet: "2500",
+            status: "Pending"
+        },
+        {
+            address: "111 Oakwood Drive",
+            listingPrice: "$700,000",
+            bedrooms: "6",
+            bathrooms: "4.5",
+            squareFeet: "3800",
+            status: "For Sale"
+        },
+        {
+            address: "222 Elmwood Place",
+            listingPrice: "$525,000",
+            bedrooms: "3",
+            bathrooms: "2.5",
+            squareFeet: "2200",
+            status: "Sold"
+        }
+    ]
+
 
 
     return (
