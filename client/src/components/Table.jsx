@@ -146,18 +146,6 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                   }
                   onDoubleClick={handleCellDoubleClick}
                 >
-                  {/* {cellErrors[rowIndex] &&
-                    cellErrors[rowIndex][columnIndex] !== undefined ? (
-                    <FontAwesomeIcon
-                      icon={faCircleXmark}
-                      className={styles.errorIcon}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faCircleCheck}
-                      className={styles.validIcon}
-                    />
-                  )} */}
                   {row[key] === true ? (
                     <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
                   ) : row[key] === false ? (
@@ -174,7 +162,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                     onClick={() => handleDetailsClick(row)}
                   >
                     Details
-                  </Button>{" "}
+                  </Button>
                   <Button
                     onClick={() => handleDeleteRow(rowIndex)}
                   >
