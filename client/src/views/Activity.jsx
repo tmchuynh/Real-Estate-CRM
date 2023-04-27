@@ -46,7 +46,7 @@ const Activity = () => {
             <SidebarNav />
             <Container fluid>
                 <Stack gap={3}>
-                    <DynamicCarousel slides={createCards(slides)} itemsPerPage={itemsPerPage} />
+                    <Scheduling />
                     <DynamicBarChart data={{
                         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                         datasets: [
@@ -68,7 +68,7 @@ const Activity = () => {
                             },
                         ],
                     }} />
-                    <Scheduling />
+                    <DynamicCarousel slides={createCards(slides)} itemsPerPage={itemsPerPage} />
                 </Stack>
             </Container >
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Badge } from 'react-bootstrap';
+import { Row, Col, Badge, Button } from 'react-bootstrap';
 
 function TimelineItem(props) {
     return (
@@ -18,9 +18,17 @@ function TimelineItem(props) {
                         <b>Event:</b> {props.eventName.toUpperCase()}
                     </div>
                     <div className="timeline_events_secondary">
-                        <b>Details: </b>{props.eventDetail}
+                        <b>Details: </b>
+                        {props.eventDetail}
                     </div>
                 </div>
+            </Col>
+            <Col md={2}>
+                {props.onEdit && (
+                    <Button onClick={() => props.onEdit(props.eventName, props.eventDetail)}>
+                        Edit
+                    </Button>
+                )}
             </Col>
         </Row>
     );

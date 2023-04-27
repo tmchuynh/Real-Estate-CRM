@@ -1,63 +1,57 @@
-import { Component } from "react";
 import Timeline from "./Timeline";
-import { Button, Stack } from 'react-bootstrap'
+import { useState } from 'react'; // import useState hook
+import { Button, Stack, Form } from 'react-bootstrap'
 import TimelineItem from "./TimelineItem";
 
-class TimelineForm extends Component {
-    constructor() {
-        super();
-        this.state = {
-            eventName: "",
-            eventDetail: "",
-            action: "",
-            events: [],
-            showForm: true,
-        };
-        this.handleChangeEventName = this.handleChangeEventName.bind(this);
-        this.handleChangeEventDetail = this.handleChangeEventDetail.bind(this);
-        this.handleChangeAction = this.handleChangeAction.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+const TimelineForm = () => {
+    // define state variables using useState hook
+    const [eventName, setEventName] = useState('');
+    const [eventDetail, setEventDetail] = useState('');
+    const [action, setAction] = useState('');
+    const [showForm, setShowForm] = useState(false);
+    const [events, setEvents] = useState([]); // add events state variable and initialize as an empty array
+
+    const handleChangeEventName = (e) => {
+        setEventName(e.target.value); // update state using setEventName function
     }
 
-    handleChangeEventName(e) {
-        this.setState({ eventName: e.target.value });
+    const handleChangeEventDetail = (e) => {
+        setEventDetail(e.target.value);
     }
 
-    handleChangeEventDetail(e) {
-        this.setState({ eventDetail: e.target.value });
-    }
-
-    handleChangeAction(e) {
-        this.setState({ action: e.target.value });
+    const handleChangeAction = (e) => {
+        setAction(e.target.value);
     }
 
     /**
      * This function handles the submission of a form by adding the form data to an array of events in the
      * component's state.
      */
-    handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const events = this.state.events;
-        events.unshift({
+        const updatedEvents = [...events]; // create a copy of the events array to update
+        updatedEvents.unshift({
             time: new Date().toLocaleTimeString(),
-            eventName: this.state.eventName,
-            eventDetail: this.state.eventDetail,
-            action: this.state.action,
+            eventName: eventName,
+            eventDetail: eventDetail,
+            action: action,
         });
 
-        this.setState({ events, eventName: "", eventDetail: "", action: "", showForm: false });
+        setEvents(updatedEvents); // update the events state variable
+        setEventName(""); // clear the form values
+        setEventDetail("");
+        setAction("");
+        setShowForm(false);
     }
 
-    /**
-     * This function maps through an array of events and returns a TimelineItem component for each event
-     * with the current date and event details.
-     * @returns The `renderEvents()` method is returning an array of `TimelineItem` components, one for
-     * each event in the `this.state.events` array. Each `TimelineItem` component is passed the `date`,
-     * `time`, `eventName`, and `eventDetail` props from the corresponding event object in the
-     * `this.state.events` array.
-     */
-    renderEvents() {
-        return this.state.events.map((val, index) => {
+    const handleEditEvent = (eventName, eventDetail) => {
+        setEventName(eventName);
+        setEventDetail(eventDetail);
+        setShowForm(true);
+    };
+
+    const renderEvents = () => { // define the function as a const to be used in JSX
+        return events.map((val, index) => { // access events variable instead of this.state.events
             const date = new Date().toLocaleDateString();
             return (
                 <TimelineItem
@@ -66,48 +60,44 @@ class TimelineForm extends Component {
                     time={val.time}
                     eventName={val.eventName}
                     eventDetail={val.eventDetail}
+                    onEdit={handleEditEvent}
                 />
+
             );
         });
     }
 
+    return ( // use return instead of render()
+        <div className="main">
+            <Stack gap={4}>
+                <h2>Timeline</h2>
+                <Timeline header={"Latest Activity".toUpperCase()}>{renderEvents()}</Timeline> {/* use renderEvents() instead of this.renderEvents() */}
+                {showForm && (
+                    <Form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="Event Name">Event Name</label>
+                            <input
+                                className="form-control"
+                                value={eventName}
+                                onChange={handleChangeEventName}
+                            />
+                            <label htmlFor="Event Detail">Event Detail</label>
+                            <input
+                                className="form-control"
+                                value={eventDetail}
+                                onChange={handleChangeEventDetail}
+                            />
+                        </div>
+                        <Button type="submit" className="btn btn-primary my-3">
+                            Submit
+                        </Button>
+                    </Form>
+                )}
 
-    render() {
-        return (
-
-            <div className="main">
-                <Stack gap={4}>
-                    <h2>Timeline</h2>
-                    <Timeline header={"Latest Activity".toUpperCase()}>{this.renderEvents()}</Timeline>
-                    {this.state.showForm && (
-                        <form onSubmit={this.handleSubmit}>
-                            <div className="form-group">
-                                <label htmlFor="Event Name">Event Name</label>
-                                <input
-                                    className="form-control"
-                                    value={this.state.eventName}
-                                    onChange={this.handleChangeEventName}
-                                />
-                                <label htmlFor="Event Detail">Event Detail</label>
-                                <input
-                                    className="form-control"
-                                    value={this.state.eventDetail}
-                                    onChange={this.handleChangeEventDetail}
-                                />
-                            </div>
-                            <button type="submit" className="btn btn-primary">
-                                Submit
-                            </button>
-                        </form>
-                    )}
-                    <Button onClick={() => this.setState({ showForm: true })}>Add Event</Button>
-
-
-                </Stack>
-
-            </div>
-        );
-    }
+                <Button onClick={() => setShowForm(true)}>Add Event</Button> {/* use setShowForm instead of this.setState */}
+            </Stack>
+        </div>
+    );
 }
 
 export default TimelineForm;
