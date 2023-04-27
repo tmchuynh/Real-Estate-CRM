@@ -30,7 +30,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
 
 
   const handleCellKeyDown = (e, rowIndex, columnIndex) => {
-    if (e.key === "Tab") {
+    if (e.key === "Enter") {
       e.preventDefault();
       const rows = document.querySelectorAll("tr");
       const cells = rows[rowIndex].querySelectorAll("td");
@@ -40,11 +40,14 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
         cells[nextColumnIndex].setAttribute("contentEditable", true);
         cells[nextColumnIndex].focus();
       }
+    } else if (e.key === "Tab") {
+      e.preventDefault();
     } else {
       const newValue = e.target.textContent;
       handleCellEdit(newValue, rowIndex, columnIndex);
     }
   };
+  
 
 
   const handleCellDoubleClick = (e) => {
@@ -126,7 +129,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
               key={columnIndex}
               onDoubleClick={columnIndex !== row.length - 1 ? handleCellDoubleClick : null}
               onKeyDown={(e) => handleCellKeyDown(e, rowIndex + 1, columnIndex)}
-              contentEditable={columnIndex !== row.length - 1}
+              contentEditable={columnIndex !== row.length}
             >
 
               {cell === "True" ? (
