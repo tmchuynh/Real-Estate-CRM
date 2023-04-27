@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Stack } from "react-bootstrap";
+import { Form, Button, Stack, Col } from "react-bootstrap";
 
 const RealEstateCalculator = () => {
     const [salePrice, setSalePrice] = React.useState("");
@@ -77,28 +77,27 @@ const RealEstateCalculator = () => {
                     />
                 </Form.Group>
 
-                <div className="d-flex gap-3">
 
-                    <Form.Group controlId="propertyTaxRate">
-                        <Form.Label>Property Tax Rate (%)</Form.Label>
-                        <Form.Control
-                            type="number"
-                            placeholder="Enter property tax rate"
-                            value={propertyTaxRate}
-                            onChange={(e) => setPropertyTaxRate(e.target.value)}
-                        />
-                    </Form.Group>
+                <Form.Group controlId="propertyTaxRate">
+                    <Form.Label>Property Tax Rate (%)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        placeholder="Enter property tax rate"
+                        value={propertyTaxRate}
+                        onChange={(e) => setPropertyTaxRate(e.target.value)}
+                    />
+                </Form.Group>
 
-                    <Form.Group controlId="propertyInsurance">
-                        <Form.Label>Property Insurance</Form.Label>
-                        <Form.Control
-                            type="number"
-                            placeholder="Enter property insurance"
-                            value={propertyInsurance}
-                            onChange={(e) => setPropertyInsurance(e.target.value)}
-                        />
-                    </Form.Group>
-                </div>
+
+                <Form.Group controlId="propertyInsurance">
+                    <Form.Label>Property Insurance</Form.Label>
+                    <Form.Control
+                        type="number"
+                        placeholder="Enter property insurance"
+                        value={propertyInsurance}
+                        onChange={(e) => setPropertyInsurance(e.target.value)}
+                    />
+                </Form.Group>
 
                 <Form.Group controlId="monthlyRent">
                     <Form.Label>Monthly Rent</Form.Label>
@@ -110,28 +109,26 @@ const RealEstateCalculator = () => {
                     />
                 </Form.Group>
 
-                <div className="d-flex gap-3">
 
-                    <Form.Group controlId="vacancyRate">
-                        <Form.Label>Vacancy Rate (%)</Form.Label>
-                        <Form.Control
-                            type="number"
-                            placeholder="Enter vacancy rate"
-                            value={vacancyRate}
-                            onChange={(e) => setVacancyRate(e.target.value)}
-                        />
-                    </Form.Group>
+                <Form.Group controlId="vacancyRate">
+                    <Form.Label>Vacancy Rate (%)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        placeholder="Enter vacancy rate"
+                        value={vacancyRate}
+                        onChange={(e) => setVacancyRate(e.target.value)}
+                    />
+                </Form.Group>
 
-                    <Form.Group controlId="maintenanceRate">
-                        <Form.Label>Maintenance Rate (%)</Form.Label>
-                        <Form.Control
-                            type="number"
-                            placeholder="Enter maintenance rate"
-                            value={maintenanceRate}
-                            onChange={(e) => setMaintenanceRate(e.target.value)}
-                        />
-                    </Form.Group>
-                </div>
+                <Form.Group controlId="maintenanceRate">
+                    <Form.Label>Maintenance Rate (%)</Form.Label>
+                    <Form.Control
+                        type="number"
+                        placeholder="Enter maintenance rate"
+                        value={maintenanceRate}
+                        onChange={(e) => setMaintenanceRate(e.target.value)}
+                    />
+                </Form.Group>
 
                 <Form.Group controlId="managementRate">
                     <Form.Label>Management Rate (%)</Form.Label>
