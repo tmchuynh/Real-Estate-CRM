@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarNav from "../components/SideNav";
 import { Container, Row, Col, Form, Button, Image, Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material'
+// import axios from 'axios';
 
 const EditUserProfile = ({ user }) => {
     const navigate = useNavigate();
@@ -13,24 +14,51 @@ const EditUserProfile = ({ user }) => {
     const [location, setLocation] = useState(user.location);
     const [title, setTitle] = useState(user.title);
     const [profilePicture, setProfilePicture] = useState(user.profilePicture);
-    const [newProfilePicture, setNewProfilePicture] = useState(null);
+    const [base64Picture, setBase64Picture] = useState("");
+    const [uploadedProfilePicture, setUploadedProfilePicture] = useState(null);
+    const baseUrl = "https://localhost:8000/api";
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // code to update user profile in the backend
-        navigate('/user_profile');
-    }
-
-    const handleProfilePictureChange = (event) => {
-        setNewProfilePicture(event.target.files[0]);
-    }
-
-    const handleUpdateProfilePicture = () => {
-        if (newProfilePicture) {
-            setProfilePicture(URL.createObjectURL(newProfilePicture));
-            setNewProfilePicture(null);
+    //this function converts the passed img (from profilePicture State) to Base64
+    const convertProfilePictureToB64String = (image) => {
+        const reader = new FileReader();
+        reader.readAsBinaryString(image);
+        reader.onload = function () {
+            const base64 = btoa(reader.result);
+            setBase64Picture(base64);
         }
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // code to update user profile in the backend
+        // try {
+        //     //check if an img was uploaded & convert to Base64 before PUT
+        //     uploadedProfilePicture && convertProfilePictureToB64String(uploadedProfilePicture);
+        //     //check if fullName changed, parse out first and last before PUT
+        //     /* 
+        //     split on space
+        //     store first elem as firstName, 
+        //     second as lastName
+        //     */
+        //     if ()
+        //     axios.put(`${baseUrl}/users/${user._id}`, {
+        //         ...dataToUpdate
+        //     })
+
+        //     navigate('/user_profile');
+        // } catch (err) {
+        //     console.log("oops")
+        // }
+    }
+    //handle saving uploaded photo in State before user confirms profile edits by submitting form
+    const handleUploadProfilePicture = e => {
+        setUploadedProfilePicture(e.target.files[0]);
+    }
+    //useEffect hook will update the shown profile photo each time user selects one from the input field
+    useEffect(() => {
+        //only if uploadProfilePicture is not falsey to prevent data type errors with calling URL.createObjectURL on null
+        uploadedProfilePicture && setProfilePicture(URL.createObjectURL(uploadedProfilePicture));
+    }, [uploadedProfilePicture])
 
     return (
         <>
@@ -44,12 +72,13 @@ const EditUserProfile = ({ user }) => {
                             <div className="profile-picture-container">
                                 <Stack gap={3}>
 
-                                    <Image src={profilePicture} alt={fullName} roundedCircle className='w-50 m-auto'/>
+                                    <Image src={profilePicture} alt={fullName} roundedCircle className='w-50 m-auto' />
                                     <Tooltip title="Update Profile Picture">
-                                        <Button variant="primary" onClick={handleUpdateProfilePicture} className='my-2'>
+                                        <Button variant="primary" className='my-2' >
                                             <input
                                                 type="file"
-                                                onChange={handleProfilePictureChange}
+                                                id="profile-pic"
+                                                onChange={handleUploadProfilePicture}
                                                 accept="image/*"
                                                 style={{ opacity: 0, position: "absolute", width: "100%", height: "100%", left: 0, top: 0, cursor: "pointer" }}
                                             />

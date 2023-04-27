@@ -7,10 +7,12 @@ import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import TimelineForm from '../components/TimelineForm';
 
 
-const LeadDetails = ({ index }) => {
+const LeadDetails = (props) => {
     const [timeline, setTimeline] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [event, setEvent] = useState("");
+    const {firstName, lastName, email, phoneNumber, status, buying, selling, marketArea } = props.lead;
+    console.log(firstName);
 
 
     const handleAddEvent = (e) => {
@@ -31,7 +33,7 @@ const LeadDetails = ({ index }) => {
                             <b>First Name: </b>
                         </p>
                         <p id='first_name'>
-                            {index[0]}
+                            {firstName}
                         </p>
                     </div>
                     <div className="d-flex gap-3">
@@ -39,7 +41,7 @@ const LeadDetails = ({ index }) => {
                             <b>Last Name: </b>
                         </p>
                         <p id='last_name'>
-                            {index[1]}
+                            {lastName}
                         </p>
                     </div>
                     <div className="d-flex gap-3">
@@ -47,7 +49,7 @@ const LeadDetails = ({ index }) => {
                             <b>Email: </b>
                         </p>
                         <p id='email'>
-                            {index[2]}
+                            {email}
                         </p>
                         <CopyButton email="email" />
                     </div>
@@ -56,28 +58,28 @@ const LeadDetails = ({ index }) => {
                             <b>Phone Number: </b>
                         </p>
                         <p id='phone_number'>
-                            {index[3]}
+                            {phoneNumber}
                         </p>
-                        <CopyButton email="phone_number" />
+                        <CopyButton phoneNumber="phone_number" />
                     </div>
                     <div className="d-flex gap-3">
                         <p>
                             <b>Status: </b>
                         </p>
                         <p id='status'>
-                            {index[4]}
+                            {status}
                         </p>
                     </div>
                     <div className="d-flex gap-3">
                         <p>
                             <b>Buying: </b>
                         </p>
-                        {index[5] === "True" ? (
+                        {buying === true ? (
                             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#04a201" }} />
-                        ) : index[5] === "False" ? (
+                        ) : buying === false ? (
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#d80e0e" }} />
                         ) : (
-                            index[5]
+                            buying
                         )}
                     </div>
 
@@ -85,12 +87,12 @@ const LeadDetails = ({ index }) => {
                         <p>
                             <b>Selling: </b>
                         </p>
-                        {index[6] === "True" ? (
+                        {selling === true ? (
                             <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#04a201" }} />
-                        ) : index[6] === "False" ? (
+                        ) : selling === false ? (
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#d80e0e" }} />
                         ) : (
-                            index[6]
+                            selling
                         )}
                     </div>
                     <div className="d-flex gap-3">
@@ -98,7 +100,7 @@ const LeadDetails = ({ index }) => {
                             <b>Market Area: </b>
                         </p>
                         <p id='market_area'>
-                            {index[7]}
+                            {marketArea}
                         </p>
                     </div>
 

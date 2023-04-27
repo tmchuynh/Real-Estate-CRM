@@ -43,11 +43,13 @@ const UserProfile = ({ user }) => {
                                     </Link>
                                 </Tooltip>
                             </div>
-                            <p>Email: {email}</p>
-                            <p>Location: {location}</p>
-                            <p>Title: {title}</p>
+                            <p><b>Email:</b> {email}</p>
+                            <p><b>Location:</b> {location}</p>
+                            <p><b>Title:</b> {title}</p>
 
-                            <Button onClick={resetPassword}>Reset My Password</Button>
+                            <Tooltip title="Reset Password">
+                                <Button onClick={resetPassword}>Reset My Password</Button>
+                            </Tooltip>
                         </Col>
                     </Row>
                 </Container>

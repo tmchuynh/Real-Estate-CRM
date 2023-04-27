@@ -1,0 +1,38 @@
+.gradient {
+    background: linear-gradient(to bottom, #572d6a, #000000);
+}
+
+.marginY {
+    margin: 0.5rem 0;
+}
+
+.marginX {
+    margin: 0rem 0.5rem;
+}
+
+.widthBtn {
+    width: 13rem;
+}
+
+.button {
+    background-color: #6b3fa0;
+    color: #fae206;
+    border-color: #000000;
+}
+
+.btn:hover {
+    background-color: #8313b3;
+    color: #000000;
+    border-color: #572d6a;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
