@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 import styles from "../Style.modules.css/Main.module.css";
 
-const DynamicTable = ({ data, handleDetailsClick }) => {
+const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const DEFAULT_ITEMS_PER_PAGE = 15;
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
@@ -91,30 +91,34 @@ const DynamicTable = ({ data, handleDetailsClick }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage + 1;
 
-    return sortedData.slice(startIndex + 1, endIndex).map((row, rowIndex) => (
-      <tr key={rowIndex}>
-        {row.map((cell, columnIndex) => (
-          <td
-            style={{ textAlign: "center" }}
-            key={columnIndex}
-            onDoubleClick={handleCellDoubleClick}
-            onKeyDown={(e) => handleCellKeyDown(e, rowIndex + 1, columnIndex)}
-          >
-            {cell === "True" ? (
-              <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
-            ) : cell === "False" ? (
-              <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
-            ) : (
-              cell
-            )}
+    return sortedData.slice(startIndex + 1, endIndex).map((row, rowIndex) => {
+      // Define cell errors for this row
+      return (
+        <tr key={rowIndex}>
+          {row.map((cell, columnIndex) => (
+            <td
+              style={{ textAlign: "center" }}
+              key={columnIndex}
+              onDoubleClick={handleCellDoubleClick}
+              onKeyDown={(e) => handleCellKeyDown(e, rowIndex + 1, columnIndex)}
+            >
+              {cell === "True" ? (
+                <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
+              ) : cell === "False" ? (
+                <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
+              ) : (
+                cell
+              )}
+            </td>
+          ))}
+          <td>
+            <Button className={`${styles.actionButton} ${styles.button} ${styles.marginX}`} onClick={() => handleDetailsClick(row)}>Details</Button>
+            <Button className={`${styles.actionButton} ${styles.button} ${styles.marginX}`} onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
           </td>
-        ))}
-        <td>
-          <Button className={`${styles.actionButton} ${styles.button} ${styles.marginX}`} onClick={() => handleDetailsClick(row)}>Details</Button>
-          <Button className={`${styles.actionButton} ${styles.button} ${styles.marginX}`} onClick={() => handleDeleteRow(rowIndex)}>Delete</Button>
-        </td>
-      </tr>
-    ));
+        </tr>
+      );
+    });
+
   };
 
 

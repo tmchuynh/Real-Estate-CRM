@@ -37,6 +37,17 @@ const Leads = ({ leads }) => {
         navigate(`/lead_details/${lead[0]}`);
     }
 
+    const validations = [
+        (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the first column that only allows letters with 4 or more characters
+        (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the second column that only allows letters with 4 or more characters
+        (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), // validation for the third column that only allows valid email addresses
+        (value) => /^\d{10}$/.test(value), // validation for the fourth column that only allows valid phone numbers (10 digits)
+        (value) => /^(True|False)$/.test(value), // validation for the sixth column that only allows "True" or "False"
+        (value) => /^(True|False)$/.test(value), // validation for the seventh column that only allows "True" or "False"
+        (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the eighth column that only allows letters with 4 or more characters
+      ];
+      
+
     return (
         <>
             <div className="d-flex">
@@ -48,7 +59,7 @@ const Leads = ({ leads }) => {
                             <FontAwesomeIcon icon={faPlus} />
                         </Button>
                     </div>
-                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} />
+                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} validations={validations}/>
                 </Container>
             </div>
             {isModalOpen &&
