@@ -23,7 +23,7 @@ const DynamicPagination = ({ itemsPerPage, totalItems, currentPage, onPageChange
   }
 
   return (
-    <Pagination>
+    <Pagination >
       <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
       <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
       {renderPageNumbers()}
