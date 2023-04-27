@@ -39,15 +39,16 @@ const ListingDetails = ({ index }) => {
                         <b>Address: </b>
                     </p>
                     <p id='address'>
-                        {index[0]}
+                        {index.address}
                     </p>
+                    <CopyButton address="address" />
                 </div>
                 <div className="d-flex gap-3">
                     <p>
                         <b>Listing Price: </b>
                     </p>
                     <p id='listing_price'>
-                        {index[1]}
+                        {index.listingPrice}
                     </p>
                 </div>
                 <div className="d-flex gap-3">
@@ -55,32 +56,30 @@ const ListingDetails = ({ index }) => {
                         <b>Bedrooms: </b>
                     </p>
                     <p id='bedroom'>
-                        {index[2]}
+                        {index.bedroom}
                     </p>
-                    <CopyButton email="email" />
                 </div>
                 <div className="d-flex gap-3">
                     <p>
                         <b>Bathrooms: </b>
                     </p>
                     <p id='bathroom'>
-                        {index[3]}
+                        {index.bathrooms}
                     </p>
-                    <CopyButton email="phone_number" />
                 </div>
                 <div className="d-flex gap-3">
                     <p>
                         <b>Square Feet: </b>
                     </p>
                     <p id='sqft'>
-                        {index[4]}
+                        {index.squareFeet}
                     </p>
                 </div>
                 <div className="d-flex gap-3">
                     <p>
                         <b>Status: </b>
                     </p>
-                    {index[5]}
+                    {index.status}
                 </div>
                 <Button onClick={() => setShowModal(true)}>View All Photos</Button>
 
