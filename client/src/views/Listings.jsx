@@ -55,7 +55,7 @@ const Listings = ({ listings }) => {
             {isModalOpen &&
                 <Modal show={isModalOpen} onHide={hideModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal Title</Modal.Title>
+                        <Modal.Title>Create a New Listing</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <ListingForm onAddListing={handleAddListing} onCancel={hideModal} />

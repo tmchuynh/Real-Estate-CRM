@@ -9,6 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material';
 
 
+
 const Leads = ({ leads }) => {
 
     const [leadsData, setLeadsData] = useState(leads);
@@ -69,7 +70,7 @@ const Leads = ({ leads }) => {
             {isModalOpen &&
                 <Modal show={isModalOpen} onHide={hideModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Modal Title</Modal.Title>
+                        <Modal.Title>Create a New Lead</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <LeadForm onAddLead={handleAddLead} onCancel={hideModal} />
