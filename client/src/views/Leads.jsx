@@ -6,6 +6,7 @@ import DynamicTable from '../components/Table';
 import LeadForm from '../components/LeadForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { Tooltip } from '@mui/material';
 
 
 const Leads = ({ leads }) => {
@@ -55,9 +56,12 @@ const Leads = ({ leads }) => {
                 <Container fluid className='m-3'>
                     <div className="d-flex justify-content-between">
                         <h2>Leads</h2>
-                        <Button onClick={showModal} className='my-2'>
-                            <FontAwesomeIcon icon={faPlus} />
-                        </Button>
+                        <Tooltip title="Add a Lead">
+
+                            <Button onClick={showModal} className='my-2'>
+                                <FontAwesomeIcon icon={faPlus} />
+                            </Button>
+                        </Tooltip>
                     </div>
                     <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} validations={validations} />
                 </Container>

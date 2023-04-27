@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Button, Form } from "react-bootstrap";
+import { Table, Button, Form, Stack } from "react-bootstrap";
 import DynamicPagination from "./DynamicPagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
@@ -111,16 +111,21 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const renderTableHeader = () => {
     if (data.length === 0) return null;
     const header = Object.keys(data[0]);
-    return header.map((key, index) => {
-      return (
-        <th key={index}>
-          {key.toUpperCase()}
-        </th>
-      );
-    });
+    return (
+      <tr>
+        {header.map((key, index) => {
+          return (
+            <th key={index} style={{ textAlign: "center" }}>
+              {key.toUpperCase()}
+            </th>
+          );
+        })}
+      </tr>
+    );
   };
-  
-// return( {sortedTableData .map( => ( {Object.assign(Object.keys(row).map((key, colIdx) => (
+
+
+  // return( {sortedTableData .map( => ( {Object.assign(Object.keys(row).map((key, colIdx) => (
   const renderTableBody = () => {
     return (
       <tbody>
@@ -185,25 +190,27 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
 
   return (
     <>
-      <Form.Group controlId="formGridItemsPerPage">
-        <Form.Label>Items per page</Form.Label>
-        <Form.Select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.tableSelect} >
-        <option value="5">5 rows per page</option>
-        <option value="10">10 rows per page</option>
-        <option value="15">15 rows per page</option>
-        <option value="20">20 rows per page</option>
-      </Form.Select>
-      </Form.Group>
-      <Table striped bordered hover responsive>
-        {renderTableHeader()}
-        {renderTableBody()}
-      </Table>
-      <DynamicPagination
-        totalItems={tableData.length}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
+      <Stack gap={3}>
+        <Form.Group controlId="formGridItemsPerPage">
+          <Form.Label>Items per page</Form.Label>
+          <Form.Select value={itemsPerPage} onChange={handleItemsPerPageChange} className={styles.tableSelect} >
+            <option value="5">5 rows per page</option>
+            <option value="10">10 rows per page</option>
+            <option value="15">15 rows per page</option>
+            <option value="20">20 rows per page</option>
+          </Form.Select>
+        </Form.Group>
+        <Table striped bordered hover responsive>
+          {renderTableHeader()}
+          {renderTableBody()}
+        </Table>
+        <DynamicPagination
+          totalItems={tableData.length}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
+      </Stack>
     </>
   );
 };
