@@ -6,7 +6,7 @@ import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPen } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material'
-import styles from "../Style.modules.css/Leads.module.css";
+import styles from "../Style.module.css/Leads.module.css";
 
 
 const UserProfile = ({ user }) => {

@@ -3,7 +3,7 @@ import { Nav, Button, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers, faHouse, faUserGear, faChartLine, faCalendarWeek, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import logo from "../images/image.png";
-import styles from "../Style.modules.css/SideBar.module.css";
+import styles from "../Style.module.css/SideBar.module.css";
 
 const SidebarNav = () => {
   return (

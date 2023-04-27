@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Button, Image, Stack } from 'react-bootstrap
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material'
-import styles from "../Style.modules.css/Leads.module.css";
+import styles from "../Style.module.css/Leads.module.css";
 // import axios from 'axios';
 
 const EditUserProfile = ({ user }) => {

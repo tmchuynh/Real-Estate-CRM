@@ -50,6 +50,7 @@ const Leads = ({ leads }) => {
     ];
 
 
+
     return (
         <>
             <div className="d-flex">
@@ -58,13 +59,16 @@ const Leads = ({ leads }) => {
                     <div className="d-flex justify-content-between">
                         <h2>Leads</h2>
                         <Tooltip title="Add a Lead">
-
                             <Button onClick={showModal} className='my-2'>
                                 <FontAwesomeIcon icon={faPlus} />
                             </Button>
                         </Tooltip>
                     </div>
-                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} validations={validations} />
+                    <DynamicTable
+                        data={leadsData}
+                        handleDetailsClick={handleDetailsClick}
+                        validations={validations}
+                    />
                 </Container>
             </div>
             {isModalOpen &&
