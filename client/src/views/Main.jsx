@@ -153,8 +153,10 @@ export default function Main() {
 
 
 
+
+
     return (
-        <div className='p-5'>
+        <div className='p-2'>
             <Routes>
                 <Route path="/signin" element={<LoginForm />} />
 
