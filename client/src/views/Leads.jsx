@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import SidebarNav from '../components/SideNav';
@@ -7,18 +7,12 @@ import LeadForm from '../components/LeadForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material';
-import { AuthContext } from '../authContext';
-import axios from 'axios';
 
-
-
-const Leads = (props) => {
-    const { loggedUserId } = useContext(AuthContext);
-    const [allLeadsforLoggedUser, setAllLeadsforLoggedUser] = useState([]);
+const Leads = ({ leads }) => {
+    const [leadsData, setLeadsData] = useState(leads);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [leadErrors, setLeadErrors] = useState([]);
     const navigate = useNavigate();
-    const baseUrl = "http://localhost:8000/api";
+    console.log(leadsData);
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -28,35 +22,16 @@ const Leads = (props) => {
         setIsModalOpen(false);
     }
 
-    const handleAddLead = (newLeadData) => {
+    const handleAddLead = (newLead) => {
+        setLeadsData((prevState) => {
+            return [...prevState, newLead];
+        });
         hideModal();
     }
-    console.log("Here's what I got for this logged user id: ", loggedUserId);
-    //query for pull all Lead documents of currently logged in User
-    useEffect(() => {
-        async function getAllLeadsForUser() {
-            try {
-                const allLeads = await axios.get(`${baseUrl}/leads?id=${loggedUserId}`);
-                const allLeadsData = allLeads.data;
-                const allLeadsWithIdRemoved = allLeadsData.map(({ _id, ...rest }) => rest);
-                setAllLeadsforLoggedUser(allLeadsWithIdRemoved);
-                console.log(allLeadsWithIdRemoved);
-            } catch (err) {
-                const errResponse = err.response.data.errors;
-                const errArr = [];
-                for (const key of Object.keys(errResponse)) {
-                    errArr.push(errResponse[key].message);
-                }
-                setLeadErrors(errArr);
-            }
-        };
-        getAllLeadsForUser();
-    }, []);
-
     // Gray: Update this function to grab the lead that was clicked on
-    const handleDetailsClick = (id) => {
-        console.log(id);
-        navigate(`/lead_details/${id}`);
+    const handleDetailsClick = (lead) => {
+        console.log("Lead 0 is: " + lead[0]);
+        navigate(`/lead_details`);
     }
 
     const validations = [
@@ -68,7 +43,6 @@ const Leads = (props) => {
         (value) => /^(True|False)$/.test(value), // validation for the seventh column that only allows "True" or "False"
         (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the eighth column that only allows letters with 4 or more characters
     ];
-
 
 
     return (
@@ -84,11 +58,7 @@ const Leads = (props) => {
                             </Button>
                         </Tooltip>
                     </div>
-                    <DynamicTable
-                        data={allLeadsforLoggedUser}
-                        handleDetailsClick={handleDetailsClick}
-                        validations={validations}
-                    />
+                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} validations={validations} />
                 </Container>
             </div>
             {isModalOpen &&

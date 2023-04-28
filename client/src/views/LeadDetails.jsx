@@ -11,7 +11,8 @@ const LeadDetails = (props) => {
     const [timeline, setTimeline] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [event, setEvent] = useState("");
-    const { firstName, lastName, email, phoneNumber, status, buying, selling, marketArea } = props.lead;
+    const thisLead = { firstName: 'Sarah', lastName: 'Martinez', email: 'sarah.martinez@example.com', phoneNumber: '(713) 555-1234', status: 'Closing', buying: true, selling: true, marketArea: 'West' };
+    const { firstName, lastName, email, phoneNumber, status, buying, selling, marketArea } = thisLead;
     console.log(firstName);
 
 

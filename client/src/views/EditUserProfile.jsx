@@ -10,27 +10,39 @@ import styles from "../Style.module.css/Leads.module.css";
 
 const EditUserProfile = ({ user }) => {
     const navigate = useNavigate();
-    const [fullName, setFullName] = useState(user.fullName);
-    const [email, setEmail] = useState(user.email);
-    const [location, setLocation] = useState(user.location);
-    const [title, setTitle] = useState(user.title);
-    const [profilePicture, setProfilePicture] = useState(user.profilePicture);
-    const [base64Picture, setBase64Picture] = useState("");
+    const [firstName, setFirstName] = useState(user.firstName);
+    const [lastName, setLastName] = useState("the Royal Highness");
+    const [email, setEmail] = useState("g@b.com");
+    const [location, setLocation] = useState("LA Metro");
+    const [title, setTitle] = useState("Agent");
+
+    const [profilePicture, setProfilePicture] = useState("https://randomuser.me/api/portraits/men/9.jpg");
+    // const [base64Picture, setBase64Picture] = useState("");
     const [uploadedProfilePicture, setUploadedProfilePicture] = useState(null);
-    const baseUrl = "https://localhost:8000/api";
+    // const baseUrl = "https://localhost:8000/api";
 
     //this function converts the passed img (from profilePicture State) to Base64
-    const convertProfilePictureToB64String = (image) => {
-        const reader = new FileReader();
-        reader.readAsBinaryString(image);
-        reader.onload = function () {
-            const base64 = btoa(reader.result);
-            setBase64Picture(base64);
-        }
-    }
+    // const convertProfilePictureToB64String = (image) => {
+    //     const reader = new FileReader();
+    //     reader.readAsBinaryString(image);
+    //     reader.onload = function () {
+    //         const base64 = btoa(reader.result);
+    //         setBase64Picture(base64);
+    //     }
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setLocation(location);
+        setTitle(title);
+
+        navigate('/user_profile');
+
+
         // code to update user profile in the backend
         // try {
         //     //check if an img was uploaded & convert to Base64 before PUT
@@ -61,6 +73,10 @@ const EditUserProfile = ({ user }) => {
         uploadedProfilePicture && setProfilePicture(URL.createObjectURL(uploadedProfilePicture));
     }, [uploadedProfilePicture])
 
+    const goBack = () => {
+        navigate('/user_profile');
+    }
+
     return (
         <>
             <div className="d-flex">
@@ -73,7 +89,7 @@ const EditUserProfile = ({ user }) => {
                             <div className="profile-picture-container">
                                 <Stack gap={3}>
 
-                                    <Image src={profilePicture} alt={fullName}  className={`w-50 m-auto ${styles.profilePicture}`} />
+                                    <Image src={profilePicture} alt="myprofilepic"  className={`w-50 m-auto ${styles.profilePicture}`} />
                                     <Tooltip title="Update Profile Picture">
                                         <Button variant="primary" className='my-2' >
                                             <input
@@ -93,28 +109,35 @@ const EditUserProfile = ({ user }) => {
                         </Col>
                         <Col md={9}>
                             <Form onSubmit={handleSubmit}>
-                                <Form.Group className="mb-3" controlId="formFullName">
-                                    <Form.Label>Full Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter your full name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                                <Form.Group className="mb-3" controlId="formFirstName">
+                                    <Form.Label>First Name</Form.Label>
+                                    <Form.Control type="text" placeholder={firstName} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formLastName">
+                                    <Form.Label>Last Name</Form.Label>
+                                    <Form.Control type="text" placeholder={lastName} value={lastName} onChange={(e) => setLastName(e.target.value)} />
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="formEmail">
                                     <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                    <Form.Control type="email" placeholder={email} value={email} onChange={(e) => setEmail(e.target.value)} />
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="formLocation">
                                     <Form.Label>Location</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter your location" value={location} onChange={(e) => setLocation(e.target.value)} />
+                                    <Form.Control type="text" placeholder={location} value={location} onChange={(e) => setLocation(e.target.value)} />
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="formTitle">
                                     <Form.Label>Title</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter your title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    <Form.Control type="text" placeholder={title} value={title} onChange={(e) => setTitle(e.target.value)} />
                                 </Form.Group>
 
-                                <Button variant="primary" type="submit">
+                                <Button variant="primary" type="submit" className="me-2">
                                     Save
+                                </Button>
+                                <Button variant="secondary" type="button" onClick={goBack}>
+                                    Back
                                 </Button>
                             </Form>
                         </Col>

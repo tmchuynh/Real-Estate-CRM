@@ -10,7 +10,9 @@ import styles from "../Style.module.css/Leads.module.css";
 
 
 const UserProfile = ({ user }) => {
-    const { fullName, email, password, location, title, profilePicture } = user;
+    const fullName = user.firstName + " " + user.lastName;
+    const { email, location, title } = user;
+    const profilePicture = "https://randomuser.me/api/portraits/men/9.jpg";
     const navigate = useNavigate();
 
     const resetPassword = (user) => {

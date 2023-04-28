@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Table, Button, Form, Stack } from "react-bootstrap";
 import DynamicPagination from "./DynamicPagination";
+import CopyButton from '../components/CopyBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 import styles from "../Style.module.css/Table.module.css";
@@ -23,6 +24,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
         updatedErrors[rowIndex][columnIndex] = "Please enter a valid value.";
         return updatedErrors;
       });
+      console.log(cellErrors);
       return;
     }
 
@@ -53,8 +55,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   };
 
   const handleCellDoubleClick = (e) => {
-    e.target.contentEditable = true;
-    e.target.focus();
+    e.target.contentEditable = false;
   };
 
   const handleDeleteRow = (rowIndex) => {
@@ -100,10 +101,6 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
       return sortDirection === "asc" ? valA - valB : valB - valA;
     }
   });
-
-
-
-
   const renderTableHeader = () => {
     if (data.length === 0) return null;
     const header = Object.keys(data[0]);
@@ -142,8 +139,6 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
       </tr>
     );
   };
-
-
   // return( {sortedTableData .map( => ( {Object.assign(Object.keys(row).map((key, colIdx) => (
   const renderTableBody = () => {
     return (
@@ -159,6 +154,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                 <td
                   key={columnIndex}
                   contentEditable={true}
+                  value={row[lead]}
                   suppressContentEditableWarning={false}
                   onKeyDown={(e) =>
                     handleCellKeyDown(e, rowIndex, columnIndex)
@@ -169,6 +165,16 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                     <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
                   ) : row[lead] === false ? (
                     <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
+                  ) : row[lead].includes('@') ? (
+                    <>
+                      {row[lead]}
+                      <CopyButton email="email" />
+                    </>
+                  ) : row[lead].includes("(") ? (
+                    <>
+                      {row[lead]}
+                      <CopyButton phoneNumber="phone_number" />
+                    </>
                   ) : (
                     row[lead]
                   )}

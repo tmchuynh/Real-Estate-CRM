@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Button, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers, faHouse, faUserGear, faChartLine, faCalendarWeek, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faUserGear, faChartLine, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import logo from "../images/image.png";
 import styles from "../Style.module.css/SideBar.module.css";
 
@@ -61,7 +61,7 @@ const SidebarNav = () => {
       </Nav.Link>
 
 
-      <Nav.Link href="/listings" className={`${styles.marginY}`}>
+      {/* <Nav.Link href="/listings" className={`${styles.marginY}`}>
         <Button
           type="button"
           className={`btn btn-primary ${styles.widthBtn} ${styles.button}`}
@@ -83,7 +83,7 @@ const SidebarNav = () => {
           <FontAwesomeIcon icon={faHouse} className="mx-3" />
           My Listings
         </Button>
-      </Nav.Link>
+      </Nav.Link> */}
 
       <Nav.Link href="/user_profile" className={`${styles.marginY}`}>
         <Button

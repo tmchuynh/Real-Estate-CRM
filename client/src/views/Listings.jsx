@@ -12,8 +12,9 @@ import { Tooltip } from '@mui/material';
 const Listings = ({ listings }) => {
 
     const navigate = useNavigate();
-
+    
     const [listingsData, setListingsData] = useState(listings);
+    console.log(listingsData);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
