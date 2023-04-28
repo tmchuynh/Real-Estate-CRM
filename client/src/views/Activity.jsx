@@ -6,7 +6,7 @@ import { Stack } from '@mui/material';
 import DynamicBarChart from '../components/DyanmicBarChart';
 import { Col, Container, Row } from 'react-bootstrap';
 import Scheduling from '../components/Scheduling';
-import Calculator from '../components/Calculator';
+import TodoList from '../components/TodoList';
 
 const slides = [
     {
@@ -51,7 +51,7 @@ const Activity = () => {
                     <div className="d-flex">
                             <Col sm={4}>
 
-                                <Calculator />
+                                <TodoList />
                             </Col>
                                 <DynamicBarChart data={{
                                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
