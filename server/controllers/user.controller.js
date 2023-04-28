@@ -34,7 +34,7 @@ module.exports.getAllUsers = (req, res) => {
 
 //GET one User by Id
 module.exports.getOneUserById = (req, res) => {
-    User.findById({_id: req.body.id})
+    User.findById({ _id: req.params.id })
         .then(user => { res.json(user) })
         .catch(err => { res.status(400).json({ ...err, message: err.message }) });
 };
@@ -86,7 +86,7 @@ module.exports.updateOneUserById = async (req, res) => {
         //check if user exists first
         const user = await User.findById({ _id: req.params.id });
         if (!user) {
-            return res.status(400).json({ message: "User not found!"});
+            return res.status(400).json({ message: "User not found!" });
         }
 
         //hash pw if in body and update req.body with hashed pw
@@ -95,9 +95,9 @@ module.exports.updateOneUserById = async (req, res) => {
         }
         const updatedUser = await User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true });
         res.json(updatedUser);
-        } catch (err) { 
-            res.status(400).json({ ...err, message: err.message }) 
-        };
+    } catch (err) {
+        res.status(400).json({ ...err, message: err.message })
+    };
 };
 
 /*           
@@ -121,13 +121,17 @@ module.exports.tryLoginOneUserByEmail = async (req, res) => {
         const isPasswordMatch = await existingUser.comparePassword(password);
         //if don't match, throw 401 error
         if (!isPasswordMatch) {
-            return res.status(401).json({ error: "Invalid Login Attempt!" });
+            return res.status(401).json({ ...err, message: err.message });
         }
         //else, log the user in and store their _id in req.session.userId
-        req.session.userId = existingUser._id;
-        res.json({ message: `${req.session.userId} You are now logged in!` });
+        const userId = existingUser._id.toString();
+        req.session.userId = userId;
+        console.log(req.session.userId);
+        console.log(userId);
+        const loggedUser = { ...existingUser, _id: userId };
+        res.json(loggedUser);
     } catch (err) {
-        res.status(400).json({ error: "Invalid Login Attempt!" });
+        res.status(400).json({ ...err, message: err.message });
     }
 };
 
