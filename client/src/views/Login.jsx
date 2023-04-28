@@ -1,41 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Stack } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../authContext";
 import axios from 'axios';
 
 const LoginForm = () => {
-  const [loginErrors, setLoginErrors] = useState(["Are there any errors?"]);
-  const [loggedUser, setLoggedUser] = useState([]);
+  const { setIsUserLoggedIn } = useContext(AuthContext);
+  const [loginErrors, setLoginErrors] = useState(["loginErrorsDefault"]);
+  const { loggedUserId, setLoggedUserId } = useContext(AuthContext);
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
   const navigate = useNavigate();
   const baseUrl = "http://localhost:8000/api";
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //try to login user
-    axios.post(`${baseUrl}/users/login`, {
-      email: formEmail,
-      password: formPassword
-    })
-      .then(res => {
-        console.log(res.data);
-        navigate('/leads');
-      })
-      .catch(err => {
-        //get the errors from the response
-        const errResponse = err.response.data.errors;
-        //create an empty arr to push the errors
-        const errorArr = [];
-        //loop through the errors to get the error msgs
-        for (const key of Object.keys(errResponse)) {
-          errorArr.push(errResponse[key].message);
-        }
-        //finally, update state with the errorArr
-        setLoginErrors(errorArr);
-        console.log(loginErrors);
+    // try to login user
+    try {
+      const user = await axios.post(`${baseUrl}/users/login`, {
+        email: formEmail,
+        password: formPassword
       });
+      console.log(user.data._id);
+      if (user.data) {
+        setIsUserLoggedIn(true);
+        setLoggedUserId(user.data._id);
+        navigate("/leads");
+      } else { console.log("Something went wrong. . .") }
+      // navigate('/leads');
+    } catch (err) {
+      setLoginErrors(err);
+    };
   };
 
   return (

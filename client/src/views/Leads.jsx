@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import SidebarNav from '../components/SideNav';
@@ -7,19 +7,18 @@ import LeadForm from '../components/LeadForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material';
+import { AuthContext } from '../authContext';
 import axios from 'axios';
 
 
 
-const Leads = ({ leads }) => {
-    const [allLeadsforLoggedUser, setAllLeadsforLoggedUser] = useState(leads);
+const Leads = (props) => {
+    const { loggedUserId } = useContext(AuthContext);
+    const [allLeadsforLoggedUser, setAllLeadsforLoggedUser] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [leadErrors, setLeadErrors] = useState([]);
     const navigate = useNavigate();
     const baseUrl = "http://localhost:8000/api";
-
-    const [leadsData, setLeadsData] = useState(leads);
-
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -29,36 +28,33 @@ const Leads = ({ leads }) => {
         setIsModalOpen(false);
     }
 
-    const handleAddLead = (newLead) => {
-        setLeadsData((prevState) => {
-            return [...prevState, newLead];
-        });
+    const handleAddLead = (newLeadData) => {
         hideModal();
     }
 
     //query for pull all Lead documents of currently logged in User
-    async function getAllLeadsForLoggedUser(loggedUserId) {
-        try {
-            if (loggedUserId) {
-                //the server grabs userId from express-session, so we don't need a URL param
-                // "Lead.find().where({ agent: req.session.userId }).sort({ lastName: 1 })"
+    useEffect(() => {
+        async function getAllLeadsForUser() {
+            try {
                 const allLeads = await axios.get(`${baseUrl}/leads`);
-                setAllLeadsforLoggedUser(allLeads);
+                const allLeadsData = allLeads.data;
+                setAllLeadsforLoggedUser(allLeadsData);
+            } catch (err) {
+                const errResponse = err.response.data.errors;
+                const errArr = [];
+                for (const key of Object.keys(errResponse)) {
+                    errArr.push(errResponse[key].message);
+                }
+                setLeadErrors(errArr);
             }
-        } catch (err) {
-            const errResponse = err.response.data.errors;
-            const errArr = [];
-            for (const key of Object.keys(errResponse)) {
-                errArr.push(errResponse[key].message);
-            }
-            setLeadErrors(errArr);
-        }
-    };
+        };
+        getAllLeadsForUser();
+    }, []);
 
     // Gray: Update this function to grab the lead that was clicked on
-    const handleDetailsClick = (lead) => {
-        console.log(lead[0]);
-        navigate(`/lead_details/${lead[0]}`);
+    const handleDetailsClick = (id) => {
+        console.log(id);
+        navigate(`/lead_details/${id}`);
     }
 
     const validations = [
