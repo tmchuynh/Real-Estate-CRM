@@ -101,6 +101,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
       return sortDirection === "asc" ? valA - valB : valB - valA;
     }
   });
+
   const renderTableHeader = () => {
     if (data.length === 0) return null;
     const header = Object.keys(data[0]);
@@ -110,27 +111,18 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
           return (
             <th key={index} style={{ textAlign: "center" }}>
               {key.toUpperCase()}
-              <Button
-                variant="link"
-                size="sm"
-                className={styles.sortButton}
-                onClick={() => handleSortClick(index)}
-              >
-                <FontAwesomeIcon
-                  icon={faSortUp}
-                  className={
-                    sortColumnIndex === index && sortDirection === "asc"
-                      ? styles.sortIconActive
-                      : styles.sortIconInactive
-                  }
+              <Button variant="link" size="sm" className={styles.sortButton} onClick={() => handleSortClick(index)}>
+                <FontAwesomeIcon icon={faSortUp} className={
+                  sortColumnIndex === index && sortDirection === "asc"
+                    ? styles.sortIconActive
+                    : styles.sortIconInactive
+                }
                 />
-                <FontAwesomeIcon
-                  icon={faSortDown}
-                  className={
-                    sortColumnIndex === index && sortDirection === "desc"
-                      ? styles.sortIconActive
-                      : styles.sortIconInactive
-                  }
+                <FontAwesomeIcon icon={faSortDown} className={
+                  sortColumnIndex === index && sortDirection === "desc"
+                    ? styles.sortIconActive
+                    : styles.sortIconInactive
+                }
                 />
               </Button>
             </th>
@@ -151,30 +143,25 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
           .map((row, rowIndex) => (
             <tr key={rowIndex}>
               {Object.keys(row).map((lead, columnIndex) => (
-                <td
-                  key={columnIndex}
-                  contentEditable={true}
-                  value={row[lead]}
-                  suppressContentEditableWarning={false}
-                  onKeyDown={(e) =>
-                    handleCellKeyDown(e, rowIndex, columnIndex)
-                  }
-                  onDoubleClick={handleCellDoubleClick}
-                >
+                <td key={columnIndex} contentEditable={true} value={row[lead]} suppressContentEditableWarning={false} onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)} onDoubleClick={handleCellDoubleClick}>
                   {row[lead] === true ? (
                     <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
                   ) : row[lead] === false ? (
                     <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
                   ) : row[lead].includes('@') ? (
-                    <>
-                      {row[lead]}
-                      <CopyButton email="email" />
-                    </>
+                    <div>
+                      <div className="me-1 d-inline">
+                        {row[lead]}
+                      </div>
+                        <CopyButton email="email" />
+                    </div>
                   ) : row[lead].includes("(") ? (
-                    <>
-                      {row[lead]}
-                      <CopyButton phoneNumber="phone_number" />
-                    </>
+                    <div>
+                      <div className="me-1 d-inline">
+                        {row[lead]}
+                      </div>
+                        <CopyButton phoneNumber="phone_number" />
+                    </div>
                   ) : (
                     row[lead]
                   )}

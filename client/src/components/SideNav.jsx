@@ -86,7 +86,7 @@ const SidebarNav = () => {
           <FontAwesomeIcon icon={faHouse} className="mx-3" />
           My Listings
         </Button>
-      </Nav.Link>
+      </Nav.Link> */}
 
       <Nav.Link href="/user_profile" className={`${styles.marginY}`}>
         <Button
