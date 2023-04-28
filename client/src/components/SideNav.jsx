@@ -63,7 +63,7 @@ const SidebarNav = () => {
       </Nav.Link>
 
 
-      {/* <Nav.Link href="/listings" className={`${styles.marginY}`}>
+       {/* <Nav.Link href="/listings" className={`${styles.marginY}`}>
         <Button
           type="button"
           className={`btn btn-primary ${styles.widthBtn} `}
@@ -86,7 +86,7 @@ const SidebarNav = () => {
           <FontAwesomeIcon icon={faHouse} className="mx-3" />
           My Listings
         </Button>
-      </Nav.Link>
+      </Nav.Link> */}
 
       <Nav.Link href="/user_profile" className={`${styles.marginY}`}>
         <Button
