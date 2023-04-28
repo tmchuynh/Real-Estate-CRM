@@ -6,6 +6,8 @@
   <!-- <a href="https://realestatecrm.netlify.app">Demo</a> -->
 </div>
 
+<img src="client/src/images/image.png" align="center">
+
 <h1 align="center">Real Estate CRM</h1>
 
 <p align="center">
@@ -50,9 +52,16 @@ Describe your project
 
 ## :boom: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Feature 1; Login/Registration
+
+:heavy_check_mark: Feature 2; Leads management
+
+:heavy_check_mark: Feature 3; Listing management
+
+:heavy_check_mark: Feature 4; Real estate resources
+
+:heavy_check_mark: Feature 4; Task management
+
 
 ## :keyboard: Backend Technologies ##
 
@@ -62,7 +71,7 @@ The following tools were used in this project:
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
 
-## :star2: Frontend ##
+## :star2: Frontend Tools ##
 
 The following were implemented in this project:
 
