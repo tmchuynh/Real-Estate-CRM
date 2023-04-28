@@ -155,7 +155,7 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
           )
           .map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {Object.keys(row).map((key, columnIndex) => (
+              {Object.keys(row).map((lead, columnIndex) => (
                 <td
                   key={columnIndex}
                   contentEditable={true}
@@ -165,12 +165,12 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
                   }
                   onDoubleClick={handleCellDoubleClick}
                 >
-                  {row[key] === true ? (
+                  {row[lead] === true ? (
                     <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
-                  ) : row[key] === false ? (
+                  ) : row[lead] === false ? (
                     <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
                   ) : (
-                    row[key]
+                    row[lead]
                   )}
                 </td>
               ))}

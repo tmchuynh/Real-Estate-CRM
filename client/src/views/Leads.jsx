@@ -31,14 +31,16 @@ const Leads = (props) => {
     const handleAddLead = (newLeadData) => {
         hideModal();
     }
-
+    console.log("Here's what I got for this logged user id: ", loggedUserId);
     //query for pull all Lead documents of currently logged in User
     useEffect(() => {
         async function getAllLeadsForUser() {
             try {
-                const allLeads = await axios.get(`${baseUrl}/leads`);
+                const allLeads = await axios.get(`${baseUrl}/leads?id=${loggedUserId}`);
                 const allLeadsData = allLeads.data;
-                setAllLeadsforLoggedUser(allLeadsData);
+                const allLeadsWithIdRemoved = allLeadsData.map(({ _id, ...rest }) => rest);
+                setAllLeadsforLoggedUser(allLeadsWithIdRemoved);
+                console.log(allLeadsWithIdRemoved);
             } catch (err) {
                 const errResponse = err.response.data.errors;
                 const errArr = [];

@@ -23,8 +23,8 @@ module.exports.createOneLead = (req, res) => {
 
 //GET all Leads
 module.exports.getAllLeadsByUser = (req, res) => {
-    console.log("Grabbing all Leads for this User!", req.session.userId);
-    Lead.find().where({ agent: req.session.userId }).sort({ lastName: 1 })
+    console.log("Grabbing all Leads for this User!", req.query.id);
+    Lead.find().where({ agent: req.query.id }).select("firstName lastName email phoneNumber status isBuying isSelling marketArea").sort({ lastName: 1 })
         .then(allLeads => { res.json(allLeads) })
         .catch(err => { res.status(400).json({ ...err, message: err.message }) });
 };
