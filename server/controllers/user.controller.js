@@ -1,15 +1,36 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
+const hashSalt = 10;
+const jwt = require('jsonwebtoken');
+const secretKey = process.env.secretKey;
+//in-memory blacklist is fine for the scope of this app
+const revokedTokens = [];
 
-//title case for search params involving names - not needed with regex i being case insensitive
-// function searchWithTitleCase(string) {
-//     return string.replace(
-//         /\w\S*/g,
-//         function (txt) {
-//             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-//         }
-//     );
-// }
+//authentication function to be called by others
+function authenticateUser(req, res) {
+    //if auth header isn't passed or doesn't include the jwt token, early exit
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    //if not early exit, check if token was revoked
+    const token = authHeader.substring(7) //start at 7th char because startsWith 'Bearer '
+    if (revokedTokens.includes(token)) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    //now we can try to veryify the token and pull out the userId to set it in req
+    try {
+        const decoded = jwt.verify(token, secretKey);
+        req.userId = decoded.userId;
+    } catch (err) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    };
+};
+
+//revoke tokens when users logout
+function revokeToken(token) {
+    revokedTokens.push(token)
+}
 
 /*           
 *********************************************************************
@@ -20,7 +41,11 @@ CRUD FUNCTIONALITY ROUTES - CREATE, GET(READ), UPDATE, & DELETE USERS
 //CREATE User
 module.exports.createOneUser = (req, res) => {
     User.create(req.body)
-        .then(user => { res.json(user) })
+        .then(user => {
+            const jwtToken = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2h' });
+            res.cookie('jwt', jwtToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+            res.send(jwtToken);
+        })
         .catch(err => { res.status(400).json({ ...err, message: err.message }) });
 };
 
@@ -63,8 +88,8 @@ module.exports.searchForUsers = async (req, res) => {
         const foundUsers = await User.find(query);
         res.json(foundUsers);
 
-    } catch (err) {
-        res.status(400).json({ ...err, message: err.message });
+    } catch (error) {
+        res.status(400).json({ ...error, message: error.message });
     }
 };
 
@@ -77,11 +102,6 @@ module.exports.deleteOneUserById = (req, res) => {
 
 //UPDATE one User by ID
 module.exports.updateOneUserById = async (req, res) => {
-    /*
-    ****************************************************************** 
-    need to hash the password if it is part of the update
-    ******************************************************************
-    */
     try {
         //check if user exists first
         const user = await User.findById({ _id: req.params.id });
@@ -90,13 +110,14 @@ module.exports.updateOneUserById = async (req, res) => {
         }
 
         //hash pw if in body and update req.body with hashed pw
-        if (req.body.password) {
-            req.body.password = await bcrypt.hash(req.body.password, 10);
+        let newPassword = req.body.password;
+        if (newPassword) {
+            newPassword = await bcrypt.hash(newPassword, hashSalt);
         }
         const updatedUser = await User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true });
         res.json(updatedUser);
-    } catch (err) {
-        res.status(400).json({ ...err, message: err.message })
+    } catch (error) {
+        res.status(400).json({ ...error, message: error.message })
     };
 };
 
@@ -115,21 +136,21 @@ module.exports.tryLoginOneUserByEmail = async (req, res) => {
         const existingUser = await User.findOne({ email });
         //if user can't be found by that email, return a 400 error
         if (!existingUser) {
-            return res.status(400).json({ ...err, message: err.message });
+            return res.status(400).json({ message: "No user exists for this email. Would you like to register instead?" });
         }
         //else compare pw
         const isPasswordMatch = await existingUser.comparePassword(password);
         //if don't match, throw 401 error
         if (!isPasswordMatch) {
-            return res.status(401).json({ ...err, message: err.message });
+            return res.status(401).json({ message: "Invalid Login Attempt!" });
         }
         //else, log the user in and store their _id in req.session.userId
         const userId = existingUser._id.toString();
         req.session.userId = userId;
-        console.log(req.session.userId);
-        console.log(userId);
-        const loggedUser = { ...existingUser, _id: userId };
-        res.json(loggedUser);
+        const user = { ...existingUser, _id: userId };
+        const jwtToken = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2h' });
+        res.cookie('jwt', jwtToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+        res.send(jwtToken);
     } catch (err) {
         res.status(400).json({ ...err, message: err.message });
     }

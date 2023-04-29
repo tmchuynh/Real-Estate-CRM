@@ -6,44 +6,47 @@ import { AuthContext } from "../authContext";
 import axios from 'axios';
 
 const LoginForm = () => {
-  const { setIsUserLoggedIn } = useContext(AuthContext);
-  const [loginErrors, setLoginErrors] = useState(["loginErrorsDefault"]);
-  const { loggedUserId, setLoggedUserId } = useContext(AuthContext);
+  const { setAuthorizationToken } = useContext(AuthContext);
+  const { setLoggedUserId } = useContext(AuthContext);
+  const [loginErrors, setLoginErrors] = useState([]);
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
   const navigate = useNavigate();
   const baseUrl = "http://localhost:8000/api";
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // try to login user
-    try {
-      const user = await axios.post(`${baseUrl}/users/login`, {
-        email: formEmail,
-        password: formPassword
-      });
-      console.log(user.data._id);
-      if (user.data) {
-        setIsUserLoggedIn(true);
-        setLoggedUserId(user.data._id);
-        navigate("/leads");
-      } else { console.log("Something went wrong. . .") }
-      // navigate('/leads');
-    } catch (err) {
-      setLoginErrors(err);
+    const loginData = {
+      email: formEmail,
+      password: formPassword
     };
+
+    axios
+      .post(`${baseUrl}/users/login`, loginData)
+      .then(res => {
+        const jwt = res.data;
+        document.cookie = `jwt=${jwt}; path=/; max-age=86400`;
+        setLoggedUserId(true);
+        setAuthorizationToken(jwt);
+        navigate('/leads');
+      })
+      .catch(error =>  {
+        //get the errors from the response
+        setLoginErrors(error.response.data.message);
+    });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Login</h1>
       {/* display any errors in the form */}
-      {/* {loginErrors.map((err, idx) => <p style={{ color: 'red' }} key={idx}>{err}</p>)} */}
+      <p style={{ color: 'red' }} >{loginErrors}</p>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" onChange={e => setFormEmail(e.target.value)} />
       </Form.Group>
-
+      <br />
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" onChange={e => setFormPassword(e.target.value)} />
@@ -56,7 +59,7 @@ const LoginForm = () => {
         </Button>
 
         <div>
-          Don't have an account? <Link to={'/register'}>Register</Link>
+          Don't have an account? <Link to={'/register'}>Sign Up</Link>
         </div>
 
       </Stack>

@@ -52,7 +52,7 @@ const LeadDetails = (props) => {
                         <p id='email'>
                             {email}
                         </p>
-                        <CopyButton email="email" />
+                        <CopyButton target="email" />
                     </div>
                     <div className="d-flex gap-3">
                         <p>
@@ -61,7 +61,7 @@ const LeadDetails = (props) => {
                         <p id='phone_number'>
                             {phoneNumber}
                         </p>
-                        <CopyButton phoneNumber="phone_number" />
+                        <CopyButton target="phone_number" />
                     </div>
                     <div className="d-flex gap-3">
                         <p>

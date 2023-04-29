@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Email = require('mongoose-type-email');
 const bcrypt = require('bcrypt');
+const hashSalt = 10;
 
 const UserSchema = new mongoose.Schema({
     //mongoose added Email datatype that auto validates using an email regex
@@ -18,12 +19,12 @@ const UserSchema = new mongoose.Schema({
     },
     firstName: {
         type: String,
-        required: true,
+        required: [true, "First Name is Required!"],
         index: true
     },
     lastName: {
         type: String,
-        required: true,
+        required: [true, "Last Name is required!"],
         index: true
     },
     location: {
@@ -55,7 +56,7 @@ UserSchema.pre('validate', function (next) {
 
 //using bcrypt to hash passwords before saving a User Document
 UserSchema.pre('save', function (next) {
-    bcrypt.hash(this.password, 10)
+    bcrypt.hash(this.password, hashSalt)
         .then(hash => {
             this.password = hash;
             next();

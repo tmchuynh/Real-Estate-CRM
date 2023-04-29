@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../authContext";
 import SidebarNav from '../components/SideNav';
 import DynamicTable from '../components/Table';
 import LeadForm from '../components/LeadForm';
@@ -9,10 +10,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material';
 
 const Leads = ({ leads }) => {
+    const { authorizationtoken, setAuthorizationToken } = useContext(AuthContext);
+    const { loggedUserId, setLoggedUserId } = useContext(AuthContext);
     const [leadsData, setLeadsData] = useState(leads);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
-    console.log(leadsData);
 
     const showModal = () => {
         setIsModalOpen(true);

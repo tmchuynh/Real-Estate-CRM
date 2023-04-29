@@ -1,29 +1,24 @@
 import Timeline from "./Timeline";
-import { useState } from 'react'; // import useState hook
+import { useState, useEffect } from 'react'; // import useState hook
 import { Button, Stack, Form } from 'react-bootstrap'
 import TimelineItem from "./TimelineItem";
+import axios from 'axios';
 
 const TimelineForm = () => {
-    // define state variables using useState hook
-    const [eventName, setEventName] = useState('');
-    const [eventDetail, setEventDetail] = useState('');
-    const [action, setAction] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [showForm, setShowForm] = useState(false);
-    const [events, setEvents] = useState([]); // add events state variable and initialize as an empty array
-    const [editing, setEditing] = useState(false); // add editing state variable and initialize as false
+    const [allActivity, setAllActivity] = useState([]);
+    const [editing, setEditing] = useState(false); 
     const [editIndex, setEditIndex] = useState(-1); // add editIndex state variable and initialize as -1
+    const baseUrl = 'localhost:8000/api';
 
-
-    const handleChangeEventName = (e) => {
-        setEventName(e.target.value); // update state using setEventName function
+    const handleChangeTitle = (e) => {
+        setTitle(e.target.value);
     }
 
-    const handleChangeEventDetail = (e) => {
-        setEventDetail(e.target.value);
-    }
-
-    const handleChangeAction = (e) => {
-        setAction(e.target.value);
+    const handleChangeDescription = (e) => {
+        setDescription(e.target.value);
     }
 
     /**
@@ -33,86 +28,85 @@ const TimelineForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let updatedEvents;
+        let updatedActivities;
         if (editing) {
             // editing existing event
-            updatedEvents = [...events];
-            updatedEvents[editIndex] = {
-                ...updatedEvents[editIndex],
-                eventName,
-                eventDetail,
-                time: new Date().toLocaleTimeString(),
-                action,
+            updatedActivities = [...allActivity];
+            updatedActivities[editIndex] = {
+                ...updatedActivities[editIndex],
+                title,
+                description,
+                time: new Date().toLocaleTimeString()
             };
+            axios
+                .put(`${baseUrl}/`)
         } else {
             // adding new event
-            updatedEvents = [{ time: new Date().toLocaleTimeString(), eventName, eventDetail, action, }, ...events,];
+            updatedActivities = [{ time: new Date().toLocaleTimeString(), title, description }, ...allActivity,];
         }
-        setEvents(updatedEvents);
-        setEventName('');
-        setEventDetail('');
-        setAction('');
+        setAllActivity(updatedActivities);
+        setTitle('');
+        setDescription('');
         setShowForm(false);
         setEditing(false);
         setEditIndex(-1); // reset the edit index
     };
 
 
-    const handleEditEvent = (eventName, eventDetail) => {
-        setEventName(eventName);
-        setEventDetail(eventDetail);
+    const handleEditActivity = (title, description) => {
+        setTitle(title);
+        setDescription(description);
         setShowForm(true);
         setEditing(true);
     };
 
 
 
-    const renderEvents = () => { // define the function as a const to be used in JSX
-        return events.map((val, index) => { // access events variable instead of this.state.events
+    const renderEvents = () => {
+        return allActivity.map((val, index) => {
             const date = new Date().toLocaleDateString();
             return (
                 <TimelineItem
                     key={index}
                     date={new Date().toLocaleDateString()}
                     time={val.time}
-                    eventName={val.eventName}
-                    eventDetail={val.eventDetail}
-                    onEdit={handleEditEvent}
-                    index={index} // pass index as prop
+                    title={val.title}
+                    description={val.description}
+                    onEdit={handleEditActivity}
+                    index={index}
                 />
 
             );
         });
     }
 
-    return ( // use return instead of render()
+    return (
         <div className="main">
             <Stack gap={4}>
-                <h2>Timeline</h2>
-                <Timeline header={"Latest Activity".toUpperCase()}>{renderEvents()}</Timeline> {/* use renderEvents() instead of this.renderEvents() */}
+                <h2>Relationship Timeline</h2>
+                <Timeline header={"Latest Activity".toUpperCase()}>{renderEvents()}</Timeline>
                 {showForm && (
                     <Form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="Event Name">Event Name</label>
+                            <label htmlFor="Event Name">Title</label>
                             <input
                                 className="form-control"
-                                value={eventName}
-                                onChange={handleChangeEventName}
+                                value={title}
+                                onChange={handleChangeTitle}
                             />
-                            <label htmlFor="Event Detail">Event Detail</label>
+                            <label htmlFor="Event Detail">Details</label>
                             <input
                                 className="form-control"
-                                value={eventDetail}
-                                onChange={handleChangeEventDetail}
+                                value={description}
+                                onChange={handleChangeDescription}
                             />
                         </div>
                         <Button type="submit" className="btn btn-primary my-3">
-                            Submit
+                            Save
                         </Button>
                     </Form>
                 )}
-
-                <Button onClick={() => setShowForm(true)}>Add Event</Button> {/* use setShowForm instead of this.setState */}
+                <Button onClick={() => setShowForm(true)}>Add New Activity</Button>
             </Stack>
         </div>
     );

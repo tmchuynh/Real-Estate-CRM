@@ -28,21 +28,21 @@ const DynamicPagination = ({ itemsPerPage, totalItems, currentPage, onPageChange
   return (
     <Pagination >
       <Tooltip title="First page">
-        <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
+        <Pagination.First key="first" onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
       </Tooltip>
 
       <Tooltip title="Previous page">
-        <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+        <Pagination.Prev key="prev" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
       </Tooltip>
 
       {renderPageNumbers()}
 
       <Tooltip title="Next page">
-        <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+        <Pagination.Next key="next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
       </Tooltip>
 
       <Tooltip title="Last page">
-        <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+        <Pagination.Last key="last" onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
       </Tooltip>
     </Pagination>
   );

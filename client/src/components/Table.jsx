@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Table, Button, Form, Stack } from "react-bootstrap";
 import DynamicPagination from "./DynamicPagination";
-import CopyButton from '../components/CopyBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 import styles from "../Style.module.css/Table.module.css";
@@ -11,52 +10,6 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
   const [tableData, setTableData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_ITEMS_PER_PAGE);
-  const [cellErrors, setCellErrors] = useState([]);
-
-  const handleCellEdit = (newValue, rowIndex, columnIndex) => {
-    // Reset cellErrors state
-    setCellErrors([]);
-    // Perform validations on the new value here
-    if (validations[columnIndex] && !validations[columnIndex](newValue)) {
-      setCellErrors((prev) => {
-        const updatedErrors = [...prev];
-        updatedErrors[rowIndex] = updatedErrors[rowIndex] || [];
-        updatedErrors[rowIndex][columnIndex] = "Please enter a valid value.";
-        return updatedErrors;
-      });
-      console.log(cellErrors);
-      return;
-    }
-
-    // Update the table data state with the new value
-    const newData = [...tableData];
-    newData[rowIndex][columnIndex] = newValue;
-    setTableData(newData);
-  };
-
-  const handleCellKeyDown = (e, rowIndex, columnIndex) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const rows = document.querySelectorAll("tr");
-      const cells = rows[rowIndex].querySelectorAll("td");
-      const nextColumnIndex = (columnIndex + 1) % cells.length;
-      console.log(nextColumnIndex);
-      const nextRowIndex = rowIndex + Math.floor((columnIndex + 1) / cells.length);
-      if (nextRowIndex < rows.length) {
-        cells[nextColumnIndex].setAttribute("contentEditable", true);
-        cells[nextColumnIndex].focus();
-      }
-    } else if (e.key === "Tab") {
-      e.preventDefault();
-    } else {
-      const newValue = e.target.textContent;
-      handleCellEdit(newValue, rowIndex, columnIndex);
-    }
-  };
-
-  const handleCellDoubleClick = (e) => {
-    e.target.contentEditable = false;
-  };
 
   const handleDeleteRow = (rowIndex) => {
     const newData = [...tableData];
@@ -143,28 +96,14 @@ const DynamicTable = ({ data, handleDetailsClick, validations }) => {
           .map((row, rowIndex) => (
             <tr key={rowIndex}>
               {Object.keys(row).map((lead, columnIndex) => (
-                <td key={columnIndex} contentEditable={true} value={row[lead]} suppressContentEditableWarning={false} onKeyDown={(e) => handleCellKeyDown(e, rowIndex, columnIndex)} onDoubleClick={handleCellDoubleClick}>
+                <td key={columnIndex} contentEditable={false} value={row[lead]} suppressContentEditableWarning={false} >
                   {row[lead] === true ? (
                     <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#06d6a0" }} />
                   ) : row[lead] === false ? (
                     <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#ef476f" }} />
-                  ) : row[lead].includes('@') ? (
-                    <div>
-                      <div className="me-1 d-inline">
-                        {row[lead]}
-                      </div>
-                        <CopyButton email="email" />
-                    </div>
-                  ) : row[lead].includes("(") ? (
-                    <div>
-                      <div className="me-1 d-inline">
-                        {row[lead]}
-                      </div>
-                        <CopyButton phoneNumber="phone_number" />
-                    </div>
-                  ) : (
-                    row[lead]
-                  )}
+                  ) : 
+                    <p>{row[lead]}</p> 
+                  }
                 </td>
               ))}
               <td>

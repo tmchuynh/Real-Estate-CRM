@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 const Email = require('mongoose-type-email');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
+// const hashSalt = 10;
 
-const EventSchema = new mongoose.Schema({
-    eventName: {
+const ActivitySchema = new mongoose.Schema({
+    title: {
         type: String,
         required: true,
-        minLength: [3, "Event Name must be at least 3 characters long!"]
+        minLength: [3, "Title must be at least 3 characters long!"]
     },
-    eventDescription: {
+    description: {
         type: String,
         required: true,
         minLength: [5, "Come on, put at least {MINLENGTH} characters for a description!"]
@@ -71,8 +72,8 @@ const LeadSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    timelineEvents: {
-        type: EventSchema
+    timelineActivity: {
+        type: ActivitySchema
     }
 }, { timestamps: true });
 
@@ -92,7 +93,7 @@ LeadSchema.pre('validate', function (next) {
 
 // //using bcrypt to hash passwords
 // LeadSchema.pre('save', function (next) {
-//     bcrypt.hash(this.password, 10)
+//     bcrypt.hash(this.password, hashSalt)
 //         .then(hash => {
 //             this.password = hash;
 //             next();

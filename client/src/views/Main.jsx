@@ -28,7 +28,7 @@ export default function Main() {
     // const [loggedUserErrors, setLoggedUserErrors] = useState([]);
     const [loggedUserId, setLoggedUserId] = useState("");
     const [loggedUser, setLoggedUser] = useState(UserData);
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [authorizationToken, setAuthorizationToken] = useState(false);
     const [allLeadsforLoggedUser, setAllLeadsforLoggedUser] = useState(LeadsData);
     // const myListings = useState(MyListings);
     // const navigate = useNavigate();
@@ -52,11 +52,11 @@ export default function Main() {
 
     return (
         <div className='p-2'>
-            <AuthContext.Provider value={{ isUserLoggedIn, loggedUserId, setIsUserLoggedIn, setLoggedUserId }}>
+            <AuthContext.Provider value={{ authorizationToken, loggedUserId, setAuthorizationToken, setLoggedUserId }}>
                 <Routes>
                     <Route path="/signin" element={<LoginForm />} />
                     # the user that is logged in
-                    <Route path="/user_profile" element={<UserProfile user={loggedUser} />} />
+                    <Route path="/user_profile/:id" element={<UserProfile user={loggedUser} />} />
                     <Route exact path="/edit_user_profile/:id" element={<EditUserProfile user={loggedUser} />} />
                     <Route path="/leads" element={<Leads leads={allLeadsforLoggedUser} />} />
                     <Route path="/add_lead" element={<CustomModal />} />
