@@ -1,0 +1,5 @@
+☐ Update all static data to queried data
+☐ Update handleDetailsClick from Leads.jsx
+☐ Add POST route for adding Lead Event
+☐ Finish implementing JSON Web Tokens
+☐ When User is queried to pass to React, decode profile Pic back to img file --last
