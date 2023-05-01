@@ -48,7 +48,7 @@
 
 ## :fire: About ##
 
-Describe your project
+Real Agent Desk is a project created for Gray and Tina to practice building MERN stack web apps by creating a CRM for a Real Estate Agent.
 
 ## :boom: Features ##
 
