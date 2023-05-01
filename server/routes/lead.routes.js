@@ -7,7 +7,7 @@ module.exports = function leadRoutes (app) {
     //search for a lead - will be enabled with first, last, and email fields as search strings
     app.get('/api/leads/search', LeadController.searchForLeads);
     //Users need to be able to add a Lead
-    app.post('/api/leads', LeadController.createOneLead);
+    app.post('/api/leads/:id', LeadController.createOneLead);
     //Allow Leads to up lead data
     app.put('/api/leads/:id', LeadController.updateOneLeadById);
     //DELETE a Lead

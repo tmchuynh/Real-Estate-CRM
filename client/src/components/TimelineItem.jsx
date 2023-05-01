@@ -1,7 +1,9 @@
+//removing the Timeline for later when I give it the right functionality
+
 import React from 'react';
 import { Row, Col, Badge, Button } from 'react-bootstrap';
 
-function TimelineItem({ date, time, eventName, eventDetail, onEdit, index }) {
+export default function TimelineItem({ date, time, title, description, onEdit, index }) {
     return (
         <Row className="timeline">
             <Col md={1} className="timeline_date">
@@ -15,21 +17,19 @@ function TimelineItem({ date, time, eventName, eventDetail, onEdit, index }) {
                 <span className="timeline_events_dot" />
                 <div className="timeline_events_item">
                     <div className="timeline_events_primary">
-                        <b>Event:</b> {eventName.toUpperCase()}
+                        <b>Title:</b> {title}
                     </div>
                     <div className="timeline_events_secondary">
-                        <b>Details: </b>
-                        {eventDetail}
+                        <b>Description: </b>
+                        {description}
                     </div>
                 </div>
             </Col>
             <Col md={2}>
                 {onEdit && (
-                    <Button onClick={() => onEdit(eventName, eventDetail, index)}>Edit</Button>
+                    <Button onClick={() => onEdit(title, description, index)}>Edit</Button>
                 )}
             </Col>
         </Row>
     );
 }
-
-export default TimelineItem;

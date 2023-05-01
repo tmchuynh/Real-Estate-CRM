@@ -1,7 +1,8 @@
-import React from 'react';
-import TimelineItem from './TimelineItem';
+//removing the Timeline for later when I give it the right functionality
 
-function Timeline(props) {
+import React from 'react';
+
+export default function Timeline(props) {
     return (
         <div className="timeline">
             {props.header ? <div className="timeline_header">{props.header}</div> : null}
@@ -12,5 +13,3 @@ function Timeline(props) {
         </div>
     );
 }
-
-export default Timeline;

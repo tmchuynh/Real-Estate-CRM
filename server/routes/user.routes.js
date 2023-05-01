@@ -5,7 +5,7 @@ module.exports = function userRoutes (app) {
     //get all users (probably won't use this)
     app.get('/api/users', UserController.getAllUsers);
     //get one user by ID
-    app.get('/api/users/findbyid/:id', UserController.getOneUserById)
+    app.get('/api/users/:id', UserController.getOneUserById)
     //Route for React to check if a user is logged in --returns T or F
     app.get('/api/users/check/authorization', UserController.checkUserSession);
     //attempt to login a user by email and password validation usign bcrypt

@@ -10,9 +10,9 @@ import styles from "../Style.module.css/Leads.module.css";
 
 const EditUserProfile = ({ user }) => {
     const navigate = useNavigate();
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState("the Royal Highness");
-    const [email, setEmail] = useState("g@b.com");
+    const [firstName, setFirstName] = useState("John");
+    const [lastName, setLastName] = useState("Doe");
+    const [email, setEmail] = useState("jd@example.com");
     const [location, setLocation] = useState("LA Metro");
     const [title, setTitle] = useState("Agent");
 
