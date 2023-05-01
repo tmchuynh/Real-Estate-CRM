@@ -28,8 +28,9 @@ const RegistrationForm = () => {
     }
     axios.post(`${baseUrl}/users`, formData)
       .then(res => {
-        const userID = res.data._id;
-        navigate(`/user_profile/${userID}`);
+        const results = res.data;
+        setLoggedUserId(results._id);
+        return navigate(`/user_profile`);
       })
       //potentially a lot of errors, so putting them in an arr
       .catch(error => {

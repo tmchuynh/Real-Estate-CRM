@@ -6,13 +6,14 @@ import { AuthContext } from "../authContext";
 import axios from 'axios';
 
 const LoginForm = () => {
-  const { setAuthorizationToken } = useContext(AuthContext);
-  const { setLoggedUserId } = useContext(AuthContext);
+  const { authToken, setAuthorizationToken } = useContext(AuthContext);
+  const { loggedUserId, setLoggedUserId } = useContext(AuthContext);
   const [loginErrors, setLoginErrors] = useState([]);
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
   const navigate = useNavigate();
   const baseUrl = "http://localhost:8000/api";
+  const landingPage = '/leads';
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,16 +26,24 @@ const LoginForm = () => {
     axios
       .post(`${baseUrl}/users/login`, loginData)
       .then(res => {
-        const jwt = res.data;
-        document.cookie = `jwt=${jwt}; path=/; max-age=86400`;
-        setLoggedUserId(true);
-        setAuthorizationToken(jwt);
-        navigate('/leads');
+        const results = res.data;
+        console.log(results);
+        const thisUser = res.user;
+        const jwt = res.jwt;
+        //need _id for URL params
+        console.log(thisUser);
+        console.log(jwt);
+        thisUser && setLoggedUserId(thisUser._id);
+        //need JWT for API calls to Express
+        jwt && setAuthorizationToken(jwt);
+        console.log(authToken);
+
+        //redirect to default landing page
       })
-      .catch(error =>  {
-        //get the errors from the response
-        setLoginErrors(error.response.data.message);
-    });
+      .then(() => {
+        return navigate(`${landingPage}`);
+      })
+      .catch(error =>  { setLoginErrors(error.response.data.message) });
   };
 
   return (

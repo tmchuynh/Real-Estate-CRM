@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const hashSalt = 10;
 const jwt = require('jsonwebtoken');
 const secretKey = process.env.secretKey;
-//in-memory blacklist is fine for the scope of this app
+//in-memory JWTs is fine for the scope of this app
+const activeTokens = [];
 const revokedTokens = [];
 
 //authentication function to be called by others
@@ -147,21 +148,27 @@ module.exports.tryLoginOneUserByEmail = async (req, res) => {
         //else, log the user in and store their _id in req.session.userId
         const userId = existingUser._id.toString();
         req.session.userId = userId;
-        const user = { ...existingUser, _id: userId };
-        const jwtToken = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2h' });
-        res.cookie('jwt', jwtToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-        res.send(jwtToken);
+        const newJsonWebToken = jwt.sign({ userId: userId }, secretKey, { expiresIn: '2h' });
+        activeTokens.push({newJsonWebToken: existingUser});
+        //creating cookie with React using the passed jwtToken
+        // res.cookie('jwt', jwtToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+        return res.json({
+            user: existingUser,
+            jwt: newJsonWebToken
+    });
     } catch (err) {
         res.status(400).json({ ...err, message: err.message });
     }
 };
 
-//LOGOUT User and clear session, then redirect to landing page (redirect handled by React)
+//LOGOUT User and revoke JWT, then redirect to landing page (redirect handled by React)
 module.exports.logoutUser = (req, res) => {
-    console.log("Destroying Session data. . .");
+    console.log("Revoking JWT. . .\n. . . . . . .\n");
+    revokedTokens.push(req.session.jwt)
     req.session.destroy(function (err) {
         err ? console.log(err) : res.json({ message: "Logout successful!" });
     })
+    console.log(". . . . .\nJWT Revoked!")
 }
 
 //Route to tell React if User logged in or not --returns T or F

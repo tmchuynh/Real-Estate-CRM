@@ -10,7 +10,7 @@ CRUD FUNCTIONALITY ROUTES - CREATE, GET(READ), UPDATE, & DELETE LEADS
 //CREATE Lead
 module.exports.createOneLead = (req, res) => {
     //add currently logged in User to the create method data
-    const data = { ...req.body, agent: req.session.userId };
+    const data = { ...req.body, agent: req.params.id };
     Lead.create(data)
         .then(lead => {
             /*

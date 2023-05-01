@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authContext";
@@ -8,44 +8,56 @@ import LeadForm from '../components/LeadForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Tooltip } from '@mui/material';
+//remove this after using query data
+import { LeadsData } from "../staticData";
+import axios from 'axios';
 
-const Leads = ({ leads }) => {
-    const { authorizationtoken, setAuthorizationToken } = useContext(AuthContext);
+export default function Leads() {
+    //static data for testing
+    const allStaticLeads = LeadsData;
+    //everything needed for Express APIs
+    const { authToken, setAuthorizationToken } = useContext(AuthContext);
     const { loggedUserId, setLoggedUserId } = useContext(AuthContext);
-    const [leadsData, setLeadsData] = useState(leads);
+    const baseUrl = "http://localhost:8000/api";
+    const authHeader = {"Authorization": `Bearer: ${authToken}` }
+    //vars to hold Leads and Errors associated with trying to get or create Leads
+    const [allLeads, setAllLeads] = useState([]);
+    const [leadsErrors, setLeadsErrors] = useState(false);
+    //control Lead Form modal
     const [isModalOpen, setIsModalOpen] = useState(false);
+    //to redirect to Lead Details
     const navigate = useNavigate();
-
+    //show/hide modal handlers
     const showModal = () => {
         setIsModalOpen(true);
     }
-
     const hideModal = () => {
         setIsModalOpen(false);
     }
+    //function to grab leads from db via Express API
+    const getLeadsForUser = (id) => {
+        axios
+        .get(`${baseUrl}/leads?${id}`)
+        .then(res => {setAllLeads(res.data)})
+    }
+    //useEffect grabs the leads on render
+    useEffect(() => {
+        getLeadsForUser(loggedUserId);
+    }, [loggedUserId]);
 
     const handleAddLead = (newLead) => {
-        setLeadsData((prevState) => {
+        setAllLeads((prevState) => {
             return [...prevState, newLead];
         });
         hideModal();
     }
     // Gray: Update this function to grab the lead that was clicked on
     const handleDetailsClick = (lead) => {
-        console.log("Lead 0 is: " + lead[0]);
-        navigate(`/lead_details`);
+        //get request with req.params.id as the lead._id
+
+        //navigate to details page with URL param
+        navigate(`/lead_details/${lead._id}`);
     }
-
-    const validations = [
-        (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the first column that only allows letters with 4 or more characters
-        (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the second column that only allows letters with 4 or more characters
-        (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), // validation for the third column that only allows valid email addresses
-        (value) => /^\d{10}$/.test(value), // validation for the fourth column that only allows valid phone numbers (10 digits)
-        (value) => /^(True|False)$/.test(value), // validation for the sixth column that only allows "True" or "False"
-        (value) => /^(True|False)$/.test(value), // validation for the seventh column that only allows "True" or "False"
-        (value) => /^[a-zA-Z]{4,}$/.test(value), // validation for the eighth column that only allows letters with 4 or more characters
-    ];
-
 
     return (
         <>
@@ -60,7 +72,11 @@ const Leads = ({ leads }) => {
                             </Button>
                         </Tooltip>
                     </div>
-                    <DynamicTable data={leadsData} handleDetailsClick={handleDetailsClick} validations={validations} />
+                    {allLeads ?
+                    <DynamicTable data={allStaticLeads} handleDetailsClick={handleDetailsClick}/> :
+                    leadsErrors ?
+                    <h1 style={{ color: 'red' }}>{leadsErrors}</h1> :
+                    <h1 style={{ color: 'blue' }}>Loading Content. . .</h1>}
                 </Container>
             </div>
             {isModalOpen &&
@@ -76,6 +92,3 @@ const Leads = ({ leads }) => {
         </>
     );
 }
-
-export default Leads;
-

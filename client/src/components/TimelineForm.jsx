@@ -1,36 +1,38 @@
+//removing the Timeline for later when I give it the right functionality
+
 import Timeline from "./Timeline";
-import { useState, useEffect } from 'react'; // import useState hook
+import { useState, useEffect } from 'react';
 import { Button, Stack, Form } from 'react-bootstrap'
 import TimelineItem from "./TimelineItem";
 import axios from 'axios';
 
-const TimelineForm = () => {
+export default function TimelineForm(props) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [allActivity, setAllActivity] = useState([]);
     const [editing, setEditing] = useState(false); 
-    const [editIndex, setEditIndex] = useState(-1); // add editIndex state variable and initialize as -1
+    const [editIndex, setEditIndex] = useState(-1);
+    const [formErrors, setFormErrors] = useState(false);
+    const [editErrors, setEditErrors] = useState(false);
+    const { leadId } = props.leadId;
     const baseUrl = 'localhost:8000/api';
 
     const handleChangeTitle = (e) => {
         setTitle(e.target.value);
     }
-
     const handleChangeDescription = (e) => {
         setDescription(e.target.value);
     }
-
     /**
      * This function handles the submission of a form by adding the form data to an array of events in the
      * component's state.
      */
-
     const handleSubmit = (e) => {
         e.preventDefault();
         let updatedActivities;
         if (editing) {
-            // editing existing event
+            // update state with the edits
             updatedActivities = [...allActivity];
             updatedActivities[editIndex] = {
                 ...updatedActivities[editIndex],
@@ -38,8 +40,10 @@ const TimelineForm = () => {
                 description,
                 time: new Date().toLocaleTimeString()
             };
+            //update the db with the edits
             axios
-                .put(`${baseUrl}/`)
+                .put(`${baseUrl}/leads/${leadId}`, { timelineActivity: {title, description} })
+                .catch( error => setEditErrors(error));
         } else {
             // adding new event
             updatedActivities = [{ time: new Date().toLocaleTimeString(), title, description }, ...allActivity,];
@@ -51,24 +55,19 @@ const TimelineForm = () => {
         setEditing(false);
         setEditIndex(-1); // reset the edit index
     };
-
-
     const handleEditActivity = (title, description) => {
         setTitle(title);
         setDescription(description);
         setShowForm(true);
         setEditing(true);
     };
-
-
-
-    const renderEvents = () => {
+    const renderActivity = () => {
         return allActivity.map((val, index) => {
             const date = new Date().toLocaleDateString();
             return (
                 <TimelineItem
                     key={index}
-                    date={new Date().toLocaleDateString()}
+                    date={date}
                     time={val.time}
                     title={val.title}
                     description={val.description}
@@ -79,12 +78,11 @@ const TimelineForm = () => {
             );
         });
     }
-
     return (
         <div className="main">
             <Stack gap={4}>
                 <h2>Relationship Timeline</h2>
-                <Timeline header={"Latest Activity".toUpperCase()}>{renderEvents()}</Timeline>
+                <Timeline header={"Latest Activity".toUpperCase()}>{renderActivity()}</Timeline>
                 {showForm && (
                     <Form onSubmit={handleSubmit}>
                         <div className="form-group">
@@ -111,5 +109,3 @@ const TimelineForm = () => {
         </div>
     );
 }
-
-export default TimelineForm;

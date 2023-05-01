@@ -3,6 +3,12 @@ const Email = require('mongoose-type-email');
 // const bcrypt = require('bcrypt');
 // const hashSalt = 10;
 
+
+/* 
+CHORE: Move ActivitySchema to its own model 
+Update app so that Activities have one Agent (creator) and one Lead (subject)
+Agents can have many Leads and Leads can have many Activities
+*/
 const ActivitySchema = new mongoose.Schema({
     title: {
         type: String,
@@ -56,24 +62,21 @@ const LeadSchema = new mongoose.Schema({
     },
     isBuying: {
         type: Boolean,
-        required: true,
+        required: false,
         index: true
     },
     isSelling: {
         type: Boolean,
-        required: true,
+        required: false,
         index: true
     },
     marketArea: {
-        type: String,
+        type: [String],
         required: false
     },
     agent: {
         type: String,
         required: true
-    },
-    timelineActivity: {
-        type: ActivitySchema
     }
 }, { timestamps: true });
 

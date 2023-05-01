@@ -4,24 +4,24 @@ import SidebarNav from '../components/SideNav';
 import CopyButton from '../components/CopyBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
-import TimelineForm from '../components/TimelineForm';
+// import TimelineForm from '../components/TimelineForm';
 
 
-const LeadDetails = (props) => {
-    const [timeline, setTimeline] = useState([]);
-    const [showForm, setShowForm] = useState(false);
-    const [event, setEvent] = useState("");
+export default function LeadDetails() {
+    // const [timeline, setTimeline] = useState([]);
+    // const [showForm, setShowForm] = useState(false);
+    // const [event, setEvent] = useState("");
     const thisLead = { firstName: 'Sarah', lastName: 'Martinez', email: 'sarah.martinez@example.com', phoneNumber: '(713) 555-1234', status: 'Closing', buying: true, selling: true, marketArea: 'West' };
     const { firstName, lastName, email, phoneNumber, status, buying, selling, marketArea } = thisLead;
     console.log(firstName);
 
 
-    const handleAddEvent = (e) => {
-        e.preventDefault();
-        setTimeline([...timeline, event]);
-        setShowForm(false);
-        setEvent("");
-    }
+    // const handleAddEvent = (e) => {
+    //     e.preventDefault();
+    //     setTimeline([...timeline, event]);
+    //     setShowForm(false);
+    //     setEvent("");
+    // }
 
     return (
         <>
@@ -104,17 +104,11 @@ const LeadDetails = (props) => {
                             {marketArea}
                         </p>
                     </div>
-
-
-                    <TimelineForm />
-
-
-
+                    {/* removing the Timeline for later when I give it the right functionality */}
+                    {/* <TimelineForm /> */}
                 </Container>
             </div>
         </>
     );
 };
-
-export default LeadDetails;
 
