@@ -61,7 +61,7 @@ const SidebarNav = () => {
           My Activity
         </Button>
       </Nav.Link>
-
+      
       <Nav.Link href="/user_profile" className={`${styles.marginY}`}>
         <Button
           type="button"
