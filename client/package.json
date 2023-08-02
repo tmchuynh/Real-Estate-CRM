@@ -21,7 +21,7 @@
     "chartjs-adapter-date-fns": "^3.0.0",
     "clipboard": "^2.0.11",
     "js-cookie": "^3.0.5",
-    "mongoose": "^7.0.5",
+    "mongoose": "^7.3.3",
     "npm": "^9.6.5",
     "os-browserify": "^0.3.0",
     "react": "^18.2.0",
