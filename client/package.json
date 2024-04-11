@@ -22,7 +22,7 @@
     "clipboard": "^2.0.11",
     "js-cookie": "^3.0.5",
     "mongoose": "^7.5.0",
-    "npm": "^9.6.5",
+    "npm": "^10.5.2",
     "os-browserify": "^0.3.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.9",
