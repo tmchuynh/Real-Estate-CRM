@@ -18,7 +18,7 @@
     "express-session": "^1.17.3",
     "init": "^0.1.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.4",
+    "mongoose": "^8.8.3",
     "mongoose-type-email": "^1.1.2"
   }
 }
